@@ -19,8 +19,10 @@
         android:layout_width="match_parent"
         android:layout_weight="10"
         app:menu="@menu/bottom_navigation_menu"
+        android:layoutDirection="rtl"
         app:itemIconTint="@color/bottom_navigation_selector"
         app:itemTextColor="@color/bottom_navigation_selector"
+        android:background="?colorPrimary"
         android:layout_height="0dp"/>
 
 </LinearLayout>

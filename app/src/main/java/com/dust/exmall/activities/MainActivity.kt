@@ -20,7 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setUpViews()
+        setUpMainFragment()
         setUpBottomNavigationView()
+    }
+
+    private fun setUpMainFragment() {
+        startFragment(HomeFragment())
     }
 
     /* fun checkCurrentPage(pageNum: Int): Boolean = PAGE_NUMBER == pageNum

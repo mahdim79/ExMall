@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
-    private var PAGE_NUMBER = 0;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +24,10 @@ class MainActivity : AppCompatActivity() {
         setUpBottomNavigationView()
     }
 
+
     private fun setUpMainFragment() {
         startFragment(HomeFragment())
     }
-
-    /* fun checkCurrentPage(pageNum: Int): Boolean = PAGE_NUMBER == pageNum
-
-     fun setCurrentPage(pageNum: Int) {
-         PAGE_NUMBER = pageNum
-     }*/
 
     private fun setUpBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener { item ->
@@ -59,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startFragment(fragment: Fragment) {
+    private fun startFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, fragment)
             .commit()
@@ -67,5 +62,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
+
     }
 }

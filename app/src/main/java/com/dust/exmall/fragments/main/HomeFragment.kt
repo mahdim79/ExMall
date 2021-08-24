@@ -8,8 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
+import com.dust.exmall.adapters.recyclerview.SuggestionAdapter
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
 import com.dust.exmall.customviews.CTextView
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -20,6 +23,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
     private lateinit var search_image: ImageView
     private lateinit var sliderViewPager: ViewPager
     private lateinit var sliderDotsIndicator: DotsIndicator
+    private lateinit var suggestionRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +37,12 @@ class HomeFragment : Fragment() , View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         setUpViews(view)
         setUpSliderViewPager()
+        setUpSuggestionRecyclerView()
+    }
+
+    private fun setUpSuggestionRecyclerView() {
+        suggestionRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
+        suggestionRecyclerView.adapter =SuggestionAdapter()
     }
 
     private fun setUpSliderViewPager() {
@@ -46,6 +56,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
         exMallText = view.findViewById(R.id.exMallText)
         sliderViewPager = view.findViewById(R.id.sliderViewPager)
         sliderDotsIndicator = view.findViewById(R.id.sliderDotsIndicator)
+        suggestionRecyclerView = view.findViewById(R.id.suggestionRecyclerView)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)

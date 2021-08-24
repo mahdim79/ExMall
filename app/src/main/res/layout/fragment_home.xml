@@ -51,6 +51,13 @@
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggestionRecyclerView"
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/standardMargin1.5x"
+                android:layout_height="100dp"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:orientation="vertical"
+    android:layout_height="100dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="80"
+        android:src="@drawable/bg_one"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:layout_marginTop="@dimen/standardMargin"/>
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/item_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="دعوت صد میلیونی"
+        android:gravity="center"
+        android:textSize="@dimen/TextSize2x"
+        android:textColor="@color/light_black"
+        android:layout_weight="20"/>
+
+</LinearLayout>

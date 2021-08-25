@@ -16,4 +16,6 @@
     <dimen name="standardMargin6x">60dp</dimen>
     <dimen name="standardMargin8x">80dp</dimen>
     <dimen name="standardMargin10x">100dp</dimen>
+    <dimen name="amazingOffersWidth">150dp</dimen>
+    <dimen name="amazingOffersHeight">350dp</dimen>
 </resources>

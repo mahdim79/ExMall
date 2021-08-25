@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
+import com.dust.exmall.adapters.recyclerview.AmazingOffersAdapter
 import com.dust.exmall.adapters.recyclerview.SuggestionAdapter
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
 import com.dust.exmall.customviews.CTextView
+import com.dust.exmall.dataclasses.AmazingOffersDataClass
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class HomeFragment : Fragment() , View.OnClickListener {
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
     private lateinit var sliderViewPager: ViewPager
     private lateinit var sliderDotsIndicator: DotsIndicator
     private lateinit var suggestionRecyclerView: RecyclerView
+    private lateinit var amazingOffersRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +41,18 @@ class HomeFragment : Fragment() , View.OnClickListener {
         setUpViews(view)
         setUpSliderViewPager()
         setUpSuggestionRecyclerView()
+        setUpAmazingOffersRecyclerView()
+
+    }
+
+    private fun setUpAmazingOffersRecyclerView() {
+        amazingOffersRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
+        val list = arrayListOf<AmazingOffersDataClass>()
+        list.add(AmazingOffersDataClass("hello"))
+        list.add(AmazingOffersDataClass("hello"))
+        list.add(AmazingOffersDataClass("hello"))
+        list.add(AmazingOffersDataClass("hello"))
+        amazingOffersRecyclerView.adapter = AmazingOffersAdapter(list)
     }
 
     private fun setUpSuggestionRecyclerView() {
@@ -57,6 +72,7 @@ class HomeFragment : Fragment() , View.OnClickListener {
         sliderViewPager = view.findViewById(R.id.sliderViewPager)
         sliderDotsIndicator = view.findViewById(R.id.sliderDotsIndicator)
         suggestionRecyclerView = view.findViewById(R.id.suggestionRecyclerView)
+        amazingOffersRecyclerView = view.findViewById(R.id.amazingOffersRecyclerView)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)

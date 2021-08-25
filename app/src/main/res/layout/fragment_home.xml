@@ -55,8 +55,31 @@
                 android:id="@+id/suggestionRecyclerView"
                 android:layout_width="match_parent"
                 android:overScrollMode="never"
+                android:layoutDirection="rtl"
                 android:layout_marginTop="@dimen/standardMargin1.5x"
                 android:layout_height="100dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/standardMargin1.5x"
+                android:layout_height="370dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amazing_offer_background"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/amazingOffersRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:layout_height="match_parent"
+                    android:layoutDirection="rtl"
+                    />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

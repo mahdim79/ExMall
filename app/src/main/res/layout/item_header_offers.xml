@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/amazingOffersWidth"
+    android:orientation="vertical"
+    android:layout_height="@dimen/amazingOffersHeight"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="@dimen/standardMargin6x"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:text="پیشنهاد شگفت انگیز"
+        android:textSize="@dimen/standardMargin2x"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:adjustViewBounds="true"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:src="@drawable/bg_one"
+        android:scaleType="centerCrop"
+        android:layout_weight="35"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textDirection="rtl"
+            android:textSize="12dp"
+            android:padding="@dimen/standardMargin0.5x"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/standardMargin0.5x"
+            android:text="مشاهده همه >"/>
+    </FrameLayout>
+
+
+
+</LinearLayout>

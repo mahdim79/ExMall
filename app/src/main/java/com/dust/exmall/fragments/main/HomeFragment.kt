@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +18,7 @@ import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.AmazingOffersDataClass
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
-class HomeFragment : Fragment() , View.OnClickListener {
+class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var search_text: CTextView
     private lateinit var exMallText: TextView
     private lateinit var search_image: ImageView
@@ -27,6 +26,10 @@ class HomeFragment : Fragment() , View.OnClickListener {
     private lateinit var sliderDotsIndicator: DotsIndicator
     private lateinit var suggestionRecyclerView: RecyclerView
     private lateinit var amazingOffersRecyclerView: RecyclerView
+    private lateinit var magicImageOne: ImageView
+    private lateinit var magicImageTwo: ImageView
+    private lateinit var magicImageThree: ImageView
+    private lateinit var magicImageFour: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,11 +45,17 @@ class HomeFragment : Fragment() , View.OnClickListener {
         setUpSliderViewPager()
         setUpSuggestionRecyclerView()
         setUpAmazingOffersRecyclerView()
+        setUpMagicCards()
 
     }
 
+    private fun setUpMagicCards() {
+        
+    }
+
     private fun setUpAmazingOffersRecyclerView() {
-        amazingOffersRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
+        amazingOffersRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val list = arrayListOf<AmazingOffersDataClass>()
         list.add(AmazingOffersDataClass("hello"))
         list.add(AmazingOffersDataClass("hello"))
@@ -56,8 +65,9 @@ class HomeFragment : Fragment() , View.OnClickListener {
     }
 
     private fun setUpSuggestionRecyclerView() {
-        suggestionRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
-        suggestionRecyclerView.adapter =SuggestionAdapter()
+        suggestionRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        suggestionRecyclerView.adapter = SuggestionAdapter()
     }
 
     private fun setUpSliderViewPager() {
@@ -80,10 +90,13 @@ class HomeFragment : Fragment() , View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when(p0!!.id){
-            R.id.search_text -> {}
-            R.id.search_image -> {}
-            R.id.exMallText -> {}
+        when (p0!!.id) {
+            R.id.search_text -> {
+            }
+            R.id.search_image -> {
+            }
+            R.id.exMallText -> {
+            }
         }
     }
 

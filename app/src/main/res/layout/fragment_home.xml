@@ -55,6 +55,7 @@
                 android:id="@+id/suggestionRecyclerView"
                 android:layout_width="match_parent"
                 android:overScrollMode="never"
+                android:paddingHorizontal="@dimen/standardMargin0.5x"
                 android:layoutDirection="rtl"
                 android:layout_marginTop="@dimen/standardMargin1.5x"
                 android:layout_height="100dp"/>
@@ -75,6 +76,7 @@
                     android:id="@+id/amazingOffersRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:paddingHorizontal="@dimen/standardMargin0.5x"
                     android:layout_height="match_parent"
                     android:layoutDirection="rtl"
                     />
@@ -94,7 +96,7 @@
 
                   <androidx.cardview.widget.CardView
                       android:layout_width="0dp"
-                      android:layout_marginEnd="@dimen/standardMargin0.5x"
+                      android:layout_marginEnd="@dimen/standardMargin"
                       android:layout_weight="50"
                       app:cardCornerRadius="@dimen/standardMargin"
                       android:layout_height="wrap_content">
@@ -111,7 +113,7 @@
                    <androidx.cardview.widget.CardView
                        android:layout_width="0dp"
                        android:layout_weight="50"
-                       android:layout_marginStart="@dimen/standardMargin0.5x"
+                       android:layout_marginStart="@dimen/standardMargin"
                        app:cardCornerRadius="@dimen/standardMargin"
                        android:layout_height="wrap_content">
                        <ImageView
@@ -134,7 +136,7 @@
 
                    <androidx.cardview.widget.CardView
                        android:layout_width="0dp"
-                       android:layout_marginEnd="@dimen/standardMargin0.5x"
+                       android:layout_marginEnd="@dimen/standardMargin"
                        android:layout_weight="50"
                        app:cardCornerRadius="@dimen/standardMargin"
                        android:layout_height="wrap_content">
@@ -151,7 +153,7 @@
                    <androidx.cardview.widget.CardView
                        android:layout_width="0dp"
                        android:layout_weight="50"
-                       android:layout_marginStart="@dimen/standardMargin0.5x"
+                       android:layout_marginStart="@dimen/standardMargin"
                        app:cardCornerRadius="@dimen/standardMargin"
                        android:layout_height="wrap_content">
                        <ImageView
@@ -167,6 +169,29 @@
                </LinearLayout>
 
            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/standardMargin1.5x"
+                android:layout_height="370dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amazing_offer_background"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/amazingSuperMarketRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="@dimen/standardMargin0.5x"
+                    android:layoutDirection="rtl"
+                    />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

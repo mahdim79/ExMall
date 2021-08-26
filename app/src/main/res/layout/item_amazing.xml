@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/amazingOffersWidth"
+    android:layout_height="@dimen/amazingOffersHeight"
+    android:layout_margin="@dimen/standardMargin0.5x"
+    android:backgroundTint="?colorPrimary"
+    app:cardCornerRadius="@dimen/standardMargin"
+    app:cardElevation="@dimen/standardMargin0.5x">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:text="شگفت انگیز اختصاصی اپ"
+            android:textColor="@color/red"
+            android:textSize="@dimen/standardMargin" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="45"
+            android:layoutDirection="ltr">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/standardMargin"
+                android:src="@drawable/bg_one" />
+
+
+            <RelativeLayout
+                android:id="@+id/addCircle"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/add_circle_shape"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/standardMargin2x">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_add_circle_outline_24"
+                    />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:background="@drawable/add_circle_notempty_shape"
+                    >
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/TextSize2x"
+                        android:text="1"/>
+                </FrameLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/purchaseController"
+                android:layout_width="@dimen/standardMargin10x"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/standardMargin2x"
+                android:background="@drawable/add_to_cart_linear_shape"
+                android:elevation="3dp"
+                android:orientation="horizontal"
+                android:padding="3dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imageDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/standardMargin2x"
+                    android:layout_weight="25"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    app:tint="@color/red" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:orientation="vertical">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/count"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/standardMargin2x"
+                        android:gravity="center"
+                        android:text="4"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/TextSize3x" />
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/maximumText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="حداکثر"
+                        android:textColor="@color/white_varient"
+                        android:textSize="@dimen/TextSize2x"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/standardMargin2x"
+                    android:layout_weight="25"
+                    android:src="@drawable/ic_baseline_add_24"
+                    app:tint="@color/red" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:text="فرنچ پرس وینتچج235"
+            android:textColor="@color/black_normal"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:gravity="center_vertical"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/standardMargin">
+
+            <ImageView
+                android:layout_width="@dimen/standardMargin2x"
+                android:layout_height="@dimen/standardMargin2x"
+                android:src="@drawable/ic_baseline_search_24" />
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standardMargin0.5x"
+                android:text="12,250 تومان هدیه نقدی"
+                android:textSize="@dimen/standardMargin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/standardMargin">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:background="@drawable/off_shape"
+                android:paddingVertical="3dp">
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="35%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/standardMargin"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="60"
+                android:layoutDirection="ltr"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="225,000"
+                    android:textSize="8dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtOldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="225,000"
+                    android:textColor="@color/white_varient"
+                    android:textSize="8dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/standardMargin"
+                android:layout_height="@dimen/standardMargin"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:src="@drawable/ic_baseline_search_24" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/soldProgressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layoutDirection="ltr"
+            android:max="100"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:progressTint="@color/red" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="45"
+                android:gravity="center_vertical"
+                android:layoutDirection="ltr"
+                android:paddingStart="@dimen/standardMargin"
+                android:text="13 : 21 : 25"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/standardMargin" />
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/soldPercentageText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="55"
+                android:gravity="center_vertical"
+                android:layoutDirection="ltr"
+                android:paddingEnd="@dimen/standardMargin"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/standardMargin"
+                tools:text="69% فروش رفته" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

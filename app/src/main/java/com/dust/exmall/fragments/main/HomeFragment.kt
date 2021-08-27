@@ -108,10 +108,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun generateFakeData():List<AmazingDataClass> {
         val list = arrayListOf<AmazingDataClass>()
-        list.add(AmazingDataClass("hello"))
-        list.add(AmazingDataClass("hello"))
-        list.add(AmazingDataClass("hello"))
-        list.add(AmazingDataClass("hello"))
+        for(i in 0..10){
+            list.add(AmazingDataClass("hello"))
+        }
         return list
     }
 }

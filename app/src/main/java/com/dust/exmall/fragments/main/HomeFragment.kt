@@ -15,6 +15,7 @@ import com.dust.exmall.adapters.recyclerview.AmazingAdapter
 import com.dust.exmall.adapters.recyclerview.PlusProductsAdapter
 import com.dust.exmall.adapters.recyclerview.SuggestionAdapter
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
+import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.AmazingDataClass
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -29,6 +30,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var amazingOffersRecyclerView: RecyclerView
     private lateinit var amazingSuperMarketRecyclerView: RecyclerView
     private lateinit var plusProductsRecyclerView: RecyclerView
+    private lateinit var ProductsSliderViewPager: ViewPager
     private lateinit var magicImageOne: ImageView
     private lateinit var magicImageTwo: ImageView
     private lateinit var magicImageThree: ImageView
@@ -54,6 +56,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpMagicCards()
         setUpAmazingSuperMarketRecyclerView()
         setUpPlusProductsRecyclerView()
+        setUpProductsSliderViewPager()
+    }
+
+    private fun setUpProductsSliderViewPager() {
+        ProductsSliderViewPager.adapter = ProductsSliderAdapter(requireActivity().supportFragmentManager , generateFakeData())
+        ProductsSliderViewPager.setCurrentItem(4 , false)
     }
 
     private fun setUpPlusProductsRecyclerView(){
@@ -102,6 +110,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         amazingOffersRecyclerView = view.findViewById(R.id.amazingOffersRecyclerView)
         amazingSuperMarketRecyclerView = view.findViewById(R.id.amazingSuperMarketRecyclerView)
         plusProductsRecyclerView = view.findViewById(R.id.plusProductsRecyclerView)
+        ProductsSliderViewPager = view.findViewById(R.id.ProductsSliderViewPager)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)
@@ -121,7 +130,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun generateFakeData(): List<AmazingDataClass> {
         val list = arrayListOf<AmazingDataClass>()
-        for (i in 0..10) {
+        for (i in 0..14) {
             list.add(AmazingDataClass("hello"))
         }
         return list

@@ -245,6 +245,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/standardMargin3x"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/ProductsSliderViewPager"
+                android:layout_width="match_parent"
+                android:layoutDirection="rtl"
+                android:clipToPadding="false"
+                android:paddingEnd="50dp"
+                android:layout_marginTop="@dimen/standardMargin3x"
+                android:layout_height="300dp"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

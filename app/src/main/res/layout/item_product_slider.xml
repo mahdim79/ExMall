@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="ltr"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textSize="12dp"
+                android:textColor="@color/light_black"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:text="6000 بازدید"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/countTextOne"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="15"
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:text="1"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:layout_weight="30"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_one"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textSize="12dp"
+                android:textColor="@color/light_black"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:text="6000 بازدید"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/countTextTwo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="15"
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:text="1"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:layout_weight="30"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_one"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="60"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textDirection="rtl"
+                android:textSize="12dp"
+                android:textColor="@color/light_black"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:layout_marginEnd="@dimen/standardMargin0.5x"
+                android:gravity="center_vertical"
+                android:text="6000 بازدید"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/countTextThree"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="15"
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:text="1"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standardMargin"
+            android:layout_weight="30"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_one"/>
+    </LinearLayout>
+
+</LinearLayout>

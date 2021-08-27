@@ -240,6 +240,11 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/amazing_offer_background" />
             </androidx.cardview.widget.CardView>
+
+            <include layout="@layout/ex_plus_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin3x"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

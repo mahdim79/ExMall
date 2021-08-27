@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.AmazingAdapter
+import com.dust.exmall.adapters.recyclerview.PlusProductsAdapter
 import com.dust.exmall.adapters.recyclerview.SuggestionAdapter
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
 import com.dust.exmall.customviews.CTextView
@@ -27,6 +28,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var suggestionRecyclerView: RecyclerView
     private lateinit var amazingOffersRecyclerView: RecyclerView
     private lateinit var amazingSuperMarketRecyclerView: RecyclerView
+    private lateinit var plusProductsRecyclerView: RecyclerView
     private lateinit var magicImageOne: ImageView
     private lateinit var magicImageTwo: ImageView
     private lateinit var magicImageThree: ImageView
@@ -51,18 +53,28 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpAmazingOffersRecyclerView()
         setUpMagicCards()
         setUpAmazingSuperMarketRecyclerView()
+        setUpPlusProductsRecyclerView()
+    }
+
+    private fun setUpPlusProductsRecyclerView(){
+        plusProductsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        plusProductsRecyclerView.adapter = PlusProductsAdapter(generateFakeData())
     }
 
     private fun setUpAmazingOffersRecyclerView() {
         amazingOffersRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        amazingOffersRecyclerView.adapter = AmazingAdapter(generateFakeData(), AmazingOffersType , requireContext())
+        amazingOffersRecyclerView.adapter =
+            AmazingAdapter(generateFakeData(), AmazingOffersType, requireContext())
     }
 
     private fun setUpAmazingSuperMarketRecyclerView() {
         amazingSuperMarketRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        amazingSuperMarketRecyclerView.adapter = AmazingAdapter(generateFakeData(), AmazingSuperMarketType , requireContext())
+        amazingSuperMarketRecyclerView.adapter =
+            AmazingAdapter(generateFakeData(), AmazingSuperMarketType, requireContext())
     }
 
     private fun setUpMagicCards() {
@@ -89,6 +101,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         suggestionRecyclerView = view.findViewById(R.id.suggestionRecyclerView)
         amazingOffersRecyclerView = view.findViewById(R.id.amazingOffersRecyclerView)
         amazingSuperMarketRecyclerView = view.findViewById(R.id.amazingSuperMarketRecyclerView)
+        plusProductsRecyclerView = view.findViewById(R.id.plusProductsRecyclerView)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)
@@ -106,9 +119,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun generateFakeData():List<AmazingDataClass> {
+    private fun generateFakeData(): List<AmazingDataClass> {
         val list = arrayListOf<AmazingDataClass>()
-        for(i in 0..10){
+        for (i in 0..10) {
             list.add(AmazingDataClass("hello"))
         }
         return list

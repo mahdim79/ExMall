@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/amazingOffersWidth"
+    android:background="@color/white_bottom_navigation"
+    android:layout_height="200dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginStart="1dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="45"
+            android:padding="@dimen/standardMargin"
+            android:src="@drawable/bg_one" />
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:text="فرنچ پرس وینتچج235"
+            android:textColor="@color/black_normal"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:gravity="center_vertical"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/standardMargin">
+
+            <ImageView
+                android:layout_width="@dimen/standardMargin2x"
+                android:layout_height="@dimen/standardMargin2x"
+                android:src="@drawable/ic_baseline_search_24" />
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standardMargin0.5x"
+                android:text="12,250 تومان هدیه نقدی"
+                android:textSize="@dimen/standardMargin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="15"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/standardMargin">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:background="@drawable/off_shape"
+                android:paddingVertical="3dp">
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="35%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/standardMargin"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="60"
+                android:layoutDirection="ltr"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="225,000"
+                    android:textSize="8dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtOldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="225,000"
+                    android:textColor="@color/white_varient"
+                    android:textSize="8dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/standardMargin"
+                android:layout_height="@dimen/standardMargin"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:src="@drawable/ic_baseline_search_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
+

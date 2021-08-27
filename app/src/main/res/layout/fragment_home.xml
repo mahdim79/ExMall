@@ -199,11 +199,47 @@
 
             </RelativeLayout>
 
-            <include layout="@layout/papular_products"
+            <include layout="@layout/popular_products"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standardMargin2x"/>
+                android:layout_marginTop="@dimen/standardMargin3x"/>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:layout_weight="50"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                app:cardCornerRadius="@dimen/standardMargin">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amazing_offer_background" />
+            </androidx.cardview.widget.CardView>
+
+            <include layout="@layout/popular_products_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin3x"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:layout_weight="50"
+                app:cardCornerRadius="@dimen/standardMargin">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/amazing_offer_background" />
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

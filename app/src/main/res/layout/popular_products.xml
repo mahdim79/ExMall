@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <com.dust.exmall.customviews.CTextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/standardMargin"
         android:textColor="@color/black"
         android:textSize="@dimen/TextSize4x"
         android:textStyle="bold"
-        tools:text="ماشین"/>
+        android:text="ماشین"/>
 
     <com.dust.exmall.customviews.CTextView
         android:layout_width="match_parent"
@@ -22,13 +22,12 @@
         android:textColor="@color/light_black"
         android:textSize="@dimen/TextSize3x"
         android:layout_marginTop="2dp"
-        tools:text="بر اساس بازدید های شما"/>
+        android:text="بر اساس بازدید های شما"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/standardMargin2x"
-        android:layout_marginBottom="@dimen/standardMargin0.5x"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/standardMargin0.5x">
 
@@ -37,6 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -51,6 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -65,6 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -78,8 +83,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standardMargin0.5x"
-        android:layout_marginBottom="@dimen/standardMargin0.5x"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/standardMargin0.5x">
 
@@ -88,6 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -102,6 +108,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -115,7 +124,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -129,7 +141,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standardMargin0.5x"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/standardMargin0.5x">
 
@@ -138,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -152,6 +164,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
             android:src="@drawable/bg_one" />
@@ -165,6 +178,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
             android:adjustViewBounds="true"
             android:paddingHorizontal="@dimen/standardMargin0.5x"
             android:scaleType="fitXY"
@@ -182,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.dust.exmall.customviews.CTextView
+            <TextView
                 android:id="@+id/seeAllText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

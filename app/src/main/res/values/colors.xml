@@ -26,5 +26,6 @@
     <color name="dark_green">#19881D</color>
     <color name="white_lowTransparency">#CDFFFFFF</color>
     <color name="full_transparent">#00FFFFFF</color>
+    <color name="whiteBackground">#EFEFEF</color>
 
 </resources>

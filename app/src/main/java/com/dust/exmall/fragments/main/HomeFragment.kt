@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.AmazingAdapter
-import com.dust.exmall.adapters.recyclerview.PlusProductsAdapter
-import com.dust.exmall.adapters.recyclerview.SuggestionAdapter
+import com.dust.exmall.adapters.recyclerview.*
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
 import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.TopBrandDataClass
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -30,7 +30,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var amazingOffersRecyclerView: RecyclerView
     private lateinit var amazingSuperMarketRecyclerView: RecyclerView
     private lateinit var plusProductsRecyclerView: RecyclerView
+    private lateinit var popularProductsRecyclerView: RecyclerView
+    private lateinit var popularProductsRecyclerViewTwo: RecyclerView
+    private lateinit var popularProductsRecyclerViewThree: RecyclerView
+    private lateinit var popularProductsRecyclerViewFour: RecyclerView
+    private lateinit var topBrandRecyclerview: RecyclerView
+    private lateinit var forSaleRecyclerView: RecyclerView
     private lateinit var ProductsSliderViewPager: ViewPager
+    private lateinit var HighReviewedViewPager: ViewPager
     private lateinit var magicImageOne: ImageView
     private lateinit var magicImageTwo: ImageView
     private lateinit var magicImageThree: ImageView
@@ -56,7 +63,47 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpMagicCards()
         setUpAmazingSuperMarketRecyclerView()
         setUpPlusProductsRecyclerView()
+        // popular Products
+        setUpPopularProductsRecyclerView()
         setUpProductsSliderViewPager()
+        setUpTopBrandRecyclerView()
+        setUpForSaleRecyclerView()
+        setUpHighReviewedViewPager()
+    }
+
+    private fun setUpPopularProductsRecyclerView() {
+        // one
+        popularProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        popularProductsRecyclerView.adapter = PopularProductsAdapter(generateFakeData())
+
+        // two
+        popularProductsRecyclerViewTwo.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        popularProductsRecyclerViewTwo.adapter = PopularProductsAdapter(generateFakeData())
+
+        //three
+        popularProductsRecyclerViewThree.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        popularProductsRecyclerViewThree.adapter = PopularProductsAdapter(generateFakeData())
+
+        //four
+        popularProductsRecyclerViewFour.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        popularProductsRecyclerViewFour.adapter = PopularProductsAdapter(generateFakeData())
+    }
+
+    private fun setUpHighReviewedViewPager() {
+        HighReviewedViewPager.adapter = ProductsSliderAdapter(requireActivity().supportFragmentManager , generateFakeData())
+        HighReviewedViewPager.setCurrentItem(4 , false)
+    }
+
+    private fun setUpForSaleRecyclerView() {
+        forSaleRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
+
+    }
+
+    private fun setUpTopBrandRecyclerView() {
+        topBrandRecyclerview.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData())
     }
 
     private fun setUpProductsSliderViewPager() {
@@ -111,6 +158,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
         amazingSuperMarketRecyclerView = view.findViewById(R.id.amazingSuperMarketRecyclerView)
         plusProductsRecyclerView = view.findViewById(R.id.plusProductsRecyclerView)
         ProductsSliderViewPager = view.findViewById(R.id.ProductsSliderViewPager)
+        topBrandRecyclerview = view.findViewById(R.id.topBrandRecyclerview)
+        forSaleRecyclerView = view.findViewById(R.id.forSaleRecyclerView)
+        HighReviewedViewPager = view.findViewById(R.id.HighReviewedViewPager)
+        popularProductsRecyclerView = view.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewTwo = view.findViewById(R.id.popularProductsRecyclerViewTwo)
+        popularProductsRecyclerViewThree = view.findViewById(R.id.popularProductsRecyclerViewThree)
+        popularProductsRecyclerViewFour = view.findViewById(R.id.popularProductsRecyclerViewFour)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)
@@ -132,6 +186,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
         val list = arrayListOf<AmazingDataClass>()
         for (i in 0..14) {
             list.add(AmazingDataClass("hello"))
+        }
+        return list
+    }
+
+    private fun generateFakeTopData(): List<TopBrandDataClass> {
+        val list = arrayListOf<TopBrandDataClass>()
+        for (i in 0..14) {
+            list.add(TopBrandDataClass("hello"))
         }
         return list
     }

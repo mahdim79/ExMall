@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/standardMargin"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="منتخب محصولات تخفیف و حراج"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/TextSize4x"
+        android:layout_margin="@dimen/standardMargin"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/forSaleRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"/>
+
+</LinearLayout>

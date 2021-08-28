@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <padding android:right="@dimen/standardMargin" android:left="@dimen/standardMargin" android:bottom="@dimen/standardMargin" android:top="@dimen/standardMargin"/>
-    <solid android:color="@color/white_bottom_navigation"/>
+    <solid android:color="@color/whiteBackground"/>
     <corners android:radius="@dimen/standardMargin0.5x"/>
 </shape>

@@ -25,7 +25,7 @@
         android:text="بر اساس بازدید های شما"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/popularProductsRecyclerViewTwo"
+        android:id="@+id/popularProductsRecyclerViewThree"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/standardMargin2x"
         android:layout_height="wrap_content"/>

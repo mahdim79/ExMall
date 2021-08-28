@@ -2,9 +2,12 @@ package com.dust.exmall.fragments.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,6 +18,7 @@ import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.*
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
 import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
+import com.dust.exmall.animation.Animations
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.AmazingDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
@@ -43,6 +47,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var magicImageThree: ImageView
     private lateinit var magicImageFour: ImageView
 
+    private lateinit var addLocationContainer:LinearLayout
+
+    private val animations = Animations()
+    private lateinit var fadeInAnimation:AlphaAnimation
+    private lateinit var fadeOutAnimation:AlphaAnimation
+
     private var AmazingOffersType: Int = 0
     private var AmazingSuperMarketType: Int = 1
 
@@ -57,6 +67,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews(view)
+        setUpViewsAnimations()
         setUpSliderViewPager()
         setUpSuggestionRecyclerView()
         setUpAmazingOffersRecyclerView()
@@ -69,6 +80,67 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpTopBrandRecyclerView()
         setUpForSaleRecyclerView()
         setUpHighReviewedViewPager()
+    }
+
+    private fun setUpViewsAnimations() {
+        fadeInAnimation = animations.getFadeInAnimation()
+        fadeOutAnimation = animations.getFadeOutAnimation()
+
+        addLocationContainer.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+                v.startAnimation(fadeInAnimation)
+                return@setOnTouchListener true
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(fadeInAnimation)
+            else
+                v.startAnimation(fadeOutAnimation)
+            true
+        }
+
+        exMallText.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+                exMallText.startAnimation(fadeInAnimation)
+                search_text.startAnimation(fadeInAnimation)
+                return@setOnTouchListener true
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP){
+                exMallText.startAnimation(fadeInAnimation)
+                search_text.startAnimation(fadeInAnimation)
+            }else{
+                exMallText.startAnimation(fadeOutAnimation)
+                search_text.startAnimation(fadeOutAnimation)
+            }
+            true
+        }
+
+        search_text.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+                exMallText.startAnimation(fadeInAnimation)
+                search_text.startAnimation(fadeInAnimation)
+                return@setOnTouchListener true
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP){
+                exMallText.startAnimation(fadeInAnimation)
+                search_text.startAnimation(fadeInAnimation)
+            }else{
+                exMallText.startAnimation(fadeOutAnimation)
+                search_text.startAnimation(fadeOutAnimation)
+            }
+            true
+        }
+
+        search_image.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+                v.startAnimation(fadeInAnimation)
+                return@setOnTouchListener true
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(fadeInAnimation)
+            else
+                v.startAnimation(fadeOutAnimation)
+            true
+        }
     }
 
     private fun setUpPopularProductsRecyclerView() {
@@ -103,7 +175,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpTopBrandRecyclerView() {
         topBrandRecyclerview.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData())
+        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData() , animations)
     }
 
     private fun setUpProductsSliderViewPager() {
@@ -139,7 +211,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpSuggestionRecyclerView() {
         suggestionRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        suggestionRecyclerView.adapter = SuggestionAdapter()
+        suggestionRecyclerView.adapter = SuggestionAdapter(animations)
     }
 
     private fun setUpSliderViewPager() {
@@ -165,6 +237,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsRecyclerViewTwo = view.findViewById(R.id.popularProductsRecyclerViewTwo)
         popularProductsRecyclerViewThree = view.findViewById(R.id.popularProductsRecyclerViewThree)
         popularProductsRecyclerViewFour = view.findViewById(R.id.popularProductsRecyclerViewFour)
+        addLocationContainer = view.findViewById(R.id.addLocationContainer)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)

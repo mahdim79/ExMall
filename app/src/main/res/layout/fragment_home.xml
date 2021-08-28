@@ -83,7 +83,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/standardMargin0.5x"
                     android:layoutDirection="rtl"
-                    android:paddingHorizontal="@dimen/standardMargin0.5x" />
+                     />
 
             </RelativeLayout>
 
@@ -198,7 +198,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/standardMargin0.5x"
                     android:layoutDirection="rtl"
-                    android:paddingHorizontal="@dimen/standardMargin0.5x" />
+                     />
 
             </RelativeLayout>
 

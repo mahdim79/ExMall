@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:layout_marginVertical="@dimen/standardMargin2x"
+        android:textSize="@dimen/TextSize4x"
+        android:text="محبوب ترین برندها"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/popularBrandsTab"
+        android:layout_width="match_parent"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/red"
+        app:tabTextColor="@color/black_normal"
+        app:tabGravity="fill"
+        app:tabPaddingStart="@dimen/standardMargin"
+        app:tabPaddingEnd="@dimen/standardMargin"
+        app:tabIndicatorHeight="0dp"
+        android:background="@color/white"
+        app:tabRippleColor="@null"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        app:tabBackground="@drawable/popular_brands_tab_selector"
+        android:layout_height="wrap_content"/>
+
+    <com.dust.exmall.customviews.CViewPager
+        android:id="@+id/popularBrandsViewPager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:layoutDirection="rtl"
+        android:layout_height="200dp"/>
+
+</LinearLayout>

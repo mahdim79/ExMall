@@ -1,8 +1,8 @@
 package com.dust.exmall.customviews
 
 import android.content.Context
-import android.graphics.Typeface
 import android.util.AttributeSet
+import com.dust.exmall.MyApplication
 
 class CTextView : androidx.appcompat.widget.AppCompatTextView {
 
@@ -23,6 +23,7 @@ class CTextView : androidx.appcompat.widget.AppCompatTextView {
     }
 
     private fun setTypeFace() {
-        typeface = Typeface.createFromAsset(resources.assets, "fonts/yekan.ttf")
+        val myApplication = context.applicationContext as MyApplication
+        typeface = myApplication.getTypeFace()
     }
 }

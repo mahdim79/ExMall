@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/standardMargin"
+    android:backgroundTint="@color/whiteBackground"
+    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+    android:layout_height="170dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/standardMargin"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bg_one"
+            android:layout_weight="60"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="موبایل"
+            android:gravity="center"
+            android:textSize="@dimen/TextSize2x"
+            android:textColor="@color/black"
+            android:layout_weight="10"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:textSize="@dimen/TextSize2x"
+            android:text="+60000کالا"
+            android:textColor="@color/light_black"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+            android:gravity="center"
+            android:layout_weight="10"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

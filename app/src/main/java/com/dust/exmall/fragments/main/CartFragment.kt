@@ -54,6 +54,7 @@ class CartFragment : Fragment() {
     private fun setUpMainViewPager() {
         cartViewPager.adapter = CartMainAdapter(childFragmentManager)
         cartTabLayout.setupWithViewPager(cartViewPager)
+        cartViewPager.currentItem = 1
     }
 
     private fun setUpViews(view: View) {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/otherProductsContainer"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/whiteBackground"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/standardMargin"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:id="@+id/headerOtherText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black_normal"
+            android:text="کالاهای دیگر"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1کالا"
+            android:textColor="@color/light_black"
+            android:layout_below="@+id/headerOtherText"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:textSize="12dp"
+            android:layout_alignEnd="@+id/headerOtherText"/>
+        <ImageView
+            android:layout_width="@dimen/standardMargin2x"
+            android:layout_height="@dimen/standardMargin2x"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/otherRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="@dimen/standardMargin"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

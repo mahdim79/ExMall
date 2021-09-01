@@ -16,6 +16,7 @@
                 android:layout_width="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:orientation="vertical"
+                android:paddingVertical="@dimen/standardMargin"
                 android:background="?colorPrimary"
                 android:layout_height="match_parent">
 
@@ -76,9 +77,8 @@
                 <LinearLayout
                     android:id="@+id/emptyCartLinear"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
-
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/standardMargin2x"
                     android:orientation="vertical">
                     <LinearLayout
@@ -100,118 +100,37 @@
                                 android:layout_height="wrap_content"
                                 android:text="سبد خرید شما خالی است."
                                 android:gravity="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/TextSize4x"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/standardMargin2x"
+                                android:lineSpacingExtra="2dp"
+                                android:text="شما میتوانید محصولاتی که به سبد خرید خود افزوده اید و فعلا قصد خرید آنها را ندارید، در لیست خرید بعدی قرار داده و هر زمان مایل بودید آنها را به سبد خرید اضافه کرده و خرید آنها را تکمیل کنید."
+                                android:layout_marginTop="@dimen/standardMargin"
+                                android:gravity="center"
                                 android:textColor="@color/black_normal"
                                 android:textSize="@dimen/TextSize3x"/>
                         </LinearLayout>
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/standardMargin0.5x"
-                        android:layout_marginTop="@dimen/standardMargin2x"
-                        android:background="@color/whiteBackground"/>
-
-                    <include layout="@layout/forsale"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:id="@+id/FullCartLinear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
                     android:orientation="vertical">
 
-                    <include layout="@layout/supermarket_products_container"/>
-
-                    <View
+                    <include layout="@layout/supermarket_products_container"
                         android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        android:background="@color/whiteBackground"/>
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin1.5x"/>
                     <include layout="@layout/others_product_container"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:background="@color/whiteBackground"
-                        android:paddingVertical="@dimen/standardMargin">
-                        <include layout="@layout/vip_plus_layout"/>
-                        <include layout="@layout/installment_buy_layout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-                            android:layout_marginTop="@dimen/standardMargin2x"/>
-                    </LinearLayout>
-
-                    <include layout="@layout/cart_summary_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/standardMargin2x"/>
-
-                    <include layout="@layout/cart_note"/>
-
                 </LinearLayout>
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-        <LinearLayout
-            android:id="@+id/continueBuyContainer"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="?colorPrimary"
-            android:orientation="horizontal"
-            android:layout_weight="15">
-            <com.dust.exmall.customviews.CButton
-                android:id="@+id/continueBuyButton"
-                android:layout_width="0dp"
-                android:layout_weight="50"
-                android:background="@drawable/continue_button_shape"
-                android:layout_marginHorizontal="@dimen/standardMargin"
-                android:layout_marginVertical="@dimen/standardMargin1.5x"
-                android:textStyle="bold"
-                android:textColor="@color/continue_button_text_selector"
-                android:textSize="@dimen/TextSize4x"
-                android:text="ادامه فرآیند خرید"
-                android:layout_height="match_parent"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="50"
-                android:orientation="vertical"
-                android:elevation="2dp"
-                android:gravity="end|center_vertical"
-                android:paddingHorizontal="@dimen/standardMargin"
-                android:layout_height="match_parent">
-                <com.dust.exmall.customviews.CTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="جمع سبد خرید"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin0.5x"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/standardMargin2x"
-                        android:layout_height="@dimen/standardMargin2x"
-                        android:src="@drawable/ic_baseline_search_24"/>
-
-                    <com.dust.exmall.customviews.CTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textColor="@color/black_normal"
-                        android:textSize="@dimen/TextSize4x"
-                        android:text="66,623,000"/>
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

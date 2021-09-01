@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layoutDirection="rtl"
+    android:padding="@dimen/standardMargin1.5x"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/cart_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="خلاصه سبد"
+        android:textStyle="bold"
+        android:textSize="@dimen/TextSize4x"
+        android:textColor="@color/black"/>
+
+    <com.dust.exmall.customviews.CTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 کالا"
+        android:textStyle="bold"
+        android:textSize="@dimen/TextSize3x"
+        android:textColor="@color/light_black2"
+        android:layout_alignParentEnd="true"/>
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/product_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="قیمت کالاها"
+        android:textStyle="bold"
+        android:layout_below="@+id/cart_summary"
+        android:textSize="@dimen/TextSize3x"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:textColor="@color/light_black2"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/cart_summary"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="قیمت کالاها"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/standardMargin1.5x"
+            android:layout_height="@dimen/standardMargin1.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+    </LinearLayout>
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/total_product_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="جمع سبد خرید"
+        android:textStyle="bold"
+        android:layout_below="@+id/product_price_text"
+        android:textSize="@dimen/TextSize3x"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:textColor="@color/light_black2"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/product_price_text"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/total_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="قیمت کالاها"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/standardMargin1.5x"
+            android:layout_height="@dimen/standardMargin1.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/total_product_price_text"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:src="@drawable/ic_baseline_search_24"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="هزینه پس از انتخاب زمان ارسال مرسوله ها محاسبه خواهد شد"
+        android:textColor="@color/light_black"
+        android:layout_toEndOf="@+id/dot"
+        android:layout_alignTop="@+id/dot"
+        android:layout_alignBottom="@+id/dot"
+        android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/total_product_price_text"
+        android:textSize="@dimen/TextSize3x"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/dot"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:background="@color/whiteBackground"/>
+
+    <ImageView
+        android:id="@+id/score_image"
+        android:layout_width="@dimen/standardMargin2x"
+        android:layout_height="@dimen/standardMargin2x"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:src="@drawable/ic_baseline_search_24"/>
+
+    <com.dust.exmall.customviews.CTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/score_image"
+        android:layout_alignTop="@+id/score_image"
+        android:layout_alignBottom="@+id/score_image"
+        android:textSize="@dimen/TextSize4x"
+        android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+        android:text="امتیاز فروشگاه من"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="150 امتیاز"
+        android:layout_alignTop="@+id/score_image"
+        android:layout_alignBottom="@+id/score_image"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>

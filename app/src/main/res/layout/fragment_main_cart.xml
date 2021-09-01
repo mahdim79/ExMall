@@ -3,106 +3,302 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:overScrollMode="never"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:orientation="vertical"
-            android:background="?colorPrimary"
-            android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                app:cardCornerRadius="@dimen/standardMargin1.5x"
-                android:layout_marginTop="@dimen/standardMargin1.5x"
-                android:layout_marginHorizontal="@dimen/standardMargin2x"
-                android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@+id/loginAdviseContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/standardMargin2x">
-
-                    <ImageView
-                        android:id="@+id/backArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/standardMargin1.5x"
-                        app:tint="@color/light_black"
-                        android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
-
-                    <LinearLayout
-                        android:layout_toEndOf="@+id/backArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_alignTop="@+id/backArrow"
-                        android:layout_toStartOf="@+id/logOut"
-                        android:layout_marginHorizontal="@dimen/standardMargin2x"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="ورود یا ثبت نام"
-                            android:textColor="@color/black_normal"
-                            android:textSize="@dimen/TextSize3x"
-                            android:textStyle="bold"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="برای تجربه بهتر خرید و بررسی روش  ارسال کالاها لطف اوارد شوید"
-                            android:textColor="@color/black_normal"
-
-                            android:layout_marginTop="@dimen/standardMargin0.5x"
-                            android:textSize="11dp" />
-
-                    </LinearLayout>
-                    <ImageView
-                        android:id="@+id/logOut"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/standardMargin2x"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_baseline_login_24"
-                        app:tint="@color/light_orange"/>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
+            android:overScrollMode="never"
+            android:layout_height="0dp"
+            android:layout_weight="80">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standardMargin2x"
-                android:orientation="vertical">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:orientation="vertical"
+                android:background="?colorPrimary"
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
-                        android:src="@drawable/bg_one"/>
-                    <com.dust.exmall.customviews.CTextView
+                    app:cardCornerRadius="@dimen/standardMargin1.5x"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
+                    android:layout_marginHorizontal="@dimen/standardMargin2x"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:id="@+id/loginAdviseContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="سبد خرید شما خالی است."
-                        android:gravity="center"
+                        android:padding="@dimen/standardMargin2x">
+
+                        <ImageView
+                            android:id="@+id/backArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/standardMargin1.5x"
+                            app:tint="@color/light_black"
+                            android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+
+                        <LinearLayout
+                            android:layout_toEndOf="@+id/backArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_alignTop="@+id/backArrow"
+                            android:layout_toStartOf="@+id/logOut"
+                            android:layout_marginHorizontal="@dimen/standardMargin2x"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="ورود یا ثبت نام"
+                                android:textColor="@color/black_normal"
+                                android:textSize="@dimen/TextSize3x"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="برای تجربه بهتر خرید و بررسی روش  ارسال کالاها لطف اوارد شوید"
+                                android:textColor="@color/black_normal"
+
+                                android:layout_marginTop="@dimen/standardMargin0.5x"
+                                android:textSize="11dp" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/logOut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/standardMargin2x"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_baseline_login_24"
+                            app:tint="@color/light_orange"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/emptyCartLinear"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:src="@drawable/bg_one"/>
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="سبد خرید شما خالی است."
+                                android:gravity="center"
+                                android:textColor="@color/black_normal"
+                                android:textSize="@dimen/TextSize3x"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/standardMargin0.5x"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        android:background="@color/whiteBackground"/>
+
+                    <include layout="@layout/forsale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/FullCartLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/superMarketProductsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:background="@color/whiteBackground"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/standardMargin"
+                            android:layout_height="?attr/actionBarSize">
+                            <TextView
+                                android:id="@+id/headerSuperMarketText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/TextSize3x"
+                                android:textColor="@color/black_normal"
+                                android:text="کالاهای سوپرمارکتی"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1کالا"
+                                android:textColor="@color/light_black"
+                                android:layout_below="@+id/headerSuperMarketText"
+                                android:layout_marginTop="@dimen/standardMargin0.5x"
+                                android:textSize="12dp"
+                                android:layout_alignEnd="@+id/headerSuperMarketText"/>
+                            <ImageView
+                                android:layout_width="@dimen/standardMargin2x"
+                                android:layout_height="@dimen/standardMargin2x"
+                                android:src="@drawable/ic_baseline_more_vert_24"
+                                android:layout_centerVertical="true"/>
+                        </RelativeLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/superMarketRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_marginVertical="@dimen/standardMargin"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:background="@color/whiteBackground"/>
+                    <LinearLayout
+                        android:id="@+id/otherProductsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:background="@color/whiteBackground"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/standardMargin"
+                            android:layout_height="?attr/actionBarSize">
+                            <TextView
+                                android:id="@+id/headerOtherText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/TextSize3x"
+                                android:textColor="@color/black_normal"
+                                android:text="کالاهای دیگر"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1کالا"
+                                android:textColor="@color/light_black"
+                                android:layout_below="@+id/headerOtherText"
+                                android:layout_marginTop="@dimen/standardMargin0.5x"
+                                android:textSize="12dp"
+                                android:layout_alignEnd="@+id/headerOtherText"/>
+                            <ImageView
+                                android:layout_width="@dimen/standardMargin2x"
+                                android:layout_height="@dimen/standardMargin2x"
+                                android:src="@drawable/ic_baseline_more_vert_24"
+                                android:layout_centerVertical="true"/>
+                        </RelativeLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/otherRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_marginVertical="@dimen/standardMargin"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/whiteBackground"
+                        android:paddingVertical="@dimen/standardMargin">
+                        <include layout="@layout/vip_plus_layout"/>
+                        <include layout="@layout/installment_buy_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                            android:layout_marginTop="@dimen/standardMargin2x"/>
+                    </LinearLayout>
+
+                    <include layout="@layout/cart_summary_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin2x"/>
+
+                    <include layout="@layout/cart_note"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/continueBuyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?colorPrimary"
+            android:orientation="horizontal"
+            android:layout_weight="15">
+            <com.dust.exmall.customviews.CButton
+                android:id="@+id/continueBuyButton"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:background="@drawable/continue_button_shape"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:layout_marginVertical="@dimen/standardMargin1.5x"
+                android:textStyle="bold"
+                android:textColor="@color/continue_button_text_selector"
+                android:textSize="@dimen/TextSize4x"
+                android:text="ادامه فرآیند خرید"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:orientation="vertical"
+                android:elevation="2dp"
+                android:gravity="end|center_vertical"
+                android:paddingHorizontal="@dimen/standardMargin"
+                android:layout_height="match_parent">
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="جمع سبد خرید"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/standardMargin2x"
+                        android:layout_height="@dimen/standardMargin2x"
+                        android:src="@drawable/ic_baseline_search_24"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:textColor="@color/black_normal"
-                        android:textSize="@dimen/TextSize3x"/>
+                        android:textSize="@dimen/TextSize4x"
+                        android:text="66,623,000"/>
+
                 </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/standardMargin0.5x"
-                android:layout_marginTop="@dimen/standardMargin2x"
-                android:background="@color/whiteBackground"/>
-
-            <include layout="@layout/forsale"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

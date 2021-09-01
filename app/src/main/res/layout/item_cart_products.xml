@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:paddingTop="@dimen/standardMargin1.5x"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/productDetailsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/productImage"
+        android:layoutDirection="rtl"
+        android:paddingEnd="@dimen/standardMargin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemHeaderText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black_normal"
+            android:text="روغن سرخ کردنی ثبنل تکمیسبت لمسیبکن بتمنطبلایب البالب"
+            />
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/itemHeaderText"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="گارانتی اصالت وسلامت فیزیکی کالا"
+            android:layout_toEndOf="@+id/image1"
+            android:maxLines="1"
+            android:textSize="@dimen/TextSize2x"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image1"
+            android:layout_alignTop="@+id/image1"/>
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/image1"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="فروشگاه من"
+            android:maxLines="1"
+            android:textSize="@dimen/TextSize2x"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image2"
+            android:layout_toEndOf="@+id/image2"
+            android:layout_alignTop="@+id/image2"/>
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/image2"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="موجود در انبار فروشگاه من"
+            android:maxLines="1"
+            android:textSize="@dimen/TextSize2x"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image3"
+            android:layout_toEndOf="@+id/image3"
+            android:layout_alignTop="@+id/image3"/>
+
+        <ImageView
+            android:id="@+id/image4"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/image3"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ارسال فروشگاه من"
+            android:maxLines="1"
+            android:textSize="@dimen/TextSize2x"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image4"
+            android:layout_toEndOf="@+id/red_truck"
+            android:layout_alignTop="@+id/image4"/>
+
+        <ImageView
+            android:id="@+id/red_truck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image4"
+            android:layout_toEndOf="@+id/image4"
+            android:layout_alignTop="@+id/image4"
+            android:src="@drawable/ic_baseline_search_24"/>
+        <ImageView
+            android:id="@+id/image5"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/image4"
+            android:layout_marginTop="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+        <ImageView
+            android:id="@+id/green_truck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image5"
+            android:layout_toEndOf="@+id/image5"
+            android:layout_alignTop="@+id/image5"
+            android:src="@drawable/ic_baseline_search_24"/>
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ارسال سریع سوپرمارکتی فروشگاه من"
+            android:maxLines="1"
+            android:textSize="@dimen/TextSize2x"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:layout_alignBottom="@+id/image5"
+            android:layout_toEndOf="@+id/green_truck"
+            android:layout_alignTop="@+id/image5"/>
+
+
+
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bg_one"
+        android:adjustViewBounds="true"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:paddingVertical="@dimen/standardMargin4x"
+        android:scaleType="centerCrop"
+        android:layout_alignParentEnd="true"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_below="@+id/productDetailsContainer"
+        android:layout_alignEnd="@+id/productDetailsContainer"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/purchaseController"
+        android:layout_width="@dimen/standardMargin10x"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add_to_cart_linear_shape"
+        android:elevation="3dp"
+        android:layout_toEndOf="@+id/priceContainerLayout"
+        android:layout_alignTop="@+id/priceContainerLayout"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/standardMargin1.5x"
+        android:layout_alignBottom="@+id/priceContainerLayout"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/imageDelete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standardMargin2x"
+            android:layout_weight="25"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:tint="@color/red" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:orientation="vertical">
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/count"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/standardMargin2x"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@color/red"
+                android:textSize="@dimen/TextSize3x" />
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/maximumText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="حداکثر"
+                android:textColor="@color/white_varient"
+                android:textSize="@dimen/TextSize2x"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageAdd"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standardMargin2x"
+            android:layout_weight="25"
+            android:src="@drawable/ic_baseline_add_24"
+            app:tint="@color/red" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/priceContainerLayout"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productDetailsContainer"
+        android:layout_alignEnd="@+id/productDetailsContainer"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:layoutDirection="rtl"
+        android:orientation="vertical">
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/textSale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25,400 تومان تخفیف"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/red"
+            />
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="159,000"
+            android:textSize="@dimen/TextSize4x"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_below="@+id/textSale"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/priceText"
+            android:layout_alignTop="@+id/priceText"
+            android:layout_alignBottom="@+id/priceText"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/saveToNextLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/standardMargin1.5x"
+        android:layout_below="@+id/priceContainerLayout"
+        android:orientation="horizontal">
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/blue"
+            android:text="ذخیره در لیس تخرید بعدی"/>
+
+        <ImageView
+            android:layout_width="@dimen/standardMargin1.5x"
+            android:layout_height="@dimen/standardMargin1.5x"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:tint="@color/blue"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/saveToNextLayout"
+        android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+        android:background="@color/whiteBackground"
+        />
+
+</RelativeLayout>

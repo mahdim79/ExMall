@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+    app:cardCornerRadius="@dimen/standardMargin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/standardMargin2x"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/headerTextPlus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imgMain"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_marginHorizontal="@dimen/standardMargin2x"
+            android:textColor="@color/black"
+            android:layout_toEndOf="@+id/imgBack"
+            android:text="به اعتبار دیجی پی قسطی بخرید"/>
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/standardMargin1.5x"
+            android:layout_height="@dimen/standardMargin1.5x"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+
+        <ImageView
+            android:id="@+id/imgMain"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_toStartOf="@+id/preSale"
+            android:layout_alignTop="@+id/preSale"
+            android:layout_alignBottom="@+id/preSale"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@+id/installments"
+            android:layout_alignTop="@+id/installments"
+            android:layout_alignBottom="@+id/installments"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_toStartOf="@+id/totalCredit"
+            android:layout_alignTop="@+id/totalCredit"
+            android:layout_alignBottom="@+id/totalCredit"
+            android:src="@drawable/ic_baseline_search_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/preSale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imgMain"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_marginHorizontal="@dimen/standardMargin2x"
+            android:textColor="@color/light_black2"
+            android:layout_below="@+id/headerTextPlus"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_toEndOf="@+id/imgBack"
+            android:text="2,200,000 تومان پیش پرداخت"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/installments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imgMain"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_marginHorizontal="@dimen/standardMargin2x"
+            android:textColor="@color/light_black2"
+            android:layout_below="@+id/preSale"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_toEndOf="@+id/imgBack"
+            android:text="1,800,000 تومان ماهانه (12 قسط)"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/totalCredit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/imgMain"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_marginHorizontal="@dimen/standardMargin2x"
+            android:textColor="@color/light_black2"
+            android:layout_below="@+id/installments"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_toEndOf="@+id/imgBack"
+            android:text="اعتبار تا سقف 20,000,000 تومان"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -7,6 +7,7 @@
     app:cardCornerRadius="@dimen/standardMargin">
 
     <RelativeLayout
+        android:id="@+id/vip_container"
         android:layout_width="match_parent"
         android:padding="@dimen/standardMargin2x"
         android:layout_height="wrap_content">

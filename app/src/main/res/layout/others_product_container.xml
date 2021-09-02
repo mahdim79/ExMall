@@ -35,8 +35,10 @@
             android:textSize="12dp"
             android:layout_alignEnd="@+id/headerOtherText"/>
         <ImageView
-            android:layout_width="@dimen/standardMargin2x"
-            android:layout_height="@dimen/standardMargin2x"
+            android:id="@+id/more_others"
+            android:layout_width="@dimen/standardMargin4x"
+            android:layout_height="@dimen/standardMargin4x"
+            android:padding="7dp"
             android:src="@drawable/ic_baseline_more_vert_24"
             android:layout_centerVertical="true"/>
     </RelativeLayout>

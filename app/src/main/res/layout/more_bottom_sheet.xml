@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/delete_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/standardMargin1.5x"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_search_24"/>
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black_normal"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:text="افزودن 1 کالا به سبد خرید"
+            android:textSize="@dimen/TextSize4x"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whiteBackground"
+        android:layout_marginHorizontal="@dimen/standardMargin"/>
+
+    <LinearLayout
+        android:id="@+id/delete_product_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/standardMargin1.5x"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:tint="@color/red"
+            android:src="@drawable/ic_baseline_delete_24"/>
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black_normal"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:text="حذف 1 کالا از لیست خرید بعدی"
+            android:textSize="@dimen/TextSize4x"/>
+    </LinearLayout>
+</LinearLayout>

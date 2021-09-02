@@ -224,7 +224,27 @@
             app:tint="@color/red" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="@dimen/standardMargin10x"
+        android:layout_height="wrap_content"
+        android:background="@drawable/add_to_cart_linear_shape"
+        android:elevation="3dp"
+        android:layout_toEndOf="@+id/priceContainerLayout"
+        android:layout_alignTop="@+id/priceContainerLayout"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/standardMargin1.5x"
+        android:layout_alignBottom="@+id/priceContainerLayout"
+        android:padding="3dp">
 
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/standardMargin2x"
+            android:layout_weight="25"
+            android:src="@drawable/ic_baseline_search_24"
+            app:tint="@color/red" />
+
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/priceContainerLayout"
         android:layout_width="180dp"

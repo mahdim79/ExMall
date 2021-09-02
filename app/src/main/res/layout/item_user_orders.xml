@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="115dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layoutDirection="ltr"
+    android:layout_height="120dp">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/white_bottom_navigation"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/image"
+            android:layout_alignStart="@+id/image"
+            app:cardCornerRadius="5dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:background="@color/red"
+                android:layout_height="match_parent">
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="12dp"
+                    android:gravity="center"/>
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:padding="@dimen/standardMargin"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/item_top"
+            android:scaleType="centerCrop" />
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:textSize="12dp"
+            android:textColor="@color/black_normal"
+            android:text="در انتظار پرداخت"/>
+    </RelativeLayout>
+
+</LinearLayout>

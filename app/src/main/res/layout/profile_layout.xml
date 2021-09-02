@@ -122,8 +122,10 @@
                    android:layout_margin="@dimen/standardMargin1.5x"
                    android:textSize="@dimen/TextSize4x"/>
                <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/userOrdersRecyclerView"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
+                   android:layoutDirection="rtl"
                    android:layout_marginTop="@dimen/standardMargin"
                    android:overScrollMode="never"
                    />
@@ -131,7 +133,7 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="@dimen/standardMargin2x"
+                   android:layout_marginTop="@dimen/standardMargin3x"
                    android:orientation="vertical">
                    <RelativeLayout
                        android:layout_width="match_parent"

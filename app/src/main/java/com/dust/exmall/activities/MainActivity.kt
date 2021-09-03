@@ -3,7 +3,10 @@ package com.dust.exmall.activities
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
+import com.dust.exmall.adapters.viewpager.MainAdapter
+import com.dust.exmall.customviews.CViewPager
 import com.dust.exmall.fragments.main.CartFragment
 import com.dust.exmall.fragments.main.HomeFragment
 import com.dust.exmall.fragments.main.MyExMallFragment
@@ -13,55 +16,37 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
-
+    private lateinit var mainViewPager:CViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setUpViews()
-        setUpMainFragment()
+        setUpMainViewPager()
         setUpBottomNavigationView()
     }
 
-
-    private fun setUpMainFragment() {
-        startFragment(HomeFragment())
+    private fun setUpMainViewPager() {
+        mainViewPager.offscreenPageLimit = 3
+        mainViewPager.adapter = MainAdapter(supportFragmentManager)
     }
 
     private fun setUpBottomNavigationView() {
         bottomNavigationView.setOnItemSelectedListener { item ->
-
-            if (!item.isChecked) {
-                when (item.itemId) {
-                    R.id.nav_home -> {
-                        startFragment(HomeFragment())
-                    }
-                    R.id.nav_products -> {
-                        startFragment(ProductsFragment())
-                    }
-                    R.id.nav_cart -> {
-                        startFragment(CartFragment())
-                    }
-                    else -> {
-                        startFragment(MyExMallFragment())
-                    }
+             when (item.itemId) {
+                    R.id.nav_home -> mainViewPager.currentItem = 0
+                    R.id.nav_products -> mainViewPager.currentItem = 1
+                    R.id.nav_cart -> mainViewPager.currentItem = 2
+                    else -> mainViewPager.currentItem = 3
                 }
                 true
-            } else {
-                false
-            }
         }
     }
 
-    private fun startFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, fragment)
-            .commit()
-    }
 
     private fun setUpViews() {
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
+        mainViewPager = findViewById(R.id.mainViewPager)
 
     }
 }

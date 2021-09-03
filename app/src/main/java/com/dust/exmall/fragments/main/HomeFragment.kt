@@ -162,7 +162,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpHighReviewedViewPager() {
-        HighReviewedViewPager.adapter = ProductsSliderAdapter(requireActivity().supportFragmentManager , generateFakeData())
+        HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
         HighReviewedViewPager.setCurrentItem(4 , false)
     }
 
@@ -179,7 +179,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpProductsSliderViewPager() {
-        ProductsSliderViewPager.adapter = ProductsSliderAdapter(requireActivity().supportFragmentManager , generateFakeData())
+        ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
         ProductsSliderViewPager.setCurrentItem(4 , false)
     }
 
@@ -215,7 +215,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpSliderViewPager() {
-        sliderViewPager.adapter = MainSliderAdapter(requireActivity().supportFragmentManager)
+        sliderViewPager.adapter = MainSliderAdapter(childFragmentManager)
         sliderDotsIndicator.setViewPager(sliderViewPager)
     }
 

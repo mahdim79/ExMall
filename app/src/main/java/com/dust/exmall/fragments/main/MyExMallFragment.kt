@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.UserOrdersRecyclerViewAdapter
+import com.dust.exmall.adapters.recyclerview.UserOrdersAdapter
 
 class MyExMallFragment : Fragment() {
     private lateinit var userOrdersRecyclerView:RecyclerView
@@ -29,7 +29,7 @@ class MyExMallFragment : Fragment() {
 
     private fun setUpUserOrdersRecyclerView() {
         userOrdersRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
-        userOrdersRecyclerView.adapter = UserOrdersRecyclerViewAdapter()
+        userOrdersRecyclerView.adapter = UserOrdersAdapter()
     }
 
     private fun setUpViews(view: View) {

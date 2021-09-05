@@ -1,6 +1,7 @@
 package com.dust.exmall.fragments.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -9,20 +10,25 @@ import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.*
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
-import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.animation.Animations
+import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
-import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
+import com.dust.exmall.interfaces.maininterfaces.OnGetMagicCartContent
+import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
+import com.dust.exmall.interfaces.maininterfaces.OnGetSliderContent
+import com.squareup.picasso.Picasso
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+import java.util.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var search_text: CTextView
@@ -47,11 +53,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var magicImageThree: ImageView
     private lateinit var magicImageFour: ImageView
 
-    private lateinit var addLocationContainer:LinearLayout
+    private var sliderCount = 0
+
+    private var timer: Timer? = null
+
+    private lateinit var apiServiceManager: ApiServiceManager
+
+    private lateinit var addLocationContainer: LinearLayout
 
     private val animations = Animations()
-    private lateinit var fadeInAnimation:AlphaAnimation
-    private lateinit var fadeOutAnimation:AlphaAnimation
+    private lateinit var fadeInAnimation: AlphaAnimation
+    private lateinit var fadeOutAnimation: AlphaAnimation
 
     private var AmazingOffersType: Int = 0
     private var AmazingSuperMarketType: Int = 1
@@ -67,6 +79,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews(view)
+        setUpApiManager()
         setUpViewsAnimations()
         setUpSliderViewPager()
         setUpSuggestionRecyclerView()
@@ -82,12 +95,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpHighReviewedViewPager()
     }
 
+    private fun setUpApiManager() {
+        apiServiceManager = ApiServiceManager()
+    }
+
     private fun setUpViewsAnimations() {
         fadeInAnimation = animations.getFadeInAnimation()
         fadeOutAnimation = animations.getFadeOutAnimation()
 
         addLocationContainer.setOnTouchListener { v, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 v.startAnimation(fadeInAnimation)
                 return@setOnTouchListener true
             }
@@ -99,15 +116,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
 
         exMallText.setOnTouchListener { v, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
                 return@setOnTouchListener true
             }
-            if (motionEvent.action == MotionEvent.ACTION_UP){
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
-            }else{
+            } else {
                 exMallText.startAnimation(fadeOutAnimation)
                 search_text.startAnimation(fadeOutAnimation)
             }
@@ -115,15 +132,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
 
         search_text.setOnTouchListener { v, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
                 return@setOnTouchListener true
             }
-            if (motionEvent.action == MotionEvent.ACTION_UP){
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
-            }else{
+            } else {
                 exMallText.startAnimation(fadeOutAnimation)
                 search_text.startAnimation(fadeOutAnimation)
             }
@@ -131,7 +148,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
 
         search_image.setOnTouchListener { v, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_CANCEL){
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 v.startAnimation(fadeInAnimation)
                 return@setOnTouchListener true
             }
@@ -145,67 +162,106 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun setUpPopularProductsRecyclerView() {
         // one
-        popularProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        popularProductsRecyclerView.adapter = PopularProductsAdapter(generateFakeData())
+        popularProductsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        // popularProductsRecyclerView.adapter = PopularProductsAdapter(generateFakeData())
 
         // two
-        popularProductsRecyclerViewTwo.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        popularProductsRecyclerViewTwo.adapter = PopularProductsAdapter(generateFakeData())
+        popularProductsRecyclerViewTwo.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        //  popularProductsRecyclerViewTwo.adapter = PopularProductsAdapter(generateFakeData())
 
         //three
-        popularProductsRecyclerViewThree.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        popularProductsRecyclerViewThree.adapter = PopularProductsAdapter(generateFakeData())
+        popularProductsRecyclerViewThree.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        //   popularProductsRecyclerViewThree.adapter = PopularProductsAdapter(generateFakeData())
 
         //four
-        popularProductsRecyclerViewFour.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        popularProductsRecyclerViewFour.adapter = PopularProductsAdapter(generateFakeData())
+        popularProductsRecyclerViewFour.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        //   popularProductsRecyclerViewFour.adapter = PopularProductsAdapter(generateFakeData())
     }
 
     private fun setUpHighReviewedViewPager() {
-        HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
-        HighReviewedViewPager.setCurrentItem(4 , false)
+        //    HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
+        //    HighReviewedViewPager.setCurrentItem(4 , false)
     }
 
     private fun setUpForSaleRecyclerView() {
-        forSaleRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
+        forSaleRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        //    forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
 
     }
 
     private fun setUpTopBrandRecyclerView() {
         topBrandRecyclerview.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData() , animations)
+        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData(), animations)
     }
 
     private fun setUpProductsSliderViewPager() {
-        ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
-        ProductsSliderViewPager.setCurrentItem(4 , false)
+        //    ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
+        //  ProductsSliderViewPager.setCurrentItem(4 , false)
     }
 
-    private fun setUpPlusProductsRecyclerView(){
+    private fun setUpPlusProductsRecyclerView() {
         plusProductsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        plusProductsRecyclerView.adapter = PlusProductsAdapter(generateFakeData())
+        //    plusProductsRecyclerView.adapter = PlusProductsAdapter(generateFakeData())
     }
 
     private fun setUpAmazingOffersRecyclerView() {
         amazingOffersRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        amazingOffersRecyclerView.adapter =
-            AmazingAdapter(generateFakeData(), AmazingOffersType, requireContext())
+
+        apiServiceManager.getAmazingOffersProducts(object : OnGetProducts {
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                amazingOffersRecyclerView.adapter =
+                    AmazingAdapter(data, AmazingOffersType, requireContext())
+            }
+
+            override fun onFailureGetProducts(message: String) {
+                Log.i("errorResponse", message)
+                Toast.makeText(requireContext(), "some thing went wrong!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+        })
     }
 
     private fun setUpAmazingSuperMarketRecyclerView() {
         amazingSuperMarketRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        amazingSuperMarketRecyclerView.adapter =
-            AmazingAdapter(generateFakeData(), AmazingSuperMarketType, requireContext())
+        apiServiceManager.getProductsByCategory(object : OnGetProducts {
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                amazingSuperMarketRecyclerView.adapter =
+                    AmazingAdapter(data, AmazingSuperMarketType, requireContext())
+            }
+
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "some thing went wrong!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+        }, "jewelery")
     }
 
     private fun setUpMagicCards() {
+        apiServiceManager.getMagicCartContents(object : OnGetMagicCartContent {
+            override fun onGetMagicCartContents(list: List<ProductsDataClass>) {
+                Picasso.get().load(list[0].image).into(magicImageOne)
+                Picasso.get().load(list[1].image).into(magicImageTwo)
+                Picasso.get().load(list[2].image).into(magicImageThree)
+                Picasso.get().load(list[3].image).into(magicImageFour)
+            }
 
+            override fun onFailureMagicCartContents(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpSuggestionRecyclerView() {
@@ -215,8 +271,24 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpSliderViewPager() {
-        sliderViewPager.adapter = MainSliderAdapter(childFragmentManager)
-        sliderDotsIndicator.setViewPager(sliderViewPager)
+        apiServiceManager.getSliderContent(object : OnGetSliderContent {
+            override fun onGetSliderContent(list: List<Pair<String, String>>) {
+                sliderViewPager.adapter = MainSliderAdapter(childFragmentManager, list)
+                sliderDotsIndicator.setViewPager(sliderViewPager)
+                sliderCount = list.size
+                initSliderTimer()
+            }
+
+            override fun onGetFailure(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun initSliderTimer() {
+        timer = Timer()
+        timer!!.schedule(SliderTimerTask(), 5000, 5000)
     }
 
     private fun setUpViews(view: View) {
@@ -239,6 +311,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsRecyclerViewFour = view.findViewById(R.id.popularProductsRecyclerViewFour)
         addLocationContainer = view.findViewById(R.id.addLocationContainer)
 
+        magicImageOne = view.findViewById(R.id.magicImageOne)
+        magicImageTwo = view.findViewById(R.id.magicImageTwo)
+        magicImageThree = view.findViewById(R.id.magicImageThree)
+        magicImageFour = view.findViewById(R.id.magicImageFour)
+
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)
         exMallText.setOnClickListener(this)
@@ -255,19 +332,43 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun generateFakeData(): List<AmazingDataClass> {
-        val list = arrayListOf<AmazingDataClass>()
-        for (i in 0..14) {
-            list.add(AmazingDataClass("hello"))
-        }
-        return list
-    }
-
     private fun generateFakeTopData(): List<TopBrandDataClass> {
         val list = arrayListOf<TopBrandDataClass>()
         for (i in 0..14) {
             list.add(TopBrandDataClass("hello"))
         }
         return list
+    }
+
+    override fun onStart() {
+        if (timer != null) {
+            timer!!.purge()
+            timer!!.cancel()
+            timer = Timer()
+            timer!!.schedule(SliderTimerTask(), 5000, 5000)
+        }
+        super.onStart()
+    }
+
+    override fun onStop() {
+        if (timer != null) {
+            timer!!.purge()
+            timer!!.cancel()
+        }
+        super.onStop()
+    }
+
+    inner class SliderTimerTask : TimerTask() {
+        override fun run() {
+            requireActivity().runOnUiThread {
+                val index = if (sliderViewPager.currentItem == (sliderCount - 1))
+                    0
+                else
+                    sliderViewPager.currentItem + 1
+
+                sliderViewPager.setCurrentItem(index, true)
+            }
+        }
+
     }
 }

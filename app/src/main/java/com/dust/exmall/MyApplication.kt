@@ -2,6 +2,7 @@ package com.dust.exmall
 
 import android.app.Application
 import android.graphics.Typeface
+import com.dust.exmall.apicore.ApiServiceManager
 
 class MyApplication : Application() {
 

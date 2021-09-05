@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.ProductsDataClass
 
-class PopularProductsAdapter(var list: List<AmazingDataClass>) :
+class PopularProductsAdapter(var list: List<ProductsDataClass>) :
     RecyclerView.Adapter<PopularProductsAdapter.MainViewHolder>() {
 
     inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

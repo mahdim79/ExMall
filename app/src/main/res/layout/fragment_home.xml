@@ -67,7 +67,7 @@
                     android:layout_marginTop="@dimen/standardMargin1.5x"
                     android:layoutDirection="rtl"
                     android:overScrollMode="never"
-                    android:paddingHorizontal="@dimen/standardMargin0.5x" />
+                     />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -107,15 +107,16 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/standardMargin"
+                            android:layout_marginVertical="3dp"
                             android:layout_weight="50"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
                                 android:id="@+id/magicImageOne"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="110dp"
                                 android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
+                                android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
                         </androidx.cardview.widget.CardView>
 
@@ -125,14 +126,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/standardMargin"
                             android:layout_weight="50"
+                            android:layout_marginVertical="3dp"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
                                 android:id="@+id/magicImageTwo"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="110dp"
                                 android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
+                                android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
 
                         </androidx.cardview.widget.CardView>
@@ -150,15 +152,16 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/standardMargin"
+                            android:layout_marginVertical="3dp"
                             android:layout_weight="50"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
                                 android:id="@+id/magicImageThree"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="110dp"
                                 android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
+                                android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
                         </androidx.cardview.widget.CardView>
 
@@ -168,14 +171,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/standardMargin"
                             android:layout_weight="50"
+                            android:layout_marginVertical="3dp"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
                                 android:id="@+id/magicImageFour"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="110dp"
                                 android:adjustViewBounds="true"
-                                android:scaleType="centerCrop"
+                                android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
 
                         </androidx.cardview.widget.CardView>

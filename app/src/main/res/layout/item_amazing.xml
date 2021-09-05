@@ -32,6 +32,7 @@
             android:layoutDirection="ltr">
 
             <ImageView
+                android:id="@+id/productImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/standardMargin"
@@ -130,6 +131,7 @@
 
 
         <com.dust.exmall.customviews.CTextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="15"
@@ -195,10 +197,11 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="225,000"
-                    android:textSize="8dp"
+                    android:textSize="@dimen/TextSize2x"
                     android:textStyle="bold" />
 
                 <TextView
@@ -212,8 +215,8 @@
             </LinearLayout>
 
             <ImageView
-                android:layout_width="@dimen/standardMargin"
-                android:layout_height="@dimen/standardMargin"
+                android:layout_width="@dimen/standardMargin1.5x"
+                android:layout_height="@dimen/standardMargin1.5x"
                 android:layout_marginHorizontal="@dimen/standardMargin0.5x"
                 android:src="@drawable/ic_baseline_search_24" />
 

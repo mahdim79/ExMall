@@ -13,10 +13,10 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.customviews.CTextView
-import com.dust.exmall.dataclasses.AmazingDataClass
-import de.hdodenhof.circleimageview.CircleImageView
+import com.dust.exmall.dataclasses.ProductsDataClass
+import com.squareup.picasso.Picasso
 
-class AmazingAdapter(var list: List<AmazingDataClass>, var type: Int, var context: Context) :
+class AmazingAdapter(var list: List<ProductsDataClass>, var type: Int, var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var AmazingOffersType: Int = 0
@@ -50,6 +50,9 @@ class AmazingAdapter(var list: List<AmazingDataClass>, var type: Int, var contex
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MainViewHolder) {
             val mHolder = holder as MainViewHolder
+            setProductImage(mHolder , position)
+            setProductTitle(mHolder , position)
+            setProductPrice(mHolder , position)
             setOldPrice(mHolder, "255,000")
             setSoldAmount(mHolder, "69%")
             setUpAddCircle(mHolder)
@@ -61,6 +64,18 @@ class AmazingAdapter(var list: List<AmazingDataClass>, var type: Int, var contex
             val mHolder = holder as ShowAllViewHolder
             setUpShowAllItem(mHolder)
         }
+    }
+
+    private fun setProductPrice(holder: MainViewHolder, position: Int) {
+        holder.price.text = list[position - 1].price
+    }
+
+    private fun setProductTitle(holder: MainViewHolder, position: Int) {
+        holder.title.text = list[position - 1].title
+    }
+
+    private fun setProductImage(holder: MainViewHolder , position: Int) {
+        Picasso.get().load(list[position-1].image).into(holder.productImage)
     }
 
     private fun setUpPurchaseAdder(mHolder: MainViewHolder) {
@@ -113,9 +128,11 @@ class AmazingAdapter(var list: List<AmazingDataClass>, var type: Int, var contex
         when (type) {
             AmazingOffersType -> {
                 mHolder.headerText.text = "پیشنهاد شگفت انگیز"
+                mHolder.headerImage.setImageResource(R.drawable.gift_box_pic)
             }
             else -> {
-                mHolder.headerText.text = "شگفت انگیز سوپر مارکتی"
+                mHolder.headerText.text = "شگفت انگیز زنانه"
+                mHolder.headerImage.setImageResource(R.drawable.jeweley_pic)
             }
         }
     }
@@ -164,6 +181,9 @@ class AmazingAdapter(var list: List<AmazingDataClass>, var type: Int, var contex
         var imageDelete = itemView.findViewById<ImageView>(R.id.imageDelete)
         var imageAdd = itemView.findViewById<ImageView>(R.id.imageAdd)
         var soldProgressBar = itemView.findViewById<ProgressBar>(R.id.soldProgressBar)
+        var productImage = itemView.findViewById<ImageView>(R.id.productImage)
+        var title = itemView.findViewById<CTextView>(R.id.title)
+        var price = itemView.findViewById<TextView>(R.id.price)
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

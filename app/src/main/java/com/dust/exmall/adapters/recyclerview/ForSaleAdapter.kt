@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.ProductsDataClass
 
-class ForSaleAdapter(var list:List<AmazingDataClass>) : RecyclerView.Adapter<ForSaleAdapter.MainViewHolder>() {
+class ForSaleAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapter<ForSaleAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_forsale , parent , false))

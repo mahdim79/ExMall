@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.animation.Animations
 
-class UserOrdersRecyclerViewAdapter() : RecyclerView.Adapter<UserOrdersRecyclerViewAdapter.MainViewHolder>() {
+class UserOrdersAdapter() : RecyclerView.Adapter<UserOrdersAdapter.MainViewHolder>() {
     private var animations = Animations()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {

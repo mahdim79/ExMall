@@ -12,12 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.MyApplication
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.ProductsAdapter
 import com.dust.exmall.adapters.viewpager.PopularBrandsViewPager
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.customviews.CViewPager
-import com.dust.exmall.dataclasses.AmazingDataClass
 import com.google.android.material.tabs.TabLayout
 
 class ProductsFragment : Fragment() {
@@ -188,7 +186,7 @@ class ProductsFragment : Fragment() {
         carsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        digitalProductsRecyclerView.adapter = ProductsAdapter(generateFakeData())
+       /* digitalProductsRecyclerView.adapter = ProductsAdapter(generateFakeData())
         giftCartRecyclerView.adapter = ProductsAdapter(generateFakeData())
         localProductsRecyclerView.adapter = ProductsAdapter(generateFakeData())
         athleteRecyclerView.adapter = ProductsAdapter(generateFakeData())
@@ -198,7 +196,7 @@ class ProductsFragment : Fragment() {
         superMarketRecyclerView.adapter = ProductsAdapter(generateFakeData())
         toysRecyclerView.adapter = ProductsAdapter(generateFakeData())
         dressRecyclerView.adapter = ProductsAdapter(generateFakeData())
-        carsRecyclerView.adapter = ProductsAdapter(generateFakeData())
+        carsRecyclerView.adapter = ProductsAdapter(generateFakeData())*/
     }
 
     private fun setUpViews(view: View) {
@@ -221,11 +219,4 @@ class ProductsFragment : Fragment() {
         popularBrandsTab = view.findViewById(R.id.popularBrandsTab)
     }
 
-    private fun generateFakeData(): List<AmazingDataClass> {
-        val list = arrayListOf<AmazingDataClass>()
-        for (i in 0..14) {
-            list.add(AmazingDataClass("hello"))
-        }
-        return list
-    }
 }

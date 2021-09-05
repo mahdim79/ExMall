@@ -1,7 +1,6 @@
 package com.dust.exmall.fragments.cartfragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -14,14 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.CartProductsAdapter
-import com.dust.exmall.adapters.recyclerview.ForSaleAdapter
-import com.dust.exmall.adapters.recyclerview.PlusRegistrationAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.customviews.CButton
-import com.dust.exmall.dataclasses.AmazingDataClass
 import com.dust.exmall.fragments.bottomsheets.CartProductMoreBottomSheet
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class MainCartFragment() : Fragment() {
     private lateinit var headerText: TextView
@@ -72,15 +66,15 @@ class MainCartFragment() : Fragment() {
 
     private fun setUpProductsRecyclerView() {
         productsRecyclerView.layoutManager = GridLayoutManager(requireContext() , 3)
-        productsRecyclerView.adapter = PlusRegistrationAdapter(generateFakeData())
+      //  productsRecyclerView.adapter = PlusRegistrationAdapter(generateFakeData())
     }
 
     private fun setUpMainRecyclerViews() {
         superMarketRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
         otherRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
 
-        superMarketRecyclerView.adapter = CartProductsAdapter(generateFakeData())
-        otherRecyclerView.adapter = CartProductsAdapter(generateFakeData())
+     //   superMarketRecyclerView.adapter = CartProductsAdapter(generateFakeData())
+       // otherRecyclerView.adapter = CartProductsAdapter(generateFakeData())
     }
 
     private fun setUpAnimations() {
@@ -149,7 +143,7 @@ class MainCartFragment() : Fragment() {
 
     private fun setUpSuggestionRecyclerView() {
         forSaleRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL ,false)
-        forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
+       // forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
         headerText.text = "پیشنهاد برای شما"
     }
 
@@ -170,12 +164,5 @@ class MainCartFragment() : Fragment() {
 
         }
 
-    }
-    private fun generateFakeData(): List<AmazingDataClass> {
-        val list = arrayListOf<AmazingDataClass>()
-        for (i in 0..14) {
-            list.add(AmazingDataClass("hello"))
-        }
-        return list
     }
 }

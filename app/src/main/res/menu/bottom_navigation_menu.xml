@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home" />
+        android:icon="@drawable/bottom_navigation_home"
+        android:title="خانه" />
     <item
         android:id="@+id/nav_products"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Products" />
+        android:icon="@drawable/bottom_navigation_categories"
+        android:title="محصولات" />
     <item
         android:id="@+id/nav_cart"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Cart" />
+        android:icon="@drawable/bottom_navigation_card"
+        android:title="سبد خرید" />
     <item
         android:id="@+id/nav_my_ex_mall"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="MyExMall" />
+        android:icon="@drawable/bottom_navigation_myexmall"
+        android:title="فروشگاه من" />
 </menu>

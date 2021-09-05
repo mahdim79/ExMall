@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.ProductsDataClass
 
-class PlusProductsAdapter(var list:List<AmazingDataClass>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val NORMAL_ITEM = 0
     private val SHOW_ALL_ITEM: Int = 1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.dust.exmall.R
-import com.dust.exmall.dataclasses.AmazingDataClass
+import com.dust.exmall.dataclasses.ProductsDataClass
 
-class ProductsSliderFragment(var listData: List<AmazingDataClass>, var position: Int) : Fragment() {
+class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position: Int) : Fragment() {
     private lateinit var countTextOne: TextView
     private lateinit var countTextTwo: TextView
     private lateinit var countTextThree: TextView

@@ -11,9 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.CartProductsAdapter
 import com.dust.exmall.animation.Animations
-import com.dust.exmall.dataclasses.AmazingDataClass
 import com.dust.exmall.fragments.bottomsheets.CartProductMoreBottomSheet
 
 class NextCartFragment(): Fragment() {
@@ -99,8 +97,8 @@ class NextCartFragment(): Fragment() {
         superMarketRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
         otherRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
 
-        superMarketRecyclerView.adapter = CartProductsAdapter(generateFakeData())
-        otherRecyclerView.adapter = CartProductsAdapter(generateFakeData())
+      //  superMarketRecyclerView.adapter = CartProductsAdapter(generateFakeData())
+     //   otherRecyclerView.adapter = CartProductsAdapter(generateFakeData())
     }
 
     private fun setUpViews(view: View) {
@@ -111,11 +109,4 @@ class NextCartFragment(): Fragment() {
         more_supermarket = view.findViewById(R.id.more_supermarket)
     }
 
-    private fun generateFakeData(): List<AmazingDataClass> {
-        val list = arrayListOf<AmazingDataClass>()
-        for (i in 0..3) {
-            list.add(AmazingDataClass("hello"))
-        }
-        return list
-    }
 }

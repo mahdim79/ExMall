@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="50"
         tools:text="پیشنهاد شگفت انگیز"
-        android:textSize="@dimen/standardMargin2x"
+        android:textSize="21dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:gravity="center"/>

@@ -250,8 +250,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpPlusProductsRecyclerView() {
         plusProductsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        apiServiceManager.getPlusProducts(object : OnGetProducts {
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                plusProductsRecyclerView.adapter = PlusProductsAdapter(data)
+            }
 
-        //    plusProductsRecyclerView.adapter = PlusProductsAdapter(generateFakeData())
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpAmazingOffersRecyclerView() {

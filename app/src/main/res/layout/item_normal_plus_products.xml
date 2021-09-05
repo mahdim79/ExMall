@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="45"
@@ -20,6 +21,7 @@
             android:src="@drawable/bg_one" />
 
         <com.dust.exmall.customviews.CTextView
+            android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="15"
@@ -87,6 +89,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/productPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="225,000"

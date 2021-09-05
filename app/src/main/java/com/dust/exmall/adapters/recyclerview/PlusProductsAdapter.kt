@@ -3,9 +3,13 @@ package com.dust.exmall.adapters.recyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
+import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.squareup.picasso.Picasso
 
 class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val NORMAL_ITEM = 0
@@ -19,9 +23,16 @@ class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MainViewHolder){
             val mHolder = holder as MainViewHolder
+            setUpProductDetails(mHolder , position)
         }else{
             val mHolder = holder as ShowAllViewHolder
         }
+    }
+
+    private fun setUpProductDetails(mHolder: MainViewHolder , position: Int) {
+        Picasso.get().load(list[position].image).into(mHolder.productImage)
+        mHolder.productName.text = list[position].title
+        mHolder.productPrice.text = list[position].price
     }
 
     override fun getItemCount(): Int = list.size + 1
@@ -33,7 +44,9 @@ class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapt
     }
 
     inner class MainViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
+        val productPrice = itemView.findViewById<TextView>(R.id.productPrice)
+        val productName = itemView.findViewById<CTextView>(R.id.productName)
+        val productImage = itemView.findViewById<ImageView>(R.id.productImage)
     }
 
     inner class ShowAllViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

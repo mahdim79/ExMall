@@ -84,10 +84,10 @@ class ApiServiceManager() {
                 response: Response<List<ProductsDataClass>>
             ) {
                 val list = arrayListOf<ProductsDataClass>()
-                if (response.body()!!.size < 4)
+                if (response.body()!!.size < 9)
                     list.addAll(response.body()!!)
                 else
-                    list.addAll(response.body()!!.subList(0 , 4))
+                    list.addAll(response.body()!!.subList(0 , 9))
                 onGetMagicCartContent.onGetMagicCartContents(list)
             }
 
@@ -140,4 +140,5 @@ class ApiServiceManager() {
 
         })
     }
+
 }

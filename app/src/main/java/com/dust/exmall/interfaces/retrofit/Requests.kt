@@ -16,12 +16,11 @@ interface Requests {
     @GET("products/category/jewelery")
     fun getSliderContent(): Call<List<ProductsDataClass>>
 
-    @GET("products/category/men's%20clothing")
+    @GET("products?limit=9")
     fun getMagicContent(): Call<List<ProductsDataClass>>
 
     @GET("products/categories")
     fun getPopularCategories():Call<List<String>>
 
-    @GET
-    fun getPopularProductsByCategory(@Url url:String): Call<List<ProductsDataClass>>
+
 }

@@ -50,6 +50,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var magicImageTwo: ImageView
     private lateinit var magicImageThree: ImageView
     private lateinit var magicImageFour: ImageView
+    private lateinit var magicImageFive: ImageView
+    private lateinit var magicImageSix: ImageView
+    private lateinit var magicImageSeven: ImageView
+    private lateinit var magicImageEight: ImageView
+    private lateinit var magicImageNine: ImageView
 
     private lateinit var popularProductsHeader:TextView
     private lateinit var popularProductsHeaderTwo:TextView
@@ -292,6 +297,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 Picasso.get().load(list[1].image).into(magicImageTwo)
                 Picasso.get().load(list[2].image).into(magicImageThree)
                 Picasso.get().load(list[3].image).into(magicImageFour)
+                Picasso.get().load(list[4].image).into(magicImageFive)
+                Picasso.get().load(list[5].image).into(magicImageSix)
+                Picasso.get().load(list[6].image).into(magicImageSeven)
+                Picasso.get().load(list[7].image).into(magicImageEight)
+                Picasso.get().load(list[8].image).into(magicImageNine)
             }
 
             override fun onFailureMagicCartContents(message: String) {
@@ -357,6 +367,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
         magicImageTwo = view.findViewById(R.id.magicImageTwo)
         magicImageThree = view.findViewById(R.id.magicImageThree)
         magicImageFour = view.findViewById(R.id.magicImageFour)
+        magicImageFive = view.findViewById(R.id. magicImageFive)
+        magicImageSix = view.findViewById(R.id.  magicImageSix)
+        magicImageSeven = view.findViewById(R.id.magicImageSeven)
+        magicImageEight = view.findViewById(R.id.magicImageEight)
+        magicImageNine = view.findViewById(R.id. magicImageNine)
 
         popularProductsHeader = popularLinearOne.findViewById(R.id.popularProductsHeader)
         popularProductsHeaderTwo = popularLinearTwo.findViewById(R.id.popularProductsHeader)

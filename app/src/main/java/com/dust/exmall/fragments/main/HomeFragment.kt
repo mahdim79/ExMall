@@ -240,7 +240,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpTopBrandRecyclerView() {
         topBrandRecyclerview.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        topBrandRecyclerview.adapter = TopBrandAdapter(generateFakeTopData(), animations)
+
+        apiServiceManager.getTopBrands(object : OnGetTopBrands {
+            override fun onGetTopBrands(data: List<TopBrandDataClass>) {
+                topBrandRecyclerview.adapter = TopBrandAdapter(data, animations)
+            }
+
+            override fun onFailureGetTopBrands(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpProductsSliderViewPager() {
@@ -410,14 +420,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             R.id.exMallText -> {
             }
         }
-    }
-
-    private fun generateFakeTopData(): List<TopBrandDataClass> {
-        val list = arrayListOf<TopBrandDataClass>()
-        for (i in 0..14) {
-            list.add(TopBrandDataClass("hello"))
-        }
-        return list
     }
 
     override fun onStart() {

@@ -1,6 +1,7 @@
 package com.dust.exmall.interfaces.retrofit
 
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.dust.exmall.dataclasses.TopBrandDataClass
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -27,4 +28,7 @@ interface Requests {
 
     @GET("products?limit=15")
     fun getBestSellersProducts():Call<List<ProductsDataClass>>
+
+    @GET("products?limit=14")
+    fun getTopBrands():Call<List<TopBrandDataClass>>
 }

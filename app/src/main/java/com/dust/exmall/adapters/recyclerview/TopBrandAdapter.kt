@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.dataclasses.TopBrandDataClass
+import com.squareup.picasso.Picasso
 
 class TopBrandAdapter(var list:List<TopBrandDataClass> , var animations: Animations):RecyclerView.Adapter<TopBrandAdapter.MainViewHolder>() {
 
@@ -27,11 +29,14 @@ class TopBrandAdapter(var list:List<TopBrandDataClass> , var animations: Animati
                 v.startAnimation(animations.getFadeOutAnimation())
             true
         }
+        Picasso.get().load(list[position].image).into(holder.topBrandImage)
+        holder.itemView.setOnClickListener {
+        }
     }
 
     override fun getItemCount(): Int = list.size
 
     inner class MainViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        var divider = itemView.findViewById<View>(R.id.divider)
+        var topBrandImage = itemView.findViewById<ImageView>(R.id.topBrandImage)
     }
 }

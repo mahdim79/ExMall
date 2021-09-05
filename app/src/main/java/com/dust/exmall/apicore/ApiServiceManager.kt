@@ -1,6 +1,7 @@
 package com.dust.exmall.apicore
 
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.dust.exmall.dataclasses.TopBrandDataClass
 import com.dust.exmall.interfaces.maininterfaces.*
 import com.dust.exmall.interfaces.retrofit.Requests
 import okhttp3.OkHttpClient
@@ -168,6 +169,22 @@ class ApiServiceManager() {
 
             override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
                 onGetProducts.onFailureGetProducts(t.message!!)
+            }
+
+        })
+    }
+
+    fun getTopBrands(onGetTopBrands: OnGetTopBrands){
+        retrofit.create(Requests::class.java).getTopBrands().enqueue(object :Callback<List<TopBrandDataClass>>{
+            override fun onResponse(
+                call: Call<List<TopBrandDataClass>>,
+                response: Response<List<TopBrandDataClass>>
+            ) {
+                onGetTopBrands.onGetTopBrands(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<TopBrandDataClass>>, t: Throwable) {
+                onGetTopBrands.onFailureGetTopBrands(t.message!!)
             }
 
         })

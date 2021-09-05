@@ -190,4 +190,36 @@ class ApiServiceManager() {
         })
     }
 
+    fun getHighReviewedProducts(onGetProducts: OnGetProducts){
+        retrofit.create(Requests::class.java).getHighReviewedProducts().enqueue(object :Callback<List<ProductsDataClass>>{
+            override fun onResponse(
+                call: Call<List<ProductsDataClass>>,
+                response: Response<List<ProductsDataClass>>
+            ) {
+                onGetProducts.onGetProducts(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                onGetProducts.onFailureGetProducts(t.message!!)
+            }
+
+        })
+    }
+
+    fun getForSaleProducts(onGetProducts: OnGetProducts){
+        retrofit.create(Requests::class.java).getForSaleProducts().enqueue(object :Callback<List<ProductsDataClass>>{
+            override fun onResponse(
+                call: Call<List<ProductsDataClass>>,
+                response: Response<List<ProductsDataClass>>
+            ) {
+                onGetProducts.onGetProducts(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                onGetProducts.onFailureGetProducts(t.message!!)
+            }
+
+        })
+    }
+
 }

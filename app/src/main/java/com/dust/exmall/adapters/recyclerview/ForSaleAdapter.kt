@@ -4,24 +4,62 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
+import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.squareup.picasso.Picasso
+import kotlin.math.floor
 
-class ForSaleAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapter<ForSaleAdapter.MainViewHolder>() {
+class ForSaleAdapter(var list: List<ProductsDataClass>) :
+    RecyclerView.Adapter<ForSaleAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_forsale , parent , false))
+        return MainViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_forsale, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        if (position == 7)
+        if (position == initItemCount() - 1)
             holder.divider.setBackgroundColor(Color.WHITE)
+
+        try {
+            Picasso.get().load(list[position * 2].image).into(holder.imageProductOne)
+            holder.titleProductOne.text = list[position * 2].title
+            holder.priceProductOne.text = list[position * 2].price
+
+            Picasso.get().load(list[(position * 2 + 1)].image).into(holder.imageProductTwo)
+            holder.titleProductTwo.text = list[(position * 2 + 1)].title
+            holder.priceProductTwo.text = list[(position * 2 + 1)].price
+        } catch (e: Exception) {
+            holder.titleProductTwo.visibility = View.GONE
+            holder.priceLinearTwo.visibility = View.GONE
+            holder.noteLinearTwo.visibility = View.GONE
+            holder.imageProductTwo.visibility = View.GONE
+        }
     }
 
-    override fun getItemCount(): Int = 8
+    override fun getItemCount(): Int = initItemCount()
 
-    inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    private fun initItemCount(): Int {
+        if (list.size % 2 == 0)
+            return (list.size / 2)
+        return (floor((list.size / 2).toDouble()) + 1).toInt()
+    }
+
+    inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var divider = itemView.findViewById<View>(R.id.divider)
+        var imageProductOne = itemView.findViewById<ImageView>(R.id.imageProductOne)
+        var imageProductTwo = itemView.findViewById<ImageView>(R.id.imageProductTwo)
+        var titleProductOne = itemView.findViewById<CTextView>(R.id.titleProductOne)
+        var titleProductTwo = itemView.findViewById<CTextView>(R.id.titleProductTwo)
+        var priceProductOne = itemView.findViewById<TextView>(R.id.priceProductOne)
+        var priceProductTwo = itemView.findViewById<TextView>(R.id.priceProductTwo)
+        var priceLinearTwo = itemView.findViewById<LinearLayout>(R.id.priceLinearTwo)
+        var noteLinearTwo = itemView.findViewById<LinearLayout>(R.id.noteLinearTwo)
     }
 }

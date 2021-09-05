@@ -226,15 +226,33 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpHighReviewedViewPager() {
-        //    HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData() , true)
-        //    HighReviewedViewPager.setCurrentItem(4 , false)
+        apiServiceManager.getHighReviewedProducts(object : OnGetProducts {
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                HighReviewedViewPager.adapter =
+                    ProductsSliderAdapter(childFragmentManager, data, true)
+                HighReviewedViewPager.setCurrentItem(4, false)
+            }
+
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpForSaleRecyclerView() {
         forSaleRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        //    forSaleRecyclerView.adapter = ForSaleAdapter(generateFakeData())
+        apiServiceManager.getForSaleProducts(object :OnGetProducts{
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                forSaleRecyclerView.adapter = ForSaleAdapter(data)
+            }
 
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpTopBrandRecyclerView() {

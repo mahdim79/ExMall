@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imageProductOne"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="45"
@@ -26,6 +27,7 @@
                 android:src="@drawable/bg_one" />
 
             <com.dust.exmall.customviews.CTextView
+                android:id="@+id/titleProductOne"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
@@ -93,6 +95,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/priceProductOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="225,000"
@@ -128,6 +131,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imageProductTwo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="45"
@@ -135,6 +139,7 @@
                 android:src="@drawable/bg_one" />
 
             <com.dust.exmall.customviews.CTextView
+                android:id="@+id/titleProductTwo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
@@ -147,9 +152,10 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/noteLinearTwo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="10"
                 android:gravity="center_vertical"
                 android:layoutDirection="rtl"
                 android:orientation="horizontal"
@@ -169,6 +175,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/priceLinearTwo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="15"
@@ -202,6 +209,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/priceProductTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="225,000"

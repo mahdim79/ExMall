@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.*
 import com.dust.exmall.adapters.viewpager.MainSliderAdapter
+import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
@@ -225,7 +226,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpHighReviewedViewPager() {
-        //    HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
+        //    HighReviewedViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData() , true)
         //    HighReviewedViewPager.setCurrentItem(4 , false)
     }
 
@@ -243,8 +244,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpProductsSliderViewPager() {
-        //    ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager , generateFakeData())
-        //  ProductsSliderViewPager.setCurrentItem(4 , false)
+        apiServiceManager.getBestSellersProducts(object : OnGetProducts {
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager, data)
+                ProductsSliderViewPager.setCurrentItem(4, false)
+            }
+
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpPlusProductsRecyclerView() {

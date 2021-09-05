@@ -6,11 +6,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.fragments.others.ProductsSliderFragment
 
-class ProductsSliderAdapter(fragmentManager: FragmentManager , var list:List<ProductsDataClass>) : FragmentStatePagerAdapter(fragmentManager) {
+class ProductsSliderAdapter(fragmentManager: FragmentManager , var list:List<ProductsDataClass> , var highReviewedMode:Boolean = false) : FragmentStatePagerAdapter(fragmentManager) {
     override fun getCount(): Int = 5
 
     override fun getItem(position: Int): Fragment {
-        return ProductsSliderFragment(optimizeCurrentItems(position , list) , position)
+        return ProductsSliderFragment(optimizeCurrentItems(position , list) , position , highReviewedMode)
     }
 
     private fun optimizeCurrentItems(position: Int ,list:List<ProductsDataClass>):List<ProductsDataClass>{

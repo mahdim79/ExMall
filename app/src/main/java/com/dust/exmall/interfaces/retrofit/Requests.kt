@@ -24,4 +24,7 @@ interface Requests {
 
     @GET("products?limit=6")
     fun getPlusProducts():Call<List<ProductsDataClass>>
+
+    @GET("products?limit=15")
+    fun getBestSellersProducts():Call<List<ProductsDataClass>>
 }

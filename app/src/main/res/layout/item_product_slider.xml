@@ -20,6 +20,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/productTitleOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -32,6 +33,7 @@
                 android:maxLines="2"
                 android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
             <TextView
+                android:id="@+id/reviewCountOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -57,6 +59,7 @@
             android:text="1"/>
 
         <ImageView
+            android:id="@+id/productImageOne"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/standardMargin"
@@ -78,6 +81,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/productTitleTwo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -90,6 +94,7 @@
                 android:maxLines="2"
                 android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
             <TextView
+                android:id="@+id/reviewCountTwo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -116,6 +121,7 @@
             android:text="1"/>
 
         <ImageView
+            android:id="@+id/productImageTwo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/standardMargin"
@@ -137,6 +143,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/productTitleThree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -149,6 +156,7 @@
                 android:maxLines="2"
                 android:text="پایه نگه دارنده گوشی و تبلت مدلok lesdfdsfgts go"/>
             <TextView
+                android:id="@+id/reviewCountThree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textDirection="rtl"
@@ -175,6 +183,7 @@
             android:text="1"/>
 
         <ImageView
+            android:id="@+id/productImageThree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/standardMargin"

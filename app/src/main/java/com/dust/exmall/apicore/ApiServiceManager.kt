@@ -1,9 +1,7 @@
 package com.dust.exmall.apicore
 
 import com.dust.exmall.dataclasses.ProductsDataClass
-import com.dust.exmall.interfaces.maininterfaces.OnGetMagicCartContent
-import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
-import com.dust.exmall.interfaces.maininterfaces.OnGetSliderContent
+import com.dust.exmall.interfaces.maininterfaces.*
 import com.dust.exmall.interfaces.retrofit.Requests
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -11,8 +9,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 
 class ApiServiceManager() {
@@ -46,7 +42,7 @@ class ApiServiceManager() {
 
     fun getProductsByCategory(onGetProducts: OnGetProducts , category:String){
         val url = "products/category/${category}"
-        retrofit.create(Requests::class.java).getProductByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
+        retrofit.create(Requests::class.java).getProductsByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
             override fun onResponse(
                 call: Call<List<ProductsDataClass>>,
                 response: Response<List<ProductsDataClass>>
@@ -97,6 +93,49 @@ class ApiServiceManager() {
 
             override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
                 onGetMagicCartContent.onFailureMagicCartContents(t.message!!)
+            }
+
+        })
+    }
+
+    fun getPopularCategories(onGetCategories: OnGetCategories){
+        retrofit.create(Requests::class.java).getPopularCategories().enqueue(object :Callback<List<String>>{
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
+                val list = arrayListOf<String>()
+                if (response.body()!!.size > 4){
+                    list.addAll(response.body()!!.subList(0 , 4))
+                }else if (response.body()!!.size < 4){
+                    list.addAll(response.body()!!)
+                    for (i in 0 until 4){
+                        list.add(response.body()!![response.body()!!.size - 1])
+                        if (list.size == 4)
+                            break
+                    }
+                }else{
+                    list.addAll(response.body()!!)
+                }
+                onGetCategories.onGetCategories(list)
+            }
+
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
+                onGetCategories.onFailureGetCategories(t.message!!)
+            }
+
+        })
+    }
+
+    fun getPopularProductsByCategory(onGetPopularProducts: OnGetPopularProducts, category:String , tag:Int){
+        val url = "products/category/${category}"
+        retrofit.create(Requests::class.java).getProductsByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
+            override fun onResponse(
+                call: Call<List<ProductsDataClass>>,
+                response: Response<List<ProductsDataClass>>
+            ) {
+                onGetPopularProducts.onGetPopularProducts(response.body()!! , tag)
+            }
+
+            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                onGetPopularProducts.onFailureGetPopularProducts(t.message!!)
             }
 
         })

@@ -23,9 +23,7 @@ import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
-import com.dust.exmall.interfaces.maininterfaces.OnGetMagicCartContent
-import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
-import com.dust.exmall.interfaces.maininterfaces.OnGetSliderContent
+import com.dust.exmall.interfaces.maininterfaces.*
 import com.squareup.picasso.Picasso
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import java.util.*
@@ -52,6 +50,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var magicImageTwo: ImageView
     private lateinit var magicImageThree: ImageView
     private lateinit var magicImageFour: ImageView
+
+    private lateinit var popularProductsHeader:TextView
+    private lateinit var popularProductsHeaderTwo:TextView
+    private lateinit var popularProductsHeaderThree:TextView
+    private lateinit var popularProductsHeaderFour:TextView
+
+    private lateinit var popularLinearOne:LinearLayout
+    private lateinit var popularLinearTwo:LinearLayout
+    private lateinit var popularLinearThree:LinearLayout
+    private lateinit var popularLinearFour:LinearLayout
 
     private var sliderCount = 0
 
@@ -88,11 +96,30 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpAmazingSuperMarketRecyclerView()
         setUpPlusProductsRecyclerView()
         // popular Products
-        setUpPopularProductsRecyclerView()
+        setUpPopulars()
         setUpProductsSliderViewPager()
         setUpTopBrandRecyclerView()
         setUpForSaleRecyclerView()
         setUpHighReviewedViewPager()
+    }
+
+    private fun setUpPopulars() {
+        apiServiceManager.getPopularCategories(object : OnGetCategories {
+            override fun onGetCategories(categoryList: List<String>) {
+                // set Category texts
+                popularProductsHeader.text = categoryList[0]
+                popularProductsHeaderTwo.text = categoryList[1]
+                popularProductsHeaderThree.text = categoryList[2]
+                popularProductsHeaderFour.text = categoryList[3]
+
+                setUpPopularProductsRecyclerView(categoryList)
+            }
+
+            override fun onFailureGetCategories(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpApiManager() {
@@ -160,26 +187,36 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setUpPopularProductsRecyclerView() {
-        // one
+    private fun setUpPopularProductsRecyclerView(categories:List<String>) {
+
         popularProductsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        // popularProductsRecyclerView.adapter = PopularProductsAdapter(generateFakeData())
-
-        // two
         popularProductsRecyclerViewTwo.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        //  popularProductsRecyclerViewTwo.adapter = PopularProductsAdapter(generateFakeData())
-
-        //three
         popularProductsRecyclerViewThree.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        //   popularProductsRecyclerViewThree.adapter = PopularProductsAdapter(generateFakeData())
-
-        //four
         popularProductsRecyclerViewFour.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        //   popularProductsRecyclerViewFour.adapter = PopularProductsAdapter(generateFakeData())
+
+        for (i in 0 until categories.size){
+            apiServiceManager.getPopularProductsByCategory(object : OnGetPopularProducts {
+                override fun onGetPopularProducts(data: List<ProductsDataClass>, tag: Int) {
+                    val adapter = PopularProductsAdapter(data)
+                    when(tag){
+                        0 -> popularProductsRecyclerView.adapter = adapter
+                        1 -> popularProductsRecyclerViewTwo.adapter = adapter
+                        2 -> popularProductsRecyclerViewThree.adapter = adapter
+                        else -> popularProductsRecyclerViewFour.adapter = adapter
+                    }
+                }
+
+                override fun onFailureGetPopularProducts(message: String) {
+                    Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            }, categories[i], i)
+        }
     }
 
     private fun setUpHighReviewedViewPager() {
@@ -292,6 +329,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setUpViews(view: View) {
+        popularLinearOne = view.findViewById(R.id.popularLinearOne)
+        popularLinearTwo = view.findViewById(R.id.popularLinearTwo)
+        popularLinearThree = view.findViewById(R.id.popularLinearThree)
+        popularLinearFour = view.findViewById(R.id.popularLinearFour)
+
         search_text = view.findViewById(R.id.search_text)
         search_image = view.findViewById(R.id.search_image)
         exMallText = view.findViewById(R.id.exMallText)
@@ -305,16 +347,21 @@ class HomeFragment : Fragment(), View.OnClickListener {
         topBrandRecyclerview = view.findViewById(R.id.topBrandRecyclerview)
         forSaleRecyclerView = view.findViewById(R.id.forSaleRecyclerView)
         HighReviewedViewPager = view.findViewById(R.id.HighReviewedViewPager)
-        popularProductsRecyclerView = view.findViewById(R.id.popularProductsRecyclerView)
-        popularProductsRecyclerViewTwo = view.findViewById(R.id.popularProductsRecyclerViewTwo)
-        popularProductsRecyclerViewThree = view.findViewById(R.id.popularProductsRecyclerViewThree)
-        popularProductsRecyclerViewFour = view.findViewById(R.id.popularProductsRecyclerViewFour)
+        popularProductsRecyclerView = popularLinearOne.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewTwo = popularLinearTwo.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewThree = popularLinearThree.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewFour = popularLinearFour.findViewById(R.id.popularProductsRecyclerView)
         addLocationContainer = view.findViewById(R.id.addLocationContainer)
 
         magicImageOne = view.findViewById(R.id.magicImageOne)
         magicImageTwo = view.findViewById(R.id.magicImageTwo)
         magicImageThree = view.findViewById(R.id.magicImageThree)
         magicImageFour = view.findViewById(R.id.magicImageFour)
+
+        popularProductsHeader = popularLinearOne.findViewById(R.id.popularProductsHeader)
+        popularProductsHeaderTwo = popularLinearTwo.findViewById(R.id.popularProductsHeader)
+        popularProductsHeaderThree = popularLinearThree.findViewById(R.id.popularProductsHeader)
+        popularProductsHeaderFour = popularLinearFour.findViewById(R.id.popularProductsHeader)
 
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)

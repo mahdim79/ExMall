@@ -210,9 +210,12 @@
 
                 </RelativeLayout>
 
-                <include layout="@layout/popular_products"
+                <include
+                    android:id="@+id/popularLinearOne"
+                    layout="@layout/popular_products"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin"
                     android:layout_marginTop="@dimen/standardMargin3x"/>
 
                 <androidx.cardview.widget.CardView
@@ -231,8 +234,11 @@
                         android:src="@drawable/amazing_offer_background" />
                 </androidx.cardview.widget.CardView>
 
-                <include layout="@layout/popular_products_two"
+                <include
+                    android:id="@+id/popularLinearTwo"
+                    layout="@layout/popular_products"
                     android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/standardMargin"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/standardMargin3x"/>
 
@@ -290,9 +296,12 @@
                     android:layout_marginTop="@dimen/standardMargin3x"
                     android:layout_height="wrap_content"/>
 
-                <include layout="@layout/popular_products_three"
+                <include
+                    android:id="@+id/popularLinearThree"
+                    layout="@layout/popular_products"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin"
                     android:layout_marginTop="@dimen/standardMargin3x"/>
 
                 <LinearLayout
@@ -336,8 +345,11 @@
 
                 </LinearLayout>
 
-                <include layout="@layout/popular_products_four"
+                <include
+                    android:id="@+id/popularLinearFour"
+                    layout="@layout/popular_products"
                     android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/standardMargin"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/standardMargin3x"/>
 

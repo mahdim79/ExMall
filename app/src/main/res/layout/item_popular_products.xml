@@ -8,14 +8,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/productImageOne"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
+            android:layout_margin="@dimen/standardMargin"
             android:adjustViewBounds="true"
-            android:layout_margin="@dimen/standardMargin0.5x"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/bg_one" />
 
         <View
@@ -24,12 +26,13 @@
             android:background="@color/white_bottom_navigation" />
 
         <ImageView
+            android:id="@+id/productImageTwo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
-            android:layout_margin="@dimen/standardMargin0.5x"
-            android:scaleType="fitXY"
+            android:layout_margin="@dimen/standardMargin"
+            android:scaleType="centerCrop"
             android:src="@drawable/bg_one" />
 
         <View
@@ -38,12 +41,13 @@
             android:background="@color/white_bottom_navigation" />
 
         <ImageView
+            android:id="@+id/productImageThree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="33.33"
             android:adjustViewBounds="true"
-            android:layout_margin="@dimen/standardMargin0.5x"
-            android:scaleType="fitXY"
+            android:layout_margin="@dimen/standardMargin"
+            android:scaleType="centerCrop"
             android:src="@drawable/bg_one" />
     </LinearLayout>
 

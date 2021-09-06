@@ -43,6 +43,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var popularProductsRecyclerViewTwo: RecyclerView
     private lateinit var popularProductsRecyclerViewThree: RecyclerView
     private lateinit var popularProductsRecyclerViewFour: RecyclerView
+    private lateinit var recentlySeenProductsRecyclerView: RecyclerView
     private lateinit var topBrandRecyclerview: RecyclerView
     private lateinit var forSaleRecyclerView: RecyclerView
     private lateinit var ProductsSliderViewPager: ViewPager
@@ -105,8 +106,23 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpPopulars()
         setUpProductsSliderViewPager()
         setUpTopBrandRecyclerView()
+        setUpRecentlySeenRecyclerView()
         setUpForSaleRecyclerView()
         setUpHighReviewedViewPager()
+    }
+
+    private fun setUpRecentlySeenRecyclerView() {
+        recentlySeenProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
+        apiServiceManager.getRecentlySeenProducts(object :OnGetProducts{
+            override fun onGetProducts(data: List<ProductsDataClass>) {
+                recentlySeenProductsRecyclerView.adapter = RecentlyAdapter(data)
+            }
+
+            override fun onFailureGetProducts(message: String) {
+                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun setUpPopulars() {
@@ -407,6 +423,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsRecyclerViewTwo = popularLinearTwo.findViewById(R.id.popularProductsRecyclerView)
         popularProductsRecyclerViewThree = popularLinearThree.findViewById(R.id.popularProductsRecyclerView)
         popularProductsRecyclerViewFour = popularLinearFour.findViewById(R.id.popularProductsRecyclerView)
+        recentlySeenProductsRecyclerView = view.findViewById(R.id.recentlySeenProductsRecyclerView)
         addLocationContainer = view.findViewById(R.id.addLocationContainer)
 
         magicImageOne = view.findViewById(R.id.magicImageOne)

@@ -399,6 +399,16 @@
                     android:layout_height="@dimen/standardMargin"
                     android:background="@color/whiteBackground"/>
 
+                <include layout="@layout/recently_seen_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/standardMargin"
+                    android:background="@color/whiteBackground"/>
+
                 <include layout="@layout/forsale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

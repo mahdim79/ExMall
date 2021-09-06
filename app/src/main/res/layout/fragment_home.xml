@@ -1,100 +1,332 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
-
-    <com.google.android.material.appbar.AppBarLayout
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/homeComponentContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="noScroll">
-
-            <include layout="@layout/search_box" />
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical">
 
-        <androidx.core.widget.NestedScrollView
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="noScroll">
+
+                <include
+                    android:id="@+id/searchLinear"
+                    layout="@layout/search_box" />
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:overScrollMode="never">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/standardMargin1.5x"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/sliderViewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="170dp"
-                        android:clipToPadding="false"
-                        android:paddingHorizontal="@dimen/standardMargin2x" />
-
-                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                        android:id="@+id/sliderDotsIndicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:paddingStart="@dimen/standardMargin3x"
-                        android:paddingBottom="@dimen/standardMargin1.5x"
-                        app:dotsColor="@color/black_transparent"
-                        app:dotsSize="8dp"
-                        app:selectedDotColor="@color/black_normal" />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/suggestionRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="@dimen/standardMargin1.5x"
-                    android:layoutDirection="rtl"
-                    android:overScrollMode="never"
-                     />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="370dp"
-                    android:layout_marginTop="@dimen/standardMargin1.5x">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/red_background" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/amazingOffersRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/standardMargin0.5x"
-                        android:layoutDirection="rtl"
-                        />
-
-                </RelativeLayout>
+                android:overScrollMode="never">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
                     android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/sliderViewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:clipToPadding="false"
+                            android:paddingHorizontal="@dimen/standardMargin2x" />
+
+                        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                            android:id="@+id/sliderDotsIndicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:paddingStart="@dimen/standardMargin3x"
+                            android:paddingBottom="@dimen/standardMargin1.5x"
+                            app:dotsColor="@color/black_transparent"
+                            app:dotsSize="8dp"
+                            app:selectedDotColor="@color/black_normal" />
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/suggestionRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="@dimen/standardMargin1.5x"
+                        android:layoutDirection="rtl"
+                        android:overScrollMode="never"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="370dp"
+                        android:layout_marginTop="@dimen/standardMargin1.5x">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/red_background" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/amazingOffersRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/standardMargin0.5x"
+                            android:layoutDirection="rtl"
+                            />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/standardMargin2x"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/standardMargin">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/standardMargin"
+                                android:layout_marginVertical="3dp"
+                                android:layout_weight="50"
+                                app:cardCornerRadius="@dimen/standardMargin">
+
+                                <ImageView
+                                    android:id="@+id/magicImageOne"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="110dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/amazing_offer_background" />
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/standardMargin"
+                                android:layout_weight="50"
+                                android:layout_marginVertical="3dp"
+                                app:cardCornerRadius="@dimen/standardMargin">
+
+                                <ImageView
+                                    android:id="@+id/magicImageTwo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="110dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/amazing_offer_background" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/standardMargin"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/standardMargin">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/standardMargin"
+                                android:layout_marginVertical="3dp"
+                                android:layout_weight="50"
+                                app:cardCornerRadius="@dimen/standardMargin">
+
+                                <ImageView
+                                    android:id="@+id/magicImageThree"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="110dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/amazing_offer_background" />
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/standardMargin"
+                                android:layout_weight="50"
+                                android:layout_marginVertical="3dp"
+                                app:cardCornerRadius="@dimen/standardMargin">
+
+                                <ImageView
+                                    android:id="@+id/magicImageFour"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="110dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/amazing_offer_background" />
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="370dp"
+                        android:layout_marginTop="@dimen/standardMargin1.5x">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/blue_background" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/amazingSuperMarketRecyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/standardMargin0.5x"
+                            android:layoutDirection="rtl"
+                            />
+
+                    </RelativeLayout>
+
+                    <include
+                        android:id="@+id/popularLinearOne"
+                        layout="@layout/popular_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                        android:layout_weight="50"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        app:cardCornerRadius="@dimen/standardMargin">
+
+                        <ImageView
+                            android:id="@+id/magicImageFive"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/amazing_offer_background" />
+                    </androidx.cardview.widget.CardView>
+
+                    <include
+                        android:id="@+id/popularLinearTwo"
+                        layout="@layout/popular_products"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                        android:layout_weight="50"
+                        app:cardCornerRadius="@dimen/standardMargin">
+
+                        <ImageView
+                            android:id="@+id/magicImageSix"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/amazing_offer_background" />
+                    </androidx.cardview.widget.CardView>
+
+                    <include layout="@layout/ex_plus_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                    <TextView
+                        android:id="@+id/titleSliderOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:textSize="@dimen/TextSize4x"
+                        android:textDirection="rtl"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="پرفروش ترین کالاها"/>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/ProductsSliderViewPager"
+                        android:layout_width="match_parent"
+                        android:layoutDirection="rtl"
+                        android:clipToPadding="false"
+                        android:paddingEnd="50dp"
+                        android:layout_marginTop="@dimen/standardMargin1.5x"
+                        android:layout_height="300dp"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                        android:layout_weight="50"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        app:cardCornerRadius="@dimen/standardMargin">
+
+                        <ImageView
+                            android:id="@+id/magicImageSeven"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/amazing_offer_background" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/topBrandRecyclerview"
+                        android:layout_width="match_parent"
+                        android:layoutDirection="rtl"
+                        android:background="@color/white"
+                        android:layout_marginTop="@dimen/standardMargin3x"
+                        android:layout_height="wrap_content"/>
+
+                    <include
+                        android:id="@+id/popularLinearThree"
+                        layout="@layout/popular_products"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -107,32 +339,31 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/standardMargin"
-                            android:layout_marginVertical="3dp"
                             android:layout_weight="50"
+                            android:layout_marginVertical="@dimen/standardMargin0.5x"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
-                                android:id="@+id/magicImageOne"
+                                android:id="@+id/magicImageEight"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="115dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
                         </androidx.cardview.widget.CardView>
-
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/standardMargin"
                             android:layout_weight="50"
-                            android:layout_marginVertical="3dp"
+                            android:layout_marginVertical="@dimen/standardMargin0.5x"
                             app:cardCornerRadius="@dimen/standardMargin">
 
                             <ImageView
-                                android:id="@+id/magicImageTwo"
+                                android:id="@+id/magicImageNine"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="115dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/amazing_offer_background" />
@@ -141,299 +372,101 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <include
+                        android:id="@+id/popularLinearFour"
+                        layout="@layout/popular_products"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                    <TextView
+                        android:id="@+id/titleSliderTwo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/standardMargin"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="@dimen/standardMargin">
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        android:textDirection="rtl"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:textSize="@dimen/TextSize4x"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="محصولات پربازدید اخیر"/>
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/standardMargin"
-                            android:layout_marginVertical="3dp"
-                            android:layout_weight="50"
-                            app:cardCornerRadius="@dimen/standardMargin">
-
-                            <ImageView
-                                android:id="@+id/magicImageThree"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/amazing_offer_background" />
-                        </androidx.cardview.widget.CardView>
-
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/standardMargin"
-                            android:layout_weight="50"
-                            android:layout_marginVertical="3dp"
-                            app:cardCornerRadius="@dimen/standardMargin">
-
-                            <ImageView
-                                android:id="@+id/magicImageFour"
-                                android:layout_width="match_parent"
-                                android:layout_height="110dp"
-                                android:adjustViewBounds="true"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/amazing_offer_background" />
-
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="370dp"
-                    android:layout_marginTop="@dimen/standardMargin1.5x">
-
-                    <ImageView
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/HighReviewedViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/blue_background" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/amazingSuperMarketRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/standardMargin0.5x"
                         android:layoutDirection="rtl"
+                        android:clipToPadding="false"
+                        android:background="@color/white"
+                        android:paddingVertical="@dimen/standardMargin"
+                        android:paddingEnd="50dp"
+                        android:layout_marginTop="@dimen/standardMargin2x"
+                        android:layout_height="300dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/standardMargin"
+                        android:background="@color/whiteBackground"/>
+
+                    <include layout="@layout/recently_seen_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin3x"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/standardMargin"
+                        android:background="@color/whiteBackground"/>
+
+                    <include layout="@layout/forsale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin2x"
                         />
 
-                </RelativeLayout>
-
-                <include
-                    android:id="@+id/popularLinearOne"
-                    layout="@layout/popular_products"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-                    android:layout_weight="50"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    app:cardCornerRadius="@dimen/standardMargin">
-
-                    <ImageView
-                        android:id="@+id/magicImageFive"
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/amazing_offer_background" />
-                </androidx.cardview.widget.CardView>
+                        android:layout_height="@dimen/standardMargin"
+                        android:background="@color/whiteBackground"/>
 
-                <include
-                    android:id="@+id/popularLinearTwo"
-                    layout="@layout/popular_products"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-                    android:layout_weight="50"
-                    app:cardCornerRadius="@dimen/standardMargin">
-
-                    <ImageView
-                        android:id="@+id/magicImageSix"
+                    <include layout="@layout/add_location"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/amazing_offer_background" />
-                </androidx.cardview.widget.CardView>
+                        android:layout_height="140dp"
+                        android:layout_marginTop="@dimen/standardMargin"/>
 
-                <include layout="@layout/ex_plus_products"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
-
-                <TextView
-                    android:id="@+id/titleSliderOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:textSize="@dimen/TextSize4x"
-                    android:textDirection="rtl"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="پرفروش ترین کالاها"/>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/ProductsSliderViewPager"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:clipToPadding="false"
-                    android:paddingEnd="50dp"
-                    android:layout_marginTop="@dimen/standardMargin1.5x"
-                    android:layout_height="300dp"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-                    android:layout_weight="50"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    app:cardCornerRadius="@dimen/standardMargin">
-
-                    <ImageView
-                        android:id="@+id/magicImageSeven"
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/amazing_offer_background" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/topBrandRecyclerview"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:background="@color/white"
-                    android:layout_marginTop="@dimen/standardMargin3x"
-                    android:layout_height="wrap_content"/>
-
-                <include
-                    android:id="@+id/popularLinearThree"
-                    layout="@layout/popular_products"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/standardMargin">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/standardMargin"
-                        android:layout_weight="50"
-                        android:layout_marginVertical="@dimen/standardMargin0.5x"
-                        app:cardCornerRadius="@dimen/standardMargin">
-
-                        <ImageView
-                            android:id="@+id/magicImageEight"
-                            android:layout_width="match_parent"
-                            android:layout_height="115dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/amazing_offer_background" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/standardMargin"
-                        android:layout_weight="50"
-                        android:layout_marginVertical="@dimen/standardMargin0.5x"
-                        app:cardCornerRadius="@dimen/standardMargin">
-
-                        <ImageView
-                            android:id="@+id/magicImageNine"
-                            android:layout_width="match_parent"
-                            android:layout_height="115dp"
-                            android:adjustViewBounds="true"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/amazing_offer_background" />
-
-                    </androidx.cardview.widget.CardView>
+                        android:layout_height="@dimen/standardMargin"
+                        android:background="@color/whiteBackground"/>
 
                 </LinearLayout>
 
-                <include
-                    android:id="@+id/popularLinearFour"
-                    layout="@layout/popular_products"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
+            </androidx.core.widget.NestedScrollView>
 
-                <TextView
-                    android:id="@+id/titleSliderTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    android:textDirection="rtl"
-                    android:layout_marginHorizontal="@dimen/standardMargin"
-                    android:textSize="@dimen/TextSize4x"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="محصولات پربازدید اخیر"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/HighReviewedViewPager"
-                    android:layout_width="match_parent"
-                    android:layoutDirection="rtl"
-                    android:clipToPadding="false"
-                    android:background="@color/white"
-                    android:paddingVertical="@dimen/standardMargin"
-                    android:paddingEnd="50dp"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    android:layout_height="300dp"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/standardMargin"
-                    android:background="@color/whiteBackground"/>
+    <ProgressBar
+        android:id="@+id/mainProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:max="16"
+        android:progress="0"
+        android:layout_marginHorizontal="@dimen/standardMargin4x"
+        android:progressTint="@color/red"
+        android:layout_gravity="center"/>
 
-                <include layout="@layout/recently_seen_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin3x"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/standardMargin"
-                    android:background="@color/whiteBackground"/>
-
-                <include layout="@layout/forsale"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/standardMargin2x"
-                    />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/standardMargin"
-                    android:background="@color/whiteBackground"/>
-
-                <include layout="@layout/add_location"
-                    android:layout_width="match_parent"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="@dimen/standardMargin"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/standardMargin"
-                    android:background="@color/whiteBackground"/>
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <TextView
+        android:id="@+id/retryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="تلاش دوباره"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:textSize="@dimen/TextSize4x"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        />
+</LinearLayout>

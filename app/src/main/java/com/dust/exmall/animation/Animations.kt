@@ -1,6 +1,7 @@
 package com.dust.exmall.animation
 
 import android.view.animation.AlphaAnimation
+import android.view.animation.ScaleAnimation
 
 class Animations() {
     fun getFadeOutAnimation(): AlphaAnimation {
@@ -15,5 +16,12 @@ class Animations() {
         fadeInAnimation.fillAfter = true
         fadeInAnimation.duration = 500
         return fadeInAnimation
+    }
+
+    fun getScaleAnimation():ScaleAnimation{
+        val scaleAnimation = ScaleAnimation(0f , 1f , 0f ,1f ,ScaleAnimation.RELATIVE_TO_SELF , 0.5f , ScaleAnimation.RELATIVE_TO_SELF , 0.5f)
+        scaleAnimation.duration = 500
+        scaleAnimation.fillAfter = true
+        return scaleAnimation
     }
 }

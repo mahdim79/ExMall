@@ -1,5 +1,8 @@
 package com.dust.exmall.fragments.main
 
+import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,11 +10,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -24,6 +26,7 @@ import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
+import com.dust.exmall.fragments.others.SearchFragment
 import com.dust.exmall.interfaces.maininterfaces.*
 import com.squareup.picasso.Picasso
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -32,6 +35,7 @@ import java.util.*
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var search_text: CTextView
     private lateinit var exMallText: TextView
+    private lateinit var retryText: TextView
     private lateinit var search_image: ImageView
     private lateinit var sliderViewPager: ViewPager
     private lateinit var sliderDotsIndicator: DotsIndicator
@@ -67,6 +71,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var popularLinearTwo:LinearLayout
     private lateinit var popularLinearThree:LinearLayout
     private lateinit var popularLinearFour:LinearLayout
+    private lateinit var searchLinear:LinearLayout
+
+    private lateinit var homeComponentContainer:CoordinatorLayout
+    private lateinit var mainProgressBar:ProgressBar
 
     private var sliderCount = 0
 
@@ -83,6 +91,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private var AmazingOffersType: Int = 0
     private var AmazingSuperMarketType: Int = 1
 
+    private var LOADED_COMPONENT = 0
+    private var FAILURE_LOADED_COMPONENT = 0
+    private val TOTAL_COMPONENT_COUNT = 15
+    private val TOTAL_FAILURE_COMPONENT_COUNT = 11
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -96,13 +109,17 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpViews(view)
         setUpApiManager()
         setUpViewsAnimations()
-        setUpSliderViewPager()
+        setUpSearchBox()
         setUpSuggestionRecyclerView()
+        fetchLayoutData()
+    }
+
+    private fun fetchLayoutData(){
+        setUpSliderViewPager()
         setUpAmazingOffersRecyclerView()
         setUpMagicCards()
         setUpAmazingSuperMarketRecyclerView()
         setUpPlusProductsRecyclerView()
-        // popular Products
         setUpPopulars()
         setUpProductsSliderViewPager()
         setUpTopBrandRecyclerView()
@@ -111,15 +128,49 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpHighReviewedViewPager()
     }
 
+    private fun updateLoadingState(){
+        LOADED_COMPONENT++
+        Log.i("STATE" , "NUM = $LOADED_COMPONENT")
+        mainProgressBar.progress = LOADED_COMPONENT
+        if (LOADED_COMPONENT == TOTAL_COMPONENT_COUNT){
+            homeComponentContainer.visibility = View.VISIBLE
+            mainProgressBar.visibility = View.GONE
+            Log.i("STATE" , "DONE")
+            homeComponentContainer.startAnimation(animations.getScaleAnimation())
+        }
+    }
+
+    private fun updateFailureLoad(){
+        FAILURE_LOADED_COMPONENT++
+        Log.i("Fail" , FAILURE_LOADED_COMPONENT.toString())
+        if (FAILURE_LOADED_COMPONENT == TOTAL_FAILURE_COMPONENT_COUNT){
+            retryText.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setUpSearchBox() {
+        searchLinear.setOnClickListener {
+            startSearchFragment()
+        }
+    }
+
+    private fun startSearchFragment(){
+        val intent = Intent("com.dust.exmall.StartFragment")
+        intent.putExtra("FRAGMENT_NAME" , "SearchFragment")
+        requireActivity().sendBroadcast(intent)
+    }
+
     private fun setUpRecentlySeenRecyclerView() {
         recentlySeenProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
         apiServiceManager.getRecentlySeenProducts(object :OnGetProducts{
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 recentlySeenProductsRecyclerView.adapter = RecentlyAdapter(data)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -133,12 +184,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 popularProductsHeaderTwo.text = categoryList[1]
                 popularProductsHeaderThree.text = categoryList[2]
                 popularProductsHeaderFour.text = categoryList[3]
-
                 setUpPopularProductsRecyclerView(categoryList)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetCategories(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -168,7 +220,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
-                return@setOnTouchListener true
+                return@setOnTouchListener false
             }
             if (motionEvent.action == MotionEvent.ACTION_UP) {
                 exMallText.startAnimation(fadeInAnimation)
@@ -177,14 +229,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 exMallText.startAnimation(fadeOutAnimation)
                 search_text.startAnimation(fadeOutAnimation)
             }
-            true
+            false
         }
 
         search_text.setOnTouchListener { v, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 exMallText.startAnimation(fadeInAnimation)
                 search_text.startAnimation(fadeInAnimation)
-                return@setOnTouchListener true
+                return@setOnTouchListener false
             }
             if (motionEvent.action == MotionEvent.ACTION_UP) {
                 exMallText.startAnimation(fadeInAnimation)
@@ -193,19 +245,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 exMallText.startAnimation(fadeOutAnimation)
                 search_text.startAnimation(fadeOutAnimation)
             }
-            true
+            false
         }
 
         search_image.setOnTouchListener { v, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 v.startAnimation(fadeInAnimation)
-                return@setOnTouchListener true
+                return@setOnTouchListener false
             }
             if (motionEvent.action == MotionEvent.ACTION_UP)
                 v.startAnimation(fadeInAnimation)
             else
                 v.startAnimation(fadeOutAnimation)
-            true
+            false
         }
     }
 
@@ -230,11 +282,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                         2 -> popularProductsRecyclerViewThree.adapter = adapter
                         else -> popularProductsRecyclerViewFour.adapter = adapter
                     }
+                    updateLoadingState()
+                    // 4
                 }
 
                 override fun onFailureGetPopularProducts(message: String) {
-                    Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT)
-                        .show()
+                    updateFailureLoad()
                 }
 
             }, categories[i], i)
@@ -247,10 +300,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 HighReviewedViewPager.adapter =
                     ProductsSliderAdapter(childFragmentManager, data, true)
                 HighReviewedViewPager.setCurrentItem(4, false)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -262,10 +317,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getForSaleProducts(object :OnGetProducts{
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 forSaleRecyclerView.adapter = ForSaleAdapter(data)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -278,10 +335,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getTopBrands(object : OnGetTopBrands {
             override fun onGetTopBrands(data: List<TopBrandDataClass>) {
                 topBrandRecyclerview.adapter = TopBrandAdapter(data, animations)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetTopBrands(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -292,10 +351,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 ProductsSliderViewPager.adapter = ProductsSliderAdapter(childFragmentManager, data)
                 ProductsSliderViewPager.setCurrentItem(4, false)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -307,10 +368,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getPlusProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 plusProductsRecyclerView.adapter = PlusProductsAdapter(data)
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -324,12 +387,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingOffersRecyclerView.adapter =
                     AmazingAdapter(data, AmazingOffersType, requireContext())
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
                 Log.i("errorResponse", message)
-                Toast.makeText(requireContext(), "some thing went wrong!", Toast.LENGTH_SHORT)
-                    .show()
+                updateFailureLoad()
             }
 
         })
@@ -342,11 +406,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingSuperMarketRecyclerView.adapter =
                     AmazingAdapter(data, AmazingSuperMarketType, requireContext())
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureGetProducts(message: String) {
-                Toast.makeText(requireContext(), "some thing went wrong!", Toast.LENGTH_SHORT)
-                    .show()
+                updateFailureLoad()
             }
 
         }, "jewelery")
@@ -364,10 +429,13 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 Picasso.get().load(list[6].image).into(magicImageSeven)
                 Picasso.get().load(list[7].image).into(magicImageEight)
                 Picasso.get().load(list[8].image).into(magicImageNine)
+
+                updateLoadingState()
+                // 1
             }
 
             override fun onFailureMagicCartContents(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -377,6 +445,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         suggestionRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         suggestionRecyclerView.adapter = SuggestionAdapter(animations)
+
     }
 
     private fun setUpSliderViewPager() {
@@ -386,10 +455,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 sliderDotsIndicator.setViewPager(sliderViewPager)
                 sliderCount = list.size
                 initSliderTimer()
+                updateLoadingState()
+                // 1
             }
 
             override fun onGetFailure(message: String) {
-                Toast.makeText(requireContext(), "something went wrong!", Toast.LENGTH_SHORT).show()
+                updateFailureLoad()
             }
 
         })
@@ -407,6 +478,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularLinearFour = view.findViewById(R.id.popularLinearFour)
 
         search_text = view.findViewById(R.id.search_text)
+        retryText = view.findViewById(R.id.retryText)
         search_image = view.findViewById(R.id.search_image)
         exMallText = view.findViewById(R.id.exMallText)
         sliderViewPager = view.findViewById(R.id.sliderViewPager)
@@ -425,6 +497,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsRecyclerViewFour = popularLinearFour.findViewById(R.id.popularProductsRecyclerView)
         recentlySeenProductsRecyclerView = view.findViewById(R.id.recentlySeenProductsRecyclerView)
         addLocationContainer = view.findViewById(R.id.addLocationContainer)
+        searchLinear = view.findViewById(R.id.searchLinear)
 
         magicImageOne = view.findViewById(R.id.magicImageOne)
         magicImageTwo = view.findViewById(R.id.magicImageTwo)
@@ -441,18 +514,32 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsHeaderThree = popularLinearThree.findViewById(R.id.popularProductsHeader)
         popularProductsHeaderFour = popularLinearFour.findViewById(R.id.popularProductsHeader)
 
+        homeComponentContainer = view.findViewById(R.id.homeComponentContainer)
+        mainProgressBar = view.findViewById(R.id.mainProgressBar)
+
         search_text.setOnClickListener(this)
         search_image.setOnClickListener(this)
         exMallText.setOnClickListener(this)
+
+        retryText.setOnClickListener {
+            LOADED_COMPONENT = 0
+            FAILURE_LOADED_COMPONENT = 0
+            mainProgressBar.progress = 0
+            retryText.visibility = View.GONE
+            fetchLayoutData()
+        }
     }
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             R.id.search_text -> {
+                startSearchFragment()
             }
             R.id.search_image -> {
+                startSearchFragment()
             }
             R.id.exMallText -> {
+                startSearchFragment()
             }
         }
     }

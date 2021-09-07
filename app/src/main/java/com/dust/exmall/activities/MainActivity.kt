@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
             supportFragmentManager.beginTransaction()
                 .add(R.id.mainContainer , fragment!!)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .addToBackStack(p1.extras!!.getString("FRAGMENT_NAME"))
                 .commit()
         }

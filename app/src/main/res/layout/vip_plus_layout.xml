@@ -3,8 +3,8 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-    app:cardCornerRadius="@dimen/standardMargin">
+    android:layout_marginHorizontal="@dimen/standardMargin"
+    app:cardCornerRadius="@dimen/standardMargin1.5x">
 
     <RelativeLayout
         android:id="@+id/vip_container"

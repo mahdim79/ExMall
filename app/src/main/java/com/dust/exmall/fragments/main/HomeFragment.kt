@@ -275,7 +275,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         for (i in 0 until categories.size){
             apiServiceManager.getPopularProductsByCategory(object : OnGetPopularProducts {
                 override fun onGetPopularProducts(data: List<ProductsDataClass>, tag: Int) {
-                    val adapter = PopularProductsAdapter(data)
+                    val adapter = PopularProductsAdapter(data , requireActivity().supportFragmentManager)
                     when(tag){
                         0 -> popularProductsRecyclerView.adapter = adapter
                         1 -> popularProductsRecyclerViewTwo.adapter = adapter

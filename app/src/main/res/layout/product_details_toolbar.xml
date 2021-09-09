@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_close_24"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="@dimen/standardMargin2x"
+        app:tint="@color/black"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/moreImageView"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_more_vert_24"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        app:tint="@color/black"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/likeImageView"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        android:layout_marginHorizontal="@dimen/standardMargin2x"
+        android:layout_toEndOf="@+id/moreImageView"
+        app:tint="@color/black"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/cartImageView"
+        android:layout_width="40dp"
+        android:src="@drawable/ic_outline_shopping_cart_24"
+        android:layout_marginHorizontal="@dimen/standardMargin2x"
+        android:layout_centerVertical="true"
+        android:padding="8dp"
+        android:layout_toEndOf="@+id/likeImageView"
+        app:tint="@color/black"
+        android:layout_height="40dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/standardMargin1.5x"
+        app:cardCornerRadius="3dp"
+        android:backgroundTint="@color/red"
+        android:layout_alignRight="@+id/cartImageView"
+        android:layout_alignBottom="@+id/cartImageView"
+        android:layout_height="@dimen/standardMargin1.5x">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="4"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="8dp"/>
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

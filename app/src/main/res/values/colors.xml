@@ -27,5 +27,6 @@
     <color name="white_lowTransparency">#CDFFFFFF</color>
     <color name="full_transparent">#00FFFFFF</color>
     <color name="whiteBackground">#EFEFEF</color>
+    <color name="gold">#EAD418</color>
 
 </resources>

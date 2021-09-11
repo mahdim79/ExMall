@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/mainFeatureContainer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="مشخصات کلی"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textDirection="rtl"
+        android:layout_margin="@dimen/standardMargin1.5x"/>
+</LinearLayout>

@@ -33,7 +33,7 @@
         android:layout_marginTop="@dimen/standardMargin1.5x"
         android:layout_height="wrap_content"/>
     <RelativeLayout
-        android:id="@+id/installments_container"
+        android:id="@+id/writeYourComment"
         android:layout_width="match_parent"
         android:paddingTop="@dimen/standardMargin1.5x"
         android:layout_marginHorizontal="@dimen/standardMargin2x"
@@ -88,6 +88,7 @@
 
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/answerAndAsk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/standardMargin2x"

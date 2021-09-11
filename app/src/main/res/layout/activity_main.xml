@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     android:id="@+id/mainContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".activities.MainActivity">
-
-    <com.dust.exmall.customviews.CViewPager
-        android:id="@+id/mainViewPager"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="90"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
-        android:layout_width="match_parent"
-        android:layout_weight="10"
-        app:menu="@menu/bottom_navigation_menu"
-        android:layoutDirection="rtl"
-        app:itemIconTint="@color/bottom_navigation_selector"
-        app:itemTextColor="@color/bottom_navigation_selector"
-        android:background="?colorPrimary"
-        android:layout_height="0dp"/>
+        <com.dust.exmall.customviews.CViewPager
+            android:id="@+id/mainViewPager"
+            android:layout_width="match_parent"
+            android:layout_weight="90"
+            android:layout_height="0dp"/>
 
-</LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_weight="10"
+            app:menu="@menu/bottom_navigation_menu"
+            android:layoutDirection="rtl"
+            app:itemIconTint="@color/bottom_navigation_selector"
+            app:itemTextColor="@color/bottom_navigation_selector"
+            android:background="?colorPrimary"
+            android:layout_height="0dp"/>
+
+    </LinearLayout>
+</FrameLayout>

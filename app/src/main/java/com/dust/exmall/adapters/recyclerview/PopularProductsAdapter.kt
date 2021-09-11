@@ -36,19 +36,19 @@ class PopularProductsAdapter(var list: List<ProductsDataClass> , var fragmentMan
         try {
 
             Picasso.get().load(list[(position * 3)].image).into(holder.productImageOne)
-            holder.productImageOne.setOnClickListener {startDetailsFragment()}
+            holder.productImageOne.setOnClickListener {startDetailsFragment(list[(position * 3)].id)}
             Picasso.get().load(list[(position * 3) + 1].image).into(holder.productImageTwo)
-            holder.productImageTwo.setOnClickListener {startDetailsFragment()}
+            holder.productImageTwo.setOnClickListener {startDetailsFragment(list[(position * 3) + 1].id)}
             Picasso.get().load(list[(position * 3) + 2].image).into(holder.productImageThree)
-            holder.productImageThree.setOnClickListener {startDetailsFragment()}
+            holder.productImageThree.setOnClickListener {startDetailsFragment(list[(position * 3) + 2].id)}
 
         }catch (e:Exception){}
 
     }
 
-    private fun startDetailsFragment(){
+    private fun startDetailsFragment(id:Int){
         fragmentManager.beginTransaction()
-            .add(R.id.mainContainer , ProductDetailsFragment().newInstance())
+            .add(R.id.mainContainer , ProductDetailsFragment().newInstance(id))
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .addToBackStack("ProductDetailsFragment")
             .commit()

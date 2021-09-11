@@ -40,4 +40,10 @@ interface Requests {
 
     @GET("products?limit=8")
     fun getRecentlySeenProducts():Call<List<ProductsDataClass>>
+
+    @GET()
+    fun getSingleProduct(@Url url:String):Call<ProductsDataClass>
+
+    @GET()
+    fun getUserBuySimilarProducts(@Url url:String):Call<List<ProductsDataClass>>
 }

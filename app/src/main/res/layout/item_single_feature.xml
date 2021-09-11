@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:padding="@dimen/standardMargin0.5x"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/oneFeatureContainer"
+        android:layout_width="0dp"
+        android:layout_weight="65"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/standardMargin0.5x"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:background="@color/whiteBackground"/>
+    </LinearLayout>
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_weight="35"
+        android:textSize="15sp"
+        android:layout_marginEnd="@dimen/standardMargin1.5x"
+        android:textColor="@color/light_black"
+        android:layout_height="wrap_content"
+        android:text="وزن"
+        />
+
+</LinearLayout>

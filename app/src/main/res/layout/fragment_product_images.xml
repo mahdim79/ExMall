@@ -5,9 +5,11 @@
     android:layout_height="300dp">
 
     <ImageView
+        android:id="@+id/productImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="center"
+        android:padding="@dimen/standardMargin2x"
         android:src="@drawable/bg_one"/>
 </FrameLayout>

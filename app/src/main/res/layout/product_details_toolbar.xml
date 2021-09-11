@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:id="@+id/closeButton"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_baseline_close_24"
         android:layout_alignParentEnd="true"
@@ -13,19 +14,19 @@
         android:layout_height="match_parent"/>
 
     <ImageView
-        android:id="@+id/moreImageView"
+        android:id="@+id/moreButton"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_baseline_more_vert_24"
-        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:layout_marginStart="@dimen/standardMargin"
         app:tint="@color/black"
         android:layout_height="match_parent"/>
 
     <ImageView
-        android:id="@+id/likeImageView"
+        android:id="@+id/likeButton"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_baseline_favorite_border_24"
         android:layout_marginHorizontal="@dimen/standardMargin2x"
-        android:layout_toEndOf="@+id/moreImageView"
+        android:layout_toEndOf="@+id/moreButton"
         app:tint="@color/black"
         android:layout_height="match_parent"/>
 
@@ -33,10 +34,9 @@
         android:id="@+id/cartImageView"
         android:layout_width="40dp"
         android:src="@drawable/ic_outline_shopping_cart_24"
-        android:layout_marginHorizontal="@dimen/standardMargin2x"
         android:layout_centerVertical="true"
         android:padding="8dp"
-        android:layout_toEndOf="@+id/likeImageView"
+        android:layout_toEndOf="@+id/likeButton"
         app:tint="@color/black"
         android:layout_height="40dp"/>
 

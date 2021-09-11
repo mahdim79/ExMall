@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways|snap"
+                android:layout_height="?attr/actionBarSize">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layoutDirection="rtl"
+                    android:background="@color/white"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/backImage"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:padding="8dp"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:src="@drawable/ic_baseline_arrow_back_24"/>
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/backImage"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:text="مشخصات فنی"/>
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_baseline_compare_24"
+                        android:layout_alignParentEnd="true"/>
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/featuresRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

@@ -3,17 +3,20 @@ package com.dust.exmall.adapters.recyclerview
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
+import com.dust.exmall.animation.Animations
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.CommentDataClass
 
 class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val animations = Animations()
     private val SHOW_ALL_VIEW_TYPE = 0
     private val NORMAL_VIEW_TYPE = 1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -30,6 +33,7 @@ class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is MainViewHolder) {
+            setUpAnimation(holder)
             holder.comment_title.text = dataList[position].title
             holder.comment_text.text = dataList[position].commentText
             holder.commentDate.text = dataList[position].date
@@ -42,6 +46,20 @@ class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: 
             }
         }
 
+    }
+
+    private fun setUpAnimation(holder :MainViewHolder) {
+        holder.itemView.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
     }
 
     private fun setUpRating(holder: MainViewHolder, ratingLevel: Int) {

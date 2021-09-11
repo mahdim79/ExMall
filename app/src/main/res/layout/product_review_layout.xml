@@ -23,6 +23,7 @@
         android:layout_margin="@dimen/standardMargin1.5x"
         app:cardCornerRadius="@dimen/standardMargin">
         <LinearLayout
+            android:id="@+id/strongPointsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standardMargin"
@@ -47,6 +48,7 @@
         android:layout_margin="@dimen/standardMargin1.5x"
         app:cardCornerRadius="@dimen/standardMargin">
         <LinearLayout
+            android:id="@+id/weakPointsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/standardMargin"

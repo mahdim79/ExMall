@@ -13,8 +13,8 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/componentsContainer"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -34,13 +34,29 @@
                     android:orientation="horizontal"
                     android:paddingTop="?attr/actionBarSize"
                     app:layout_collapseMode="parallax">
-                    <ImageView
-                        android:id="@+id/selectedProductImage"
+                    <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_weight="50"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/standardMargin2x"
-                        tools:src="@drawable/bg_one"/>
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/selectedProductImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/standardMargin2x"
+                            tools:src="@drawable/bg_one"/>
+
+                        <ImageView
+                            android:id="@+id/deleteSelectedImage"
+                            android:layout_width="wrap_content"
+                            app:tint="@color/black"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/standardMargin2x"
+                            android:src="@drawable/ic_baseline_cancel_24"/>
+
+                    </RelativeLayout>
+
 
                     <View
                         android:layout_width="1dp"
@@ -107,6 +123,20 @@
                         android:gravity="center"
                         android:layout_height="wrap_content">
 
+                        <com.dust.exmall.customviews.CButton
+                            android:id="@+id/addProductButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="@dimen/standardMargin"
+                            android:paddingHorizontal="@dimen/standardMargin2x"
+                            android:layout_marginTop="@dimen/standardMargin"
+                            android:text="افزودن کالا"
+                            android:visibility="gone"
+                            android:background="@drawable/general_button_shape"
+                            android:textSize="@dimen/TextSize4x"
+                            android:textColor="@color/general_button_text_selector"
+                            />
+
                         <com.dust.exmall.customviews.CTextView
                             android:id="@+id/selectedProductTitle"
                             android:layout_width="match_parent"
@@ -119,6 +149,7 @@
                             android:gravity="center_horizontal"/>
 
                         <LinearLayout
+                            android:id="@+id/selectedLinearDetails"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,6 +17,7 @@ import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.MainCompareAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
+import com.dust.exmall.customviews.CButton
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
@@ -26,6 +28,9 @@ class CompareFragment() : Fragment() {
     private lateinit var selectedProductImage: ImageView
     private lateinit var comparableProductImage: ImageView
     private lateinit var backImage: ImageView
+    private lateinit var deleteSelectedImage: ImageView
+    private lateinit var addProductButton: CButton
+    private lateinit var selectedLinearDetails: LinearLayout
     private lateinit var comparableProductPrice: CTextView
     private lateinit var selectedProductPrice: CTextView
     private lateinit var selectedProductTitle: CTextView
@@ -75,6 +80,21 @@ class CompareFragment() : Fragment() {
         selectedProductPrice.text = selectedProductData.price
         selectedProductTitle.text = selectedProductData.title
 
+        addProductButton.setOnClickListener {
+            backImage.performClick()
+        }
+
+        deleteSelectedImage.setOnClickListener {
+            deleteSelectedImage.visibility = View.GONE
+            selectedProductImage.visibility = View.GONE
+            selectedLinearDetails.visibility = View.GONE
+            selectedProductTitle.visibility = View.GONE
+            selectedProductTitle.text = ""
+            addProductButton.visibility = View.VISIBLE
+            mainCompareRecyclerView.adapter =
+                MainCompareAdapter(ProductsDataClass(0,"", "" , "-" , "" , ""), comparableProductData, requireContext())
+        }
+
     }
 
     private fun setUpApiServiceManager() {
@@ -93,7 +113,7 @@ class CompareFragment() : Fragment() {
                 checkFailureRequests()
             }
 
-        }, requireArguments().getInt("ID1"))
+        }, requireArguments().getInt("ID2"))
 
         // comparable Product Data
         apiServiceManager.getSingleProduct(object : OnGetProducts {
@@ -106,7 +126,7 @@ class CompareFragment() : Fragment() {
                 checkFailureRequests()
             }
 
-        }, requireArguments().getInt("ID2"))
+        }, requireArguments().getInt("ID1"))
     }
 
     private fun checkFailureRequests() {
@@ -158,6 +178,9 @@ class CompareFragment() : Fragment() {
         componentsContainer = view.findViewById(R.id.componentsContainer)
         retryText = view.findViewById(R.id.retryText)
         mainProgressBar = view.findViewById(R.id.mainProgressBar)
+        deleteSelectedImage = view.findViewById(R.id.deleteSelectedImage)
+        selectedLinearDetails = view.findViewById(R.id.selectedLinearDetails)
+        addProductButton = view.findViewById(R.id.addProductButton)
 
         retryText.setOnClickListener {
             retryText.visibility = View.GONE

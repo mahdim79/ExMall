@@ -237,7 +237,7 @@ class ProductDetailsFragment() : Fragment() {
         technicalFeatures.setOnClickListener {
             Log.i("tech" , "done")
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , TechnicalFeaturesFragment().newInstance(productData.id , productData.description))
+                .add(R.id.mainContainer , TechnicalFeaturesFragment(productData))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("TechnicalFeaturesFragment")
                 .commit()

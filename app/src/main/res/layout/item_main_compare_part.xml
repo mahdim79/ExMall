@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/featureTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginVertical="@dimen/standardMargin"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/TextSize3x"
+        android:text="مشخصات"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/selectedProductFeature"
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:text="product number one"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:textColor="@color/black_normal"
+            android:textSize="@dimen/TextSize3x"
+            android:paddingVertical="@dimen/standardMargin0.5x"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/whiteBackground"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/comparableProductFeature"
+            android:layout_width="0dp"
+            android:layout_weight="50"
+            android:gravity="center"
+            android:paddingVertical="@dimen/standardMargin0.5x"
+            android:text="product number two"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:textColor="@color/black_normal"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:background="@color/whiteBackground"/>
+</LinearLayout>

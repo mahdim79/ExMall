@@ -38,6 +38,7 @@
                         android:textSize="20dp"
                         android:text="مشخصات فنی"/>
                     <ImageView
+                        android:id="@+id/compareIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"

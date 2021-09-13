@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ExMall</string>
     <string name="soldAmount">%s فروش رفته</string>
+    <string name="productCount">%d کالا</string>
 </resources>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:layout_height="160dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="0dp"
+            android:layout_weight="30"
+            android:src="@drawable/bg_one"
+            android:padding="@dimen/standardMargin"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="70"
+            android:padding="@dimen/standardMargin"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/TextSize4x"
+                android:text="ویندوز سون نسل هشتم"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/starImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_star_24"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.9"
+                    android:layout_centerVertical="true"
+                    android:layout_alignTop="@+id/starImage"
+                    android:gravity="center_vertical"
+                    android:layout_alignBottom="@+id/starImage"
+                    android:textColor="@color/black_normal"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_toStartOf="@+id/starImage"/>
+
+                <ImageView
+                    android:id="@+id/iconImage"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_search_24"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12,800 تومان هدیه نقدی"
+                    android:textColor="@color/black_normal"
+                    android:layout_alignTop="@+id/iconImage"
+                    android:layout_alignBottom="@+id/iconImage"
+                    android:textSize="@dimen/TextSize3x"
+                    android:gravity="center_vertical"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_toEndOf="@+id/iconImage"/>
+
+                <ImageView
+                    android:id="@+id/tomanIcon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_baseline_search_24"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/priceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="39,000"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/black_normal"
+                    android:layout_alignTop="@+id/tomanIcon"
+                    android:layout_alignBottom="@+id/tomanIcon"
+                    android:layout_toStartOf="@+id/tomanIcon"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        android:background="@color/whiteBackground"/>
+</LinearLayout>

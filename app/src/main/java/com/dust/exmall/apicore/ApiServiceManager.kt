@@ -270,4 +270,19 @@ class ApiServiceManager() {
 
         })
     }
+
+    fun getRelatedCategories(onGetCategories: OnGetCategories , category:String){
+        // put category here
+        val url = "products/categories"
+        retrofit.create(Requests::class.java).getRelatedCategories(url).enqueue(object :Callback<List<String>>{
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
+                onGetCategories.onGetCategories(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
+                onGetCategories.onFailureGetCategories(t.message!!)
+            }
+
+        })
+    }
 }

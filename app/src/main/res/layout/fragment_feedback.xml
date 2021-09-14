@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|snap|enterAlways"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/standardMargin"
+                android:layout_height="wrap_content">
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/textFeedBack"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize5x"
+                    android:layout_marginHorizontal="@dimen/standardMargin1.5x"                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/backImage"
+                    android:layout_alignTop="@+id/backImage"
+                    android:layout_alignBottom="@+id/backImage"
+                    android:text="بازخورد"/>
+
+                <ImageView
+                    android:id="@+id/backImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:tint="@color/black_normal"
+                    android:src="@drawable/ic_baseline_arrow_back_24"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/productTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textFeedBack"
+                    android:textColor="@color/light_black"
+                    android:layout_marginTop="@dimen/standardMargin"
+                    android:maxLines="1"
+                    android:textSize="@dimen/TextSize3x"
+                    tools:text="ویندوز سون مخصوص کامپیوتر"
+                    android:layout_alignStart="@+id/textFeedBack"/>
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?colorPrimary"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?colorPrimary"
+            android:layoutDirection="rtl"
+            android:padding="@dimen/standardMargin"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/wrongNameCheckbox"
+                android:layout_width="match_parent"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:text="نام کالا صحیح نیست"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/wrongPicturesCheckbox"
+                android:layout_width="match_parent"
+                android:text="عکس های کالا متناسب نیست"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:buttonTint="@color/red_light"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/wrongInfoCheckbox"
+                android:layout_width="match_parent"
+                android:text="مشخصات فنی کالا صحیح نیست"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/wrongDescriptionsCheckbox"
+                android:layout_width="match_parent"
+                android:text="توضیحات کالا صحیح نیست"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/fakeCheckbox"
+                android:layout_width="match_parent"
+                android:text="این کالا غیر اصل است"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_height="wrap_content"/>
+
+            <CheckBox
+                android:id="@+id/duplicateCheckbox"
+                android:layout_width="match_parent"
+                android:text="کالا  تکراری است"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_height="wrap_content"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/similarCodeCard"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/standardMargin1.5x"
+                app:cardCornerRadius="@dimen/standardMargin1.5x"
+                android:layout_marginStart="@dimen/standardMargin4x"
+                android:backgroundTint="@color/whiteBackground"
+                android:visibility="gone"
+                android:layout_marginVertical="@dimen/standardMargin"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:backgroundTint="@color/edittext_selector"
+                    android:hint="کد کالای مشابه در فروشگاه"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_height="@dimen/standardMargin10x"
+                    />
+            </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                android:buttonTint="@color/red_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/TextSize4x"
+                android:background="@color/whiteBackground"
+                android:layout_marginVertical="@dimen/standardMargin2x"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize3x"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="@dimen/standardMargin2x"
+                android:text="توضیحات"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                app:cardCornerRadius="@dimen/standardMargin1.5x"
+                android:backgroundTint="@color/whiteBackground"
+                android:layout_marginVertical="@dimen/standardMargin"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:backgroundTint="@color/edittext_selector"
+                    android:hint="توضیحات"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_height="@dimen/standardMargin10x"
+                    />
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content">
+        <com.dust.exmall.customviews.CButton
+            android:layout_width="match_parent"
+            android:layout_marginVertical="@dimen/standardMargin"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:text="ارسال بازخورد"
+            android:textColor="@color/continue_button_text_selector"
+            android:background="@drawable/continue_button_shape"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -46,4 +46,7 @@ interface Requests {
 
     @GET()
     fun getUserBuySimilarProducts(@Url url:String):Call<List<ProductsDataClass>>
+
+    @GET
+    fun getRelatedCategories(@Url url: String):Call<List<String>>
 }

@@ -26,6 +26,7 @@ import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.CommentDataClass
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.fragments.bottomsheets.ProductDetailsBottomSheet
+import com.dust.exmall.interfaces.maininterfaces.OnGetCategories
 import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import kotlin.math.floor
@@ -53,6 +54,7 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var usersBuySimilar: LinearLayout
     private lateinit var strongPointsContainer: LinearLayout
     private lateinit var weakPointsContainer: LinearLayout
+    private lateinit var feedBackLinear: LinearLayout
     private lateinit var writeYourComment: RelativeLayout
     private lateinit var answerAndAsk: RelativeLayout
     private lateinit var backIntroductions: RelativeLayout
@@ -229,8 +231,19 @@ class ProductDetailsFragment() : Fragment() {
         setUpSimilarProductsLayOut()
         setUpUserBuySimilarLayOut()
         setUpPreviewCommentRecyclerView()
+        setUpFeedBackLinear()
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpFeedBackLinear() {
+        feedBackLinear.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , FeedbackFragment().newInstance(productData.title , productData.id))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("FeedbackFragment")
+                .commit()
+        }
     }
 
     private fun setUpTechnicalFeatures() {
@@ -328,7 +341,15 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpOtherRelatedCategoriesRecyclerView() {
         otherRelatedCategoriesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        otherRelatedCategoriesRecyclerView.adapter = OtherRelatedCategoriesAdapter(arrayListOf())
+        apiServiceManager.getRelatedCategories(object :OnGetCategories{
+            override fun onGetCategories(categoryList: List<String>) {
+                otherRelatedCategoriesRecyclerView.adapter = OtherRelatedCategoriesAdapter(categoryList , productData.category , productData.image)
+            }
+
+            override fun onFailureGetCategories(message: String) {
+            }
+
+        } , productData.category)
     }
 
     private fun setUpProductImagesViewPager() {
@@ -368,6 +389,7 @@ class ProductDetailsFragment() : Fragment() {
         writeYourComment = view.findViewById(R.id.writeYourComment)
         answerAndAsk = view.findViewById(R.id.answerAndAsk)
         backIntroductions = view.findViewById(R.id.backIntroductions)
+        feedBackLinear = view.findViewById(R.id.feedBackLinear)
 
         retryText = loadingContainer.findViewById(R.id.retryText)
         retryText.setOnClickListener {

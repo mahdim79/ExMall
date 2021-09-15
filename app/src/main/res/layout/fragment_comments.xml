@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:paddingStart="@dimen/standardMargin">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/textFeedBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/backImage"
+                        android:layout_alignBottom="@+id/backImage"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                        android:layout_toEndOf="@+id/backImage"
+                        android:gravity="center_vertical"
+                        android:text="دیدگاه ها"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/TextSize5x" />
+
+                    <ImageView
+                        android:id="@+id/backImage"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/standardMargin"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        app:tint="@color/black_normal" />
+
+                    <ImageView
+                        android:id="@+id/sortImage"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:padding="@dimen/standardMargin"
+                        android:src="@drawable/ic_baseline_sort_24"
+                        app:tint="@color/black_normal" />
+
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/TextSize5x"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:layout_marginVertical="@dimen/standardMargin1.5x"
+                        android:textColor="@color/black"
+                        android:text="امتیاز کلی" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="@dimen/standardMargin">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="40"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="کیفیت ساخت"
+                                android:paddingEnd="@dimen/standardMargin0.5x"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="ارزش خرید نسبت به قیمت"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="نوآوری"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="امکانات و قابلیت ها"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="سهولت استفاده"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                android:text="طراحی و ظاهر"
+                                android:maxLines="1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black_normal"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="60"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+                            <ProgressBar
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:gravity="center_vertical"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:max="5"
+                                android:progress="4"
+                                android:progressTint="@color/green"/>
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="8"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                            <com.dust.exmall.customviews.CTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="25dp"
+                                android:text="3.6"
+                                android:maxLines="1"
+                                android:gravity="center"
+                                android:textSize="11dp"
+                                android:textColor="@color/light_black"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/standardMargin"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:tint="@color/light_black"
+                        android:src="@drawable/ic_outline_info_24"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/TextSize3x"
+                        android:paddingHorizontal="@dimen/standardMargin"
+                        android:textColor="@color/light_black"
+                        android:text="با ثبت نظر بر روی کالاهای خریداری شده 5 امتیاز در دیجی کلاب دریافت کنید"/>
+                </LinearLayout>
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/commentsRecyclerView"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:overScrollMode="never"
+                   android:layoutDirection="rtl"
+                   android:layout_marginTop="@dimen/standardMargin"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/standardMargin4x"
+            android:backgroundTint="@color/red_light"
+            app:borderWidth="0dp"
+            android:src="@drawable/ic_outline_mode_comment_24"
+            app:fabSize="normal"
+            app:tint="@color/white" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/loadingContainer"
+        layout="@layout/loading_layout" />
+</LinearLayout>

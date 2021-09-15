@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/standardMargin1.5x"
+    android:paddingVertical="@dimen/standardMargin0.5x"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:paddingHorizontal="@dimen/standardMargin1.5x"
+            android:paddingVertical="25dp"
+            android:textColor="@color/black_normal"
+            android:text="مفیدترین نظرات"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/whiteBackground"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue"
+            android:paddingHorizontal="@dimen/standardMargin1.5x"
+            android:paddingVertical="25dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black_normal"
+            android:text="جدیدترین نظرات"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/whiteBackground"/>
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/blue"
+            android:paddingHorizontal="@dimen/standardMargin1.5x"
+            android:paddingVertical="25dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/TextSize3x"
+            android:textColor="@color/black_normal"
+            android:text="نظر خریداران"/>
+    </RadioGroup>
+</LinearLayout>

@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.CommentDataClass
+import com.dust.exmall.fragments.others.CommentsFragment
 
-class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: Context) :
+class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: Context , var fragmentManager: FragmentManager) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val animations = Animations()
     private val SHOW_ALL_VIEW_TYPE = 0
@@ -32,6 +35,13 @@ class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: 
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            fragmentManager.beginTransaction()
+                .add(R.id.mainContainer , CommentsFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("CommentsFragment")
+                .commit()
+        }
         if (holder is MainViewHolder) {
             setUpAnimation(holder)
             holder.comment_title.text = dataList[position].title
@@ -41,9 +51,6 @@ class CommentPreviewAdapter(var dataList: List<CommentDataClass> , var context: 
             setUpRating(holder , dataList[position].ratingLevel)
         } else {
             val mHolder = holder as ShowAllViewHolder
-            mHolder.itemView.setOnClickListener {
-
-            }
         }
 
     }

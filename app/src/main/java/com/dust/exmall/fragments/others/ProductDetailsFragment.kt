@@ -212,7 +212,7 @@ class ProductDetailsFragment() : Fragment() {
         apiServiceManager.getSingleProduct(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 productData = data[0]
-                Log.i("dataReceive" , "$productData")
+                Log.i("dataReceive", "$productData")
                 setUpProduct()
             }
 
@@ -239,7 +239,10 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpFeedBackLinear() {
         feedBackLinear.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , FeedbackFragment().newInstance(productData.title , productData.id))
+                .add(
+                    R.id.mainContainer,
+                    FeedbackFragment().newInstance(productData.title, productData.id)
+                )
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("FeedbackFragment")
                 .commit()
@@ -248,9 +251,9 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpTechnicalFeatures() {
         technicalFeatures.setOnClickListener {
-            Log.i("tech" , "done")
+            Log.i("tech", "done")
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , TechnicalFeaturesFragment(productData))
+                .add(R.id.mainContainer, TechnicalFeaturesFragment(productData))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("TechnicalFeaturesFragment")
                 .commit()
@@ -335,21 +338,25 @@ class ProductDetailsFragment() : Fragment() {
         commentPreviewRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         commentPreviewRecyclerView.adapter =
-            CommentPreviewAdapter(generateFakeComments(), requireContext())
+            CommentPreviewAdapter(generateFakeComments(), requireContext() , requireActivity().supportFragmentManager)
     }
 
     private fun setUpOtherRelatedCategoriesRecyclerView() {
         otherRelatedCategoriesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        apiServiceManager.getRelatedCategories(object :OnGetCategories{
+        apiServiceManager.getRelatedCategories(object : OnGetCategories {
             override fun onGetCategories(categoryList: List<String>) {
-                otherRelatedCategoriesRecyclerView.adapter = OtherRelatedCategoriesAdapter(categoryList , productData.category , productData.image)
+                otherRelatedCategoriesRecyclerView.adapter = OtherRelatedCategoriesAdapter(
+                    categoryList,
+                    productData.category,
+                    productData.image
+                )
             }
 
             override fun onFailureGetCategories(message: String) {
             }
 
-        } , productData.category)
+        }, productData.category)
     }
 
     private fun setUpProductImagesViewPager() {

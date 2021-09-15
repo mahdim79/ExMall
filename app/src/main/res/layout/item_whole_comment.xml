@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/whiteBackground"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/standardMargin2x"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rateContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/teal_700"
+            app:cardCornerRadius="@dimen/standardMargin0.5x">
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize4x"
+                android:paddingVertical="@dimen/standardMargin0.5x"
+                android:paddingHorizontal="@dimen/standardMargin"
+                android:textColor="@color/white"
+                android:text="4.0"/>
+        </androidx.cardview.widget.CardView>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/rateContainer"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/rateContainer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize5x"
+            android:layout_alignBottom="@+id/rateContainer"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:text="خیلی عالی"/>
+
+        <LinearLayout
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:gravity="center_vertical"
+            android:layout_alignStart="@+id/title"
+            android:layout_marginTop="@dimen/standardMargin1.5x"
+            android:layout_marginStart="@dimen/standardMargin"
+            android:orientation="horizontal">
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/commentDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_black"
+                android:text="دو سال پیش"
+                android:textSize="@dimen/TextSize3x"
+                />
+
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:src="@drawable/ic_baseline_brightness_1_24"
+                app:tint="@color/light_black"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/comment_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_black"
+                android:text="سید حسین فاطمی"
+                android:textSize="@dimen/TextSize3x"
+                />
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/whiteBackground"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                app:cardCornerRadius="@dimen/standardMargin">
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standardMargin0.5x"
+                    android:textSize="@dimen/TextSize2x"
+                    android:text="خریدار"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/dateText"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:layout_alignStart="@+id/dateText"
+            android:background="@color/whiteBackground"/>
+
+        <LinearLayout
+            android:id="@+id/statusLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_alignStart="@+id/divider"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/ratingIcon"
+                android:layout_width="@dimen/standardMargin2x"
+                android:layout_height="@dimen/standardMargin2x"
+                android:src="@drawable/ic_outline_thumb_up_24"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/ratingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="خرید این محصول را توصیه می کنم"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="@dimen/TextSize3x"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"/>
+        </LinearLayout>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/commentText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/statusLinear"
+            android:layout_marginTop="@dimen/standardMargin"
+            android:text="laksdjfkldsjf;ladsf;lasddfjlkas;fjaslfk"
+            android:textDirection="rtl"
+            android:layout_alignStart="@+id/divider"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize3x"
+            />
+
+        <View
+            android:id="@+id/dividerTwo"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/commentText"
+            android:layout_marginTop="@dimen/standardMargin3x"
+            android:layout_alignStart="@+id/commentText"
+            android:background="@color/whiteBackground"/>
+
+        <LinearLayout
+            android:id="@+id/overallStatusContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/standardMargin1.5x"
+            android:layout_below="@+id/dividerTwo"
+            android:layout_alignStart="@+id/dividerTwo"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="@dimen/standardMargin1.5x"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:gravity="center"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/TextSize3x"
+                    />
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_marginStart="@dimen/standardMargin"
+                    android:text="پشتیبانی"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="@dimen/standardMargin1.5x"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/TextSize3x"
+                    />
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_marginStart="@dimen/standardMargin"
+                    android:text="فضای کم ذخیره سازی دیتا"/>
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:id="@+id/dividerThree"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/overallStatusContainer"
+            android:layout_alignStart="@+id/overallStatusContainer"
+            android:background="@color/whiteBackground"/>
+
+        <LinearLayout
+            android:id="@+id/sellerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/standardMargin"
+            android:layout_alignStart="@+id/dividerThree"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/dividerThree"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/chart_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_outline_store_mall_directory_24"
+                app:tint="@color/black" />
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آورکام"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:textColor="@color/black"
+                android:textSize="@dimen/TextSize3x"/>
+        </LinearLayout>
+        <View
+            android:id="@+id/dividerFour"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/sellerContainer"
+            android:layout_alignStart="@+id/sellerContainer"
+            android:background="@color/whiteBackground"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/dividerFour"
+            android:layout_alignStart="@+id/dividerFour"
+            android:paddingVertical="@dimen/standardMargin2x"
+            android:layout_height="wrap_content">
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/TextSize3x"
+                android:layout_marginStart="@dimen/standardMargin"
+                android:text="این نظر برایتان مفید بود؟"/>
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_outline_thumb_up_24"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/standardMargin4x"
+                app:tint="@color/light_black"/>
+
+            <ImageView
+                android:id="@+id/flag_Icon"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_baseline_outlined_flag_24"
+                android:layout_alignParentEnd="true"
+                app:tint="@color/light_black"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -20,6 +20,7 @@
             android:maxLines="2"
             android:textColor="@color/black"/>
         <com.dust.exmall.customviews.CTextView
+            android:id="@+id/commentCountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="11 نظر"

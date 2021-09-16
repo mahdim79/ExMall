@@ -50,7 +50,7 @@ class PopularProductsAdapter(var list: List<ProductsDataClass> , var fragmentMan
         fragmentManager.beginTransaction()
             .add(R.id.mainContainer , ProductDetailsFragment().newInstance(id))
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack("ProductDetailsFragment")
+            .addToBackStack(null)
             .commit()
     }
 

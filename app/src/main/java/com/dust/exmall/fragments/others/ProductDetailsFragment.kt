@@ -45,6 +45,7 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var likeButton: ImageView
     private lateinit var priceText: CTextView
     private lateinit var categoryText: CTextView
+    private lateinit var commentCountText: CTextView
     private lateinit var titleText: TextView
     private lateinit var similarProductsTitle: TextView
     private lateinit var usersBuySimilarTitle: TextView
@@ -85,6 +86,28 @@ class ProductDetailsFragment() : Fragment() {
         setUpCloseButton()
         setUpMoreButton()
         setUpFavoriteButton()
+        setUpAnswerAndQuestion()
+        setUpBackIntroductions()
+    }
+
+    private fun setUpBackIntroductions() {
+        backIntroductions.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , WebPageFragment().newInstance("رویه های بازگشت کالا" , "https://www.google.com"))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("WebPageFragment")
+                .commit()
+        }
+    }
+
+    private fun setUpAnswerAndQuestion() {
+        answerAndAsk.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer, AnswerAndQuestionFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("AnswerAndQuestionFragment")
+                .commit()
+        }
     }
 
     private fun setUpViewsAnimations() {
@@ -232,8 +255,26 @@ class ProductDetailsFragment() : Fragment() {
         setUpUserBuySimilarLayOut()
         setUpPreviewCommentRecyclerView()
         setUpFeedBackLinear()
+        setUpWriteComment()
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpWriteComment() {
+        writeYourComment.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(
+                    R.id.mainContainer,
+                    WriteReviewFragment().newInstance(
+                        productData.title,
+                        productData.image,
+                        productData.id
+                    )
+                )
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("WriteReviewFragment")
+                .commit()
+        }
     }
 
     private fun setUpFeedBackLinear() {
@@ -272,7 +313,7 @@ class ProductDetailsFragment() : Fragment() {
                 } catch (e: Exception) {
                     listData.addAll(data)
                 }
-                usersBuySimilarRecyclerView.adapter = RecentlyAdapter(listData)
+                usersBuySimilarRecyclerView.adapter = RecentlyAdapter(listData , requireActivity().supportFragmentManager)
             }
 
             override fun onFailureGetProducts(message: String) {
@@ -288,7 +329,7 @@ class ProductDetailsFragment() : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         apiServiceManager.getProductsByCategory(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                similarProductsRecyclerView.adapter = RecentlyAdapter(data)
+                similarProductsRecyclerView.adapter = RecentlyAdapter(data , requireActivity().supportFragmentManager)
             }
 
             override fun onFailureGetProducts(message: String) {
@@ -327,10 +368,7 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpCloseButton() {
         closeButton.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack(
-                "ProductDetailsFragment",
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
-            )
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 
@@ -338,7 +376,19 @@ class ProductDetailsFragment() : Fragment() {
         commentPreviewRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         commentPreviewRecyclerView.adapter =
-            CommentPreviewAdapter(generateFakeComments(), requireContext() , requireActivity().supportFragmentManager)
+            CommentPreviewAdapter(
+                generateFakeComments(),
+                requireContext(),
+                requireActivity().supportFragmentManager
+            )
+        commentCountText.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer, CommentsFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("CommentsFragment")
+                .commit()
+        }
+
     }
 
     private fun setUpOtherRelatedCategoriesRecyclerView() {
@@ -361,7 +411,7 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpProductImagesViewPager() {
         productImagesViewPager.adapter = ProductImagesAdapter(
-            requireActivity().supportFragmentManager,
+            childFragmentManager,
             arrayListOf(productData.image, productData.image, productData.image)
         )
         productDotsIndicator.setViewPager(productImagesViewPager)
@@ -397,6 +447,7 @@ class ProductDetailsFragment() : Fragment() {
         answerAndAsk = view.findViewById(R.id.answerAndAsk)
         backIntroductions = view.findViewById(R.id.backIntroductions)
         feedBackLinear = view.findViewById(R.id.feedBackLinear)
+        commentCountText = view.findViewById(R.id.commentCountText)
 
         retryText = loadingContainer.findViewById(R.id.retryText)
         retryText.setOnClickListener {

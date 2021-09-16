@@ -164,7 +164,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         recentlySeenProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
         apiServiceManager.getRecentlySeenProducts(object :OnGetProducts{
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                recentlySeenProductsRecyclerView.adapter = RecentlyAdapter(data)
+                recentlySeenProductsRecyclerView.adapter = RecentlyAdapter(data , requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }

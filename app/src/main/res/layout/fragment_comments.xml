@@ -320,7 +320,7 @@
             android:id="@+id/floating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
+            android:layout_gravity="bottom|start"
             android:layout_margin="@dimen/standardMargin4x"
             android:backgroundTint="@color/red_light"
             app:borderWidth="0dp"

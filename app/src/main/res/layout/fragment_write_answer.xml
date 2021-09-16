@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorContainer"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:paddingStart="@dimen/standardMargin">
+
+                <ImageView
+                    android:id="@+id/backImage"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:padding="@dimen/standardMargin"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:tint="@color/black_normal" />
+
+
+            </FrameLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:orientation="vertical">
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/textDescription"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/standardMargin2x"
+                android:textColor="@color/black"
+                android:textSize="@dimen/TextSize4x"
+                android:text="پرسش خود را در مورد محصول مطرح کنید"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/questionText"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_normal"
+                android:visibility="gone"
+                android:textSize="@dimen/TextSize3x"
+                tools:text="این یک متن پرسشی تصادفی است!"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/answerText"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin3x"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin2x"
+                android:visibility="gone"
+                android:textColor="@color/black_normal"
+                android:textSize="@dimen/TextSize3x"
+                android:text="پاسخ"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/standardMargin1.5x"
+                android:backgroundTint="@color/whiteBackground"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/QuestionTextEditText"
+                    android:layout_width="match_parent"
+                    android:backgroundTint="@color/edittext_selector"
+                    android:textSize="@dimen/TextSize3x"
+                    android:maxLength="100"
+                    android:layout_height="@dimen/standardMargin10x"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/counter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin0.5x"
+                android:textColor="@color/light_black"
+                android:layoutDirection="ltr"
+                android:layout_marginHorizontal="@dimen/standardMargin3x"
+                android:textSize="@dimen/TextSize3x"
+                android:text="0/100"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/whiteBackground"/>
+
+            <com.dust.exmall.customviews.CButton
+                android:id="@+id/sendQuestionButton"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="@dimen/standardMargin1.5x"
+                android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                android:text="ثبت پرسش"
+                android:textColor="@color/continue_button_text_selector"
+                android:background="@drawable/continue_button_shape_disabled"
+                android:layout_height="wrap_content"/>
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/rulesText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/standardMargin"
+                android:textSize="@dimen/TextSize3x"
+                android:gravity="center"
+                tools:text="ثبت دیدگاه، به معنی موافقت با قوانین انتشار فروشگاه است."
+                android:textColor="@color/light_black"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

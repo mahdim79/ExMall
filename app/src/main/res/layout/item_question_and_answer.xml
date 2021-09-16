@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/standardMargin1.5x"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            app:tint="@color/blue"
+            android:src="@drawable/ic_outline_question_answer_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize3x"
+            android:layout_marginStart="@dimen/standardMargin1.5x"
+            android:text="سلام آیا این لایسنس معتبر است؟"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/replyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/standardMargin1.5x"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="end|center_vertical"
+        android:paddingHorizontal="@dimen/standardMargin1.5x"
+        android:layout_height="wrap_content">
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/addNewReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textDirection="ltr"
+            android:paddingVertical="@dimen/standardMargin"
+            android:textColor="@color/blue"
+            android:text="ثبت پاسخ جدید"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:tint="@color/blue"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/standardMargin0.5x"
+        android:background="@color/whiteBackground"/>
+</LinearLayout>

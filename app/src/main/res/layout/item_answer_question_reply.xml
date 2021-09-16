@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="27dp"
+            android:layout_height="23dp"
+            android:gravity="center"
+            android:text="پاسخ"
+            android:textSize="@dimen/TextSize3x" />
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/replyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standardMargin1.5x"
+            android:text="سلام آیا این لایسنس معتبر است؟"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/TextSize3x" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/replyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingEnd="@dimen/standardMargin1.5x"
+        android:layout_height="wrap_content">
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/submitterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="end"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="@dimen/TextSize3x"
+            android:text="اس واس"
+            android:textColor="@color/blue"
+            android:textDirection="ltr" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light_black2"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+            android:layout_toEndOf="@+id/submitterText"
+            app:cardCornerRadius="@dimen/standardMargin">
+
+            <com.dust.exmall.customviews.CTextView
+                android:id="@+id/submitterType"
+                android:layout_width="match_parent"
+                android:text="فروشنده"
+                android:paddingHorizontal="@dimen/standardMargin0.5x"
+                android:textSize="@dimen/TextSize2x"
+                android:paddingVertical="2dp"
+                android:textColor="@color/white"
+                android:layout_height="match_parent" />
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/likeImage"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            app:tint="@color/light_black"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_outline_thumb_up_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/likeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/likeImage"
+            android:layout_alignTop="@+id/likeImage"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/standardMargin0.5x"
+            android:layout_alignBottom="@+id/likeImage"
+            android:textSize="@dimen/TextSize2x"
+            tools:text="2"/>
+
+        <ImageView
+            android:id="@+id/disLikeImage"
+            android:layout_width="16dp"
+            app:tint="@color/light_black"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/standardMargin4x"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_outline_thumb_down_alt_24"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/disLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/disLikeImage"
+            android:layout_alignTop="@+id/disLikeImage"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/standardMargin0.5x"
+            android:layout_alignBottom="@+id/disLikeImage"
+            android:textSize="@dimen/TextSize2x"
+            tools:text="2"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/standardMargin1.5x"
+        android:background="@color/whiteBackground" />
+</LinearLayout>

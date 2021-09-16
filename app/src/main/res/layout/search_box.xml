@@ -39,9 +39,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/standardMargin0.5x"
-            android:text="ExMall"
+            android:text="فروشگاه من"
+            android:paddingHorizontal="2dp"
             android:textColor="@color/red"
-            android:textSize="@dimen/TextSize5x"
+            android:textSize="17dp"
             android:textStyle="bold|italic" />
     </LinearLayout>
 

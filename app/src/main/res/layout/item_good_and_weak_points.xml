@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/itemIcon"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_baseline_add_24"
+        app:tint="@color/green"
+        android:padding="@dimen/standardMargin0.5x"
+        android:layout_height="wrap_content"/>
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/itemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="پشتیبانی"
+        android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+        android:textColor="@color/black_normal"
+        android:textSize="@dimen/TextSize3x"/>
+</LinearLayout>

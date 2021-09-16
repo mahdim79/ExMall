@@ -21,6 +21,7 @@
             android:backgroundTint="@color/teal_700"
             app:cardCornerRadius="@dimen/standardMargin0.5x">
             <com.dust.exmall.customviews.CTextView
+                android:id="@+id/rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/TextSize4x"

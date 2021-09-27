@@ -16,10 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
-import com.dust.exmall.adapters.recyclerview.CommentPreviewAdapter
-import com.dust.exmall.adapters.recyclerview.FeatureAdapter
-import com.dust.exmall.adapters.recyclerview.OtherRelatedCategoriesAdapter
-import com.dust.exmall.adapters.recyclerview.RecentlyAdapter
+import com.dust.exmall.adapters.recyclerview.*
 import com.dust.exmall.adapters.viewpager.ProductImagesAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
@@ -40,6 +37,8 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var commentPreviewRecyclerView: RecyclerView
     private lateinit var similarProductsRecyclerView: RecyclerView
     private lateinit var usersBuySimilarRecyclerView: RecyclerView
+    private lateinit var weakPointsRecyclerView: RecyclerView
+    private lateinit var goodPointsRecyclerView: RecyclerView
     private lateinit var featureRecyclerView: RecyclerView
     private lateinit var technicalFeatures: RelativeLayout
     private lateinit var sellerRelativeLayout: RelativeLayout
@@ -64,6 +63,10 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var answerAndAsk: RelativeLayout
     private lateinit var backIntroductions: RelativeLayout
     private lateinit var retryText: TextView
+    private lateinit var moreReviewLinear:LinearLayout
+    private lateinit var productRatingLinear:LinearLayout
+    private lateinit var goodPointView:View
+    private lateinit var weakPointView:View
 
     private val animations = Animations()
 
@@ -170,26 +173,26 @@ class ProductDetailsFragment() : Fragment() {
                 v.startAnimation(animations.getFadeOutAnimation())
             false
         }
-        strongPointsContainer.setOnTouchListener { v, motionEvent ->
+        goodPointView.setOnTouchListener { _, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
-                v.startAnimation(animations.getFadeInAnimation())
+                strongPointsContainer.startAnimation(animations.getFadeInAnimation())
                 return@setOnTouchListener false
             }
             if (motionEvent.action == MotionEvent.ACTION_UP)
-                v.startAnimation(animations.getFadeInAnimation())
+                strongPointsContainer.startAnimation(animations.getFadeInAnimation())
             else
-                v.startAnimation(animations.getFadeOutAnimation())
+                strongPointsContainer.startAnimation(animations.getFadeOutAnimation())
             false
         }
-        weakPointsContainer.setOnTouchListener { v, motionEvent ->
+        weakPointView.setOnTouchListener { _, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
-                v.startAnimation(animations.getFadeInAnimation())
+                weakPointsContainer.startAnimation(animations.getFadeInAnimation())
                 return@setOnTouchListener false
             }
             if (motionEvent.action == MotionEvent.ACTION_UP)
-                v.startAnimation(animations.getFadeInAnimation())
+                weakPointsContainer.startAnimation(animations.getFadeInAnimation())
             else
-                v.startAnimation(animations.getFadeOutAnimation())
+                weakPointsContainer.startAnimation(animations.getFadeOutAnimation())
             false
         }
         answerAndAsk.setOnTouchListener { v, motionEvent ->
@@ -215,6 +218,39 @@ class ProductDetailsFragment() : Fragment() {
             false
         }
         backIntroductions.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
+        productReviewRelative.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
+        moreReviewLinear.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
+        productRatingLinear.setOnTouchListener { v, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
                 v.startAnimation(animations.getFadeInAnimation())
                 return@setOnTouchListener false
@@ -255,6 +291,7 @@ class ProductDetailsFragment() : Fragment() {
         setUpProductImagesViewPager()
         setUpTechnicalFeatures()
         setUpFeatureRecyclerView()
+        setUpGoodAndWeakPointsRecyclerView()
         setUpOtherRelatedCategoriesRecyclerView()
         setUpSimilarProductsLayOut()
         setUpUserBuySimilarLayOut()
@@ -264,6 +301,23 @@ class ProductDetailsFragment() : Fragment() {
         setUpProductReview()
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpGoodAndWeakPointsRecyclerView() {
+
+        weakPointsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        goodPointsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+
+        goodPointsRecyclerView.adapter = GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), false)
+        weakPointsRecyclerView.adapter = GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), true)
+
+    }
+
+    private fun generateFakeGoodAndWeakPoints(): List<String> {
+        val list = arrayListOf<String>()
+        for (i in 0..5)
+            list.add("نقطه قوت یا ضعف شماره $i")
+        return list
     }
 
     private fun setUpFeatureRecyclerView() {
@@ -281,12 +335,28 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpProductReview() {
         productReviewRelative.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , ProductReviewFragment(productData.description , productData.image))
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit()
+            startReviewFragment()
         }
+        moreReviewLinear.setOnClickListener {
+            startReviewFragment()
+        }
+        productRatingLinear.setOnClickListener {
+            startReviewFragment()
+        }
+        goodPointView.setOnClickListener {
+            startReviewFragment()
+        }
+        weakPointView.setOnClickListener {
+            startReviewFragment()
+        }
+    }
+
+    private fun startReviewFragment(){
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.mainContainer , ProductReviewFragment(productData.description , productData.image , generateFakeGoodAndWeakPoints() , generateFakeGoodAndWeakPoints()))
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun setUpWriteComment() {
@@ -480,6 +550,12 @@ class ProductDetailsFragment() : Fragment() {
         backIntroductions = view.findViewById(R.id.backIntroductions)
         feedBackLinear = view.findViewById(R.id.feedBackLinear)
         commentCountText = view.findViewById(R.id.commentCountText)
+        goodPointsRecyclerView = view.findViewById(R.id.goodPointsRecyclerView)
+        weakPointsRecyclerView = view.findViewById(R.id.weakPointsRecyclerView)
+        moreReviewLinear = view.findViewById(R.id.moreReviewLinear)
+        productRatingLinear = view.findViewById(R.id.productRatingLinear)
+        goodPointView = view.findViewById(R.id.goodPointView)
+        weakPointView = view.findViewById(R.id.weakPointView)
 
         retryText = loadingContainer.findViewById(R.id.retryText)
         retryText.setOnClickListener {

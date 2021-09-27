@@ -93,14 +93,263 @@
                     android:layout_width="match_parent"
                     android:layout_height="4dp"
                     android:background="@color/whiteBackground"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/totalReviewLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standardMargin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize5x"
+                    android:text="امتیاز کلی"/>
+
+                <LinearLayout
+                    android:id="@+id/productRatingLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl"
+                    android:padding="@dimen/standardMargin"
+                    android:layout_marginHorizontal="@dimen/standardMargin">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="40"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="کیفیت ساخت"
+                            android:paddingEnd="@dimen/standardMargin0.5x"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="ارزش خرید نسبت به قیمت"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="نوآوری"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="امکانات و قابلیت ها"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="سهولت استفاده"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:text="طراحی و ظاهر"
+                            android:maxLines="1"
+                            android:textSize="15dp"
+                            android:textColor="@color/black_normal"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="60"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:max="5"
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+
+                            android:gravity="center_vertical"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:max="5"
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+
+                            android:max="5"
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+
+                            android:max="5"
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:max="5"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:gravity="center_vertical"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:paddingHorizontal="@dimen/standardMargin0.5x"
+
+                            android:max="5"
+                            android:progress="4"
+                            android:progressTint="@color/blue"/>
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="8"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:text="3.6"
+                            android:maxLines="1"
+                            android:gravity="center"
+                            android:textSize="11dp"
+                            android:textColor="@color/light_black"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+                    android:background="@color/whiteBackground"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:layout_margin="@dimen/standardMargin"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/standardMargin"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/TextSize5x"
+                        android:text="نکات مثبت و منفی"/>
 
+                    <LinearLayout
+                        android:id="@+id/goodAndWeakPointsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/standardMargin"
+                        android:layoutDirection="rtl"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/whiteBackground"/>
+
+            </LinearLayout>
             <com.dust.exmall.customviews.CTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

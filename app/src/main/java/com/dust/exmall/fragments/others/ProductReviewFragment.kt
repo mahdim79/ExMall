@@ -1,5 +1,6 @@
 package com.dust.exmall.fragments.others
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -20,9 +21,11 @@ import com.dust.exmall.dataclasses.FullReviewDataClass
 import com.google.android.material.tabs.TabLayout
 import kotlin.math.abs
 
-class ProductReviewFragment(var fastReviewDescription: String, var productImage: String) :
+class ProductReviewFragment(var fastReviewDescription: String, var productImage: String , var goodPoints: List<String> , var weakPoints:List<String>) :
     Fragment() {
     private lateinit var fastReviewLinear: LinearLayout
+    private lateinit var totalReviewLinear: LinearLayout
+    private lateinit var goodAndWeakPointsContainer: LinearLayout
     private lateinit var tabLayout: TabLayout
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var fastReviewText: CTextView
@@ -45,7 +48,24 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
         setUpBackImage()
         setUpTabLayout()
         setUpFastReviewDescription()
+        setUpTotalReview()
         setUpFullReviewRecyclerView()
+    }
+
+    private fun setUpTotalReview() {
+        goodPoints.forEach {
+            val itemLayout = LayoutInflater.from(requireContext()).inflate(R.layout.item_good_and_weak_points , null , false)
+            (itemLayout.findViewById<CTextView>(R.id.itemText)).text = it
+            goodAndWeakPointsContainer.addView(itemLayout)
+        }
+        weakPoints.forEach {
+            val itemLayout = LayoutInflater.from(requireContext()).inflate(R.layout.item_good_and_weak_points , null , false)
+            (itemLayout.findViewById<CTextView>(R.id.itemText)).text = it
+            val icon = itemLayout.findViewById<ImageView>(R.id.itemIcon)
+            icon.setImageResource(R.drawable.ic_baseline_remove_24)
+            icon.setColorFilter(Color.RED)
+            goodAndWeakPointsContainer.addView(itemLayout)
+        }
     }
 
     private fun setUpBackImage() {
@@ -66,20 +86,26 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
 
     private fun setUpTabLayout() {
         val tabOne = tabLayout.newTab()
-        val tabTwo = tabLayout.newTab()
-
         tabOne.text = "بررسی اجمالی محصول"
-        tabTwo.text = "بررسی تخصصی محصول"
+
+        val tabTwo = tabLayout.newTab()
+        tabTwo.text = "رویکرد کلی"
+
+        val tabThree = tabLayout.newTab()
+        tabThree.text = "بررسی تخصصی محصول"
 
         tabLayout.addTab(tabOne)
         tabLayout.addTab(tabTwo)
+        tabLayout.addTab(tabThree)
 
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab!!.position == 0) {
                     nestedScrollView.smoothScrollTo(0, 0 , 200)
-                } else {
+                } else if (tab.position == 1) {
                     nestedScrollView.smoothScrollTo(0, fastReviewLinear.measuredHeight , 200)
+                }else{
+                    nestedScrollView.smoothScrollTo(0, fastReviewLinear.measuredHeight + totalReviewLinear.measuredHeight, 200)
                 }
             }
 
@@ -90,8 +116,10 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 if (tab!!.position == 0) {
                     nestedScrollView.smoothScrollTo(0, 0 , 30)
-                } else {
+                } else if (tab.position == 1){
                     nestedScrollView.smoothScrollTo(0, fastReviewLinear.measuredHeight , 30)
+                }else{
+                    nestedScrollView.smoothScrollTo(0, fastReviewLinear.measuredHeight + totalReviewLinear.measuredHeight, 30)
                 }
             }
 
@@ -120,7 +148,7 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
         var runnable:Runnable? = null
 
 
-        nestedScrollView.setOnScrollChangeListener { v, _, scrollY, _, _ ->
+        nestedScrollView.setOnScrollChangeListener { _, _, scrollY, _, _ ->
             try {
                 handler.removeCallbacks(runnable!!)
             }catch (e:Exception){}
@@ -128,9 +156,12 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
                     if (abs(scrollY) < fastReviewLinear.measuredHeight){
                         if (!tabOne.isSelected)
                             tabOne.select()
-                    }else{
+                    }else if (abs(scrollY) >= fastReviewLinear.measuredHeight && abs(scrollY) < fastReviewLinear.measuredHeight + totalReviewLinear.measuredHeight){
                         if (!tabTwo.isSelected)
                             tabTwo.select()
+                    }else{
+                        if (!tabThree.isSelected)
+                            tabThree.select()
                     }
             }
             handler.postDelayed(runnable!!, 201)
@@ -144,6 +175,8 @@ class ProductReviewFragment(var fastReviewDescription: String, var productImage:
         fastReviewText = view.findViewById(R.id.fastReviewText)
         fullReviewRecyclerView = view.findViewById(R.id.fullReviewRecyclerView)
         backImage = view.findViewById(R.id.backImage)
+        totalReviewLinear = view.findViewById(R.id.totalReviewLinear)
+        goodAndWeakPointsContainer = view.findViewById(R.id.goodAndWeakPointsContainer)
     }
 
     private fun generateFakeFullReviewData(): List<FullReviewDataClass> {

@@ -5,13 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.dust.exmall.fragments.others.ProductDetailsFragment
 import com.squareup.picasso.Picasso
 
-class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PlusProductsAdapter(var list:List<ProductsDataClass> , var fragmentManager: FragmentManager) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val NORMAL_ITEM = 0
     private val SHOW_ALL_ITEM: Int = 1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,8 +27,19 @@ class PlusProductsAdapter(var list:List<ProductsDataClass>) : RecyclerView.Adapt
         if (holder is MainViewHolder){
             val mHolder = holder as MainViewHolder
             setUpProductDetails(mHolder , position)
+            startDetailsFragment(mHolder , position)
         }else{
             val mHolder = holder as ShowAllViewHolder
+        }
+    }
+
+    private fun startDetailsFragment(mHolder: PlusProductsAdapter.MainViewHolder, position: Int) {
+        mHolder.itemView.setOnClickListener {
+            fragmentManager.beginTransaction()
+                .add(R.id.mainContainer , ProductDetailsFragment().newInstance(list[position].id))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit()
         }
     }
 

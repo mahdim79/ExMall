@@ -26,7 +26,7 @@ import com.dust.exmall.customviews.CTextView
 import com.squareup.picasso.Picasso
 
 class WriteReviewFragment() : Fragment() {
-    private lateinit var backImage: ImageView
+    private lateinit var returnImage: ImageView
     private lateinit var productImage: ImageView
     private lateinit var goodPointAddImage: ImageView
     private lateinit var weakPointAddImage: ImageView
@@ -62,7 +62,7 @@ class WriteReviewFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews(view)
-        setUpBackImage()
+        setUpReturnButton()
         setUpProductData()
         setUpRatingSystem()
         setUpRecyclerViews()
@@ -211,22 +211,17 @@ class WriteReviewFragment() : Fragment() {
         )
         spannableString.setSpan(object : ClickableSpan() {
             override fun onClick(p0: View) {
-                Toast.makeText(requireContext(), "this is rules", Toast.LENGTH_SHORT).show()
+                // TODO: 9/19/2021 Implement Rules Fragment
             }
 
         }, 30, 51, SpannableString.SPAN_INCLUSIVE_INCLUSIVE)
         rulesText.text = spannableString
     }
 
-    private fun setUpProductData() {
-        Picasso.get().load(requireArguments().getString("IMAGE")).into(productImage)
-        productTitle.text = requireArguments().getString("TITLE")
-    }
-
-    private fun setUpBackImage() {
-        backImage.setOnClickListener {
+    private fun setUpReturnButton() {
+        returnImage.setOnClickListener {
             (requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
-                backImage.windowToken,
+                returnImage.windowToken,
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
             requireActivity().supportFragmentManager.popBackStack(
@@ -236,8 +231,13 @@ class WriteReviewFragment() : Fragment() {
         }
     }
 
+    private fun setUpProductData() {
+        Picasso.get().load(requireArguments().getString("IMAGE")).into(productImage)
+        productTitle.text = requireArguments().getString("TITLE")
+    }
+
     private fun setUpViews(view: View) {
-        backImage = view.findViewById(R.id.backImage)
+        returnImage = view.findViewById(R.id.backImage)
         productImage = view.findViewById(R.id.productImage)
         productTitle = view.findViewById(R.id.productTitle)
         rateState = view.findViewById(R.id.rateState)

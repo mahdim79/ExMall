@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.dust.exmall.R
+import com.dust.exmall.adapters.recyclerview.AmazingAdapter
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.squareup.picasso.Picasso
 
-class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position: Int , var highReviewedMode:Boolean) : Fragment() {
+class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position: Int , var highReviewedMode:Boolean) : Fragment() , View.OnClickListener {
 
     private lateinit var countTextOne: TextView
     private lateinit var countTextTwo: TextView
@@ -25,6 +28,10 @@ class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position
     private lateinit var reviewCountOne: TextView
     private lateinit var reviewCountTwo: TextView
     private lateinit var reviewCountThree: TextView
+
+    private lateinit var productOneContainer: LinearLayout
+    private lateinit var productTwoContainer: LinearLayout
+    private lateinit var productThreeContainer: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +48,13 @@ class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position
         setImages()
         setTitles()
         setReviewCount()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        productOneContainer.setOnClickListener(this)
+        productTwoContainer.setOnClickListener(this)
+        productThreeContainer.setOnClickListener(this)
     }
 
     private fun setReviewCount() {
@@ -114,6 +128,25 @@ class ProductsSliderFragment(var listData: List<ProductsDataClass>, var position
         reviewCountOne = view.findViewById(R.id.reviewCountOne)
         reviewCountTwo = view.findViewById(R.id.reviewCountTwo)
         reviewCountThree = view.findViewById(R.id.reviewCountThree)
+        productThreeContainer = view.findViewById(R.id.productThreeContainer)
+        productTwoContainer = view.findViewById(R.id.productTwoContainer)
+        productOneContainer = view.findViewById(R.id.productOneContainer)
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0!!.id){
+            R.id.productOneContainer -> startDetailsFragment(listData[0].id)
+            R.id.productTwoContainer -> startDetailsFragment(listData[1].id)
+            R.id.productThreeContainer -> startDetailsFragment(listData[2].id)
+        }
+    }
+
+    private fun startDetailsFragment(id: Int) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.mainContainer , ProductDetailsFragment().newInstance(id))
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

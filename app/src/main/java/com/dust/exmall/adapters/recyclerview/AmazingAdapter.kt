@@ -10,13 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.ProductsDataClass
+import com.dust.exmall.fragments.others.ProductDetailsFragment
 import com.squareup.picasso.Picasso
 
-class AmazingAdapter(var list: List<ProductsDataClass>, var type: Int, var context: Context) :
+class AmazingAdapter(var list: List<ProductsDataClass>, var type: Int, var context: Context , var fragmentManager: FragmentManager) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var AmazingOffersType: Int = 0
@@ -57,12 +60,23 @@ class AmazingAdapter(var list: List<ProductsDataClass>, var type: Int, var conte
             setSoldAmount(mHolder, "69%")
             setUpAddCircle(mHolder)
             setUpPurchaseAdder(mHolder)
+            startDetailsFragment(mHolder , position)
         } else if (holder is HeaderViewHolder) {
             val mHolder = holder as HeaderViewHolder
             setUpHeaderItem(mHolder)
         } else {
             val mHolder = holder as ShowAllViewHolder
             setUpShowAllItem(mHolder)
+        }
+    }
+
+    private fun startDetailsFragment(mHolder: MainViewHolder, position: Int) {
+        mHolder.itemView.setOnClickListener {
+            fragmentManager.beginTransaction()
+                .add(R.id.mainContainer , ProductDetailsFragment().newInstance(list[position-1].id))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit()
         }
     }
 

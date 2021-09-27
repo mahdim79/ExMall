@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteBackground"
+    android:layoutDirection="rtl"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/headerRelativeSort"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingHorizontal="@dimen/standardMargin1.5x">
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:layout_toEndOf="@+id/backImage"
+            android:text="مرتب سازی"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize5x" />
+
+        <ImageView
+            android:id="@+id/clearSortImage"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:tint="@color/black_normal" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footerRelativeSort"
+        android:layout_below="@+id/headerRelativeSort">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mostRelevantRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="مرتبط ترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/mostRelevantTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/highReviewedRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="پربازدیدترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/highReviewedTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/newestRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="جدیدترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/newestTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/highSellRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="پرفروش ترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/highSellTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/cheapestRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="ارزان ترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/cheapestTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mostExpensiveRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="گران ترین"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/mostExpensiveTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:src="@drawable/ic_baseline_done_24"
+                    android:visibility="gone"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fastestDeliverRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="سریع ترین ارسال"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/fastestDeliverTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/buyersSuggestionRelative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="@dimen/standardMargin2x">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:text="پیشنهادات خریداران"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x" />
+
+                <ImageView
+                    android:id="@+id/buyersSuggestionTick"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layoutDirection="ltr"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_baseline_done_24"
+                    app:tint="@color/blue" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/footerRelativeSort"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/standardMargin1.5x">
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:text="مشاهده 761 کالا"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:tint="@color/black_normal" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

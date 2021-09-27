@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="@dimen/standardMargin0.5x"
+    android:gravity="center_vertical"
+    android:layoutDirection="rtl"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/ic_baseline_brightness_1_24"
+        app:tint="@color/whiteBackground"/>
+
+    <com.dust.exmall.customviews.CTextView
+        android:id="@+id/textFeature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/TextSize4x"
+        android:textColor="@color/light_black"
+        android:layout_marginHorizontal="@dimen/standardMargin"
+        tools:text="ویژگی شماره اول"/>
+
+</LinearLayout>

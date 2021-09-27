@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:contentInsetEnd="0dp"
+            app:layout_scrollFlags="noScroll"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:paddingTop="@dimen/standardMargin"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/backImage"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:padding="@dimen/standardMargin"
+                        android:src="@drawable/ic_baseline_arrow_back_24"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/TextSize5x"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:text="نقد و بررسی"/>
+                </LinearLayout>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="@dimen/standardMargin"
+                    app:tabSelectedTextColor="@color/red_light"
+                    app:tabIndicatorColor="@color/red_light"
+                    app:tabIndicatorHeight="3dp"
+                    app:tabTextColor="@color/light_black2"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/fastReviewLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standardMargin"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize5x"
+                    android:text="نقد و بررسی اجمالی"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/fastReviewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standardMargin"
+                    android:textColor="@color/light_black"
+                    android:textSize="13dp"
+                    tools:text="نقد و بررسی اجمالی"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/whiteBackground"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/standardMargin"
+                android:textColor="@color/black"
+                android:textSize="@dimen/TextSize5x"
+                android:text="بررسی تخصصی محصول"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fullReviewRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

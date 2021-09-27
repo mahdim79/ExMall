@@ -5,13 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dust.exmall.R
+import com.dust.exmall.customviews.CTextView
 
 class SearchAdapter(var mainViewType: Int): RecyclerView.Adapter<SearchAdapter.MainViewHolder>() {
     private val CATEGORY_VIEW_TYPE = 0
     private val RELATIVE_VIEW_TYPE = 1
 
     inner class MainViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {

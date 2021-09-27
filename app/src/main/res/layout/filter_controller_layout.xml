@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/whiteBackground"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:clickable="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/headerRelative"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:paddingHorizontal="@dimen/standardMargin1.5x">
+
+        <ImageView
+            android:id="@+id/closeFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/black_normal" />
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:layout_toEndOf="@+id/backImage"
+            android:text="فیلترها"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize5x" />
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/clearFilter"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="پاک کردن"
+            android:textColor="@color/black_normal"
+            android:textSize="@dimen/TextSize4x" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footerRelative"
+        android:layout_below="@+id/headerRelative">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:padding="@dimen/standardMargin2x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="پرسش های متداول"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:padding="@dimen/standardMargin2x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="پرسش های متداول"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:padding="@dimen/standardMargin2x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="پرسش های متداول"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:padding="@dimen/standardMargin2x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="پرسش های متداول"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:paddingVertical="@dimen/standardMargin1.5x"
+                android:paddingStart="@dimen/standardMargin1.5x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="گزارش خطا با تکان دادن گوشی"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:paddingVertical="@dimen/standardMargin1.5x"
+                android:paddingStart="@dimen/standardMargin1.5x"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="گزارش خطا با تکان دادن گوشی"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:padding="@dimen/standardMargin2x"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/textPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="فقط کالاهای دیجی پلاس"
+                    android:layout_toEndOf="@+id/fav_image"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_toEndOf="@+id/textPlus"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_search_24"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:layout_marginHorizontal="@dimen/standardMargin"
+                android:paddingVertical="@dimen/standardMargin1.5x"
+                android:paddingStart="@dimen/standardMargin1.5x">
+                <TextView
+                    android:id="@+id/textMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ارسال اطلاعات برای بهبود تجربه کاربری"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize4x"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="@color/light_black"
+                    android:layout_toEndOf="@+id/textMain"
+                    android:layout_alignTop="@+id/textMain"
+                    android:layout_alignBottom="@+id/textMain"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:src="@drawable/ic_baseline_search_24"/>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/sendInfoSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:layout_below="@+id/textMain"
+                    android:layout_toStartOf="@+id/sendInfoSwitch"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_marginEnd="@dimen/standardMargin0.5x"
+                    android:text="با ارسال کردن اطلاعات حسابم به شکل ناشناس، به بهبود تجربه خرید در فروشگاه کمک میکنم"
+                    android:layout_alignStart="@+id/textMain"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/footerRelative"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/standardMargin1.5x">
+
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:text="مشاهده 761 کالا"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/standardMargin"
+            android:src="@drawable/ic_baseline_keyboard_arrow_up_24"
+            app:tint="@color/black_normal" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

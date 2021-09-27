@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.dust.exmall.R
 import com.dust.exmall.adapters.recyclerview.CommentPreviewAdapter
+import com.dust.exmall.adapters.recyclerview.FeatureAdapter
 import com.dust.exmall.adapters.recyclerview.OtherRelatedCategoriesAdapter
 import com.dust.exmall.adapters.recyclerview.RecentlyAdapter
 import com.dust.exmall.adapters.viewpager.ProductImagesAdapter
@@ -24,6 +25,7 @@ import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
 import com.dust.exmall.dataclasses.CommentDataClass
+import com.dust.exmall.dataclasses.ImportantFeatureDataClass
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.fragments.bottomsheets.ProductDetailsBottomSheet
 import com.dust.exmall.interfaces.maininterfaces.OnGetCategories
@@ -38,8 +40,10 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var commentPreviewRecyclerView: RecyclerView
     private lateinit var similarProductsRecyclerView: RecyclerView
     private lateinit var usersBuySimilarRecyclerView: RecyclerView
+    private lateinit var featureRecyclerView: RecyclerView
     private lateinit var technicalFeatures: RelativeLayout
     private lateinit var sellerRelativeLayout: RelativeLayout
+    private lateinit var productReviewRelative: RelativeLayout
     private lateinit var closeButton: ImageView
     private lateinit var moreButton: ImageView
     private lateinit var likeButton: ImageView
@@ -250,14 +254,39 @@ class ProductDetailsFragment() : Fragment() {
         setUpGlobalFeatures()
         setUpProductImagesViewPager()
         setUpTechnicalFeatures()
+        setUpFeatureRecyclerView()
         setUpOtherRelatedCategoriesRecyclerView()
         setUpSimilarProductsLayOut()
         setUpUserBuySimilarLayOut()
         setUpPreviewCommentRecyclerView()
         setUpFeedBackLinear()
         setUpWriteComment()
+        setUpProductReview()
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpFeatureRecyclerView() {
+        featureRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        featureRecyclerView.adapter = FeatureAdapter(generateFakeFeatures() , requireContext())
+    }
+
+    private fun generateFakeFeatures(): List<ImportantFeatureDataClass> {
+        val list = arrayListOf<ImportantFeatureDataClass>()
+        for (i in 0..10){
+            list.add(ImportantFeatureDataClass("ویژگی شماره $i" , "امکانات شماره $i"))
+        }
+        return list
+    }
+
+    private fun setUpProductReview() {
+        productReviewRelative.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , ProductReviewFragment(productData.description , productData.image))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     private fun setUpWriteComment() {
@@ -399,7 +428,8 @@ class ProductDetailsFragment() : Fragment() {
                 otherRelatedCategoriesRecyclerView.adapter = OtherRelatedCategoriesAdapter(
                     categoryList,
                     productData.category,
-                    productData.image
+                    productData.image,
+                    requireActivity().supportFragmentManager
                 )
             }
 
@@ -432,6 +462,7 @@ class ProductDetailsFragment() : Fragment() {
         coordinatorContainer = view.findViewById(R.id.coordinatorContainer)
         similarProducts = view.findViewById(R.id.similarProducts)
         usersBuySimilar = view.findViewById(R.id.usersBuySimilar)
+        productReviewRelative = view.findViewById(R.id.productReviewRelative)
         similarProductsTitle = similarProducts.findViewById(R.id.title)
         similarProductsRecyclerView =
             similarProducts.findViewById(R.id.recentlySeenProductsRecyclerView)
@@ -441,6 +472,7 @@ class ProductDetailsFragment() : Fragment() {
         loadingContainer = view.findViewById(R.id.loadingContainer)
         sellerRelativeLayout = view.findViewById(R.id.sellerRelativeLayout)
         technicalFeatures = view.findViewById(R.id.technicalFeatures)
+        featureRecyclerView = view.findViewById(R.id.featureRecyclerView)
         strongPointsContainer = view.findViewById(R.id.strongPointsContainer)
         weakPointsContainer = view.findViewById(R.id.weakPointsContainer)
         writeYourComment = view.findViewById(R.id.writeYourComment)

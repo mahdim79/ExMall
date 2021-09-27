@@ -76,7 +76,7 @@ class ProductsFragment : Fragment() {
             }
         }
 
-        // apply margins on each tab
+        // apply margin on each tab
         for (i in 0 until popularBrandsTab.tabCount) {
             val tab = (popularBrandsTab.getChildAt(0) as ViewGroup).getChildAt(i)
             val params = tab.layoutParams as ViewGroup.MarginLayoutParams

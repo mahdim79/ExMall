@@ -367,7 +367,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         apiServiceManager.getPlusProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                plusProductsRecyclerView.adapter = PlusProductsAdapter(data)
+                plusProductsRecyclerView.adapter = PlusProductsAdapter(data , requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }
@@ -386,7 +386,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getAmazingOffersProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingOffersRecyclerView.adapter =
-                    AmazingAdapter(data, AmazingOffersType, requireContext())
+                    AmazingAdapter(data, AmazingOffersType, requireContext() , requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }
@@ -405,7 +405,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getProductsByCategory(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingSuperMarketRecyclerView.adapter =
-                    AmazingAdapter(data, AmazingSuperMarketType, requireContext())
+                    AmazingAdapter(data, AmazingSuperMarketType, requireContext() , requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }

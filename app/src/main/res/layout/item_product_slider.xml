@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/productOneContainer"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
@@ -69,6 +70,7 @@
             android:src="@drawable/bg_one"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/productTwoContainer"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
@@ -131,6 +133,7 @@
             android:src="@drawable/bg_one"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/productThreeContainer"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"

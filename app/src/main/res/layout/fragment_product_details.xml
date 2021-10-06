@@ -6,6 +6,7 @@
     android:background="@color/white"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center"
+    android:clickable="true"
     android:orientation="vertical">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -163,6 +164,7 @@
                             android:textStyle="bold" />
 
                         <com.dust.exmall.customviews.CTextView
+                            android:id="@+id/sellerCountText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1 فروشنده دیگر"
@@ -292,6 +294,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
+                            android:layoutDirection="ltr"
                             android:src="@drawable/ic_baseline_event_available_24"
                             app:tint="@color/blue" />
 
@@ -345,6 +348,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_centerVertical="true"
+                            android:layoutDirection="ltr"
                             android:src="@drawable/ic_outline_score_24"
                             app:tint="@color/gold" />
 
@@ -361,6 +365,7 @@
                     </RelativeLayout>
 
                     <LinearLayout
+                        android:id="@+id/betterPriceLinear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/standardMargin"

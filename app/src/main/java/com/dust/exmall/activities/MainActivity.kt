@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainViewPager:CViewPager
     private lateinit var startFragment:StartFragment
 
+    private lateinit var changeViewPagerPosition:ChangeViewPagerPosition
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,12 +61,25 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         startFragment = StartFragment()
         registerReceiver(startFragment , IntentFilter("com.dust.exmall.StartFragment"))
+
+        changeViewPagerPosition = ChangeViewPagerPosition()
+        registerReceiver(changeViewPagerPosition , IntentFilter("com.dust.exmall.ChangeViewPagerPosition"))
         super.onStart()
     }
 
     override fun onStop() {
         unregisterReceiver(startFragment)
+        unregisterReceiver(changeViewPagerPosition)
         super.onStop()
+    }
+
+    inner class ChangeViewPagerPosition() : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            if (p1!!.hasExtra("POSITION")){
+                mainViewPager.currentItem = p1.extras!!.getInt("POSITION")
+                bottomNavigationView.selectedItemId = R.id.nav_cart
+            }
+        }
     }
 
     inner class StartFragment : BroadcastReceiver(){

@@ -52,20 +52,18 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layoutDirection="rtl"
-        android:layout_marginTop="@dimen/standardMargin"
         android:scrollbars="none"
+        android:layout_marginTop="@dimen/standardMargin0.5x"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layoutDirection="rtl"
-            android:paddingTop="@dimen/standardMargin"
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_gravity="end"
                 android:layout_margin="@dimen/standardMargin1.5x"
                 app:cardCornerRadius="@dimen/standardMargin">
                 <LinearLayout
@@ -279,7 +277,6 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_gravity="end"
                 android:layout_margin="@dimen/standardMargin1.5x"
                 app:cardCornerRadius="@dimen/standardMargin">
 
@@ -320,7 +317,6 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:layout_gravity="end"
                 android:layout_margin="@dimen/standardMargin1.5x"
                 app:cardCornerRadius="@dimen/standardMargin">
                 <RelativeLayout

@@ -19,270 +19,314 @@ class ApiServiceManager() {
         retrofit = Retrofit.Builder()
             .baseUrl("https://fakestoreapi.com/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient.Builder().callTimeout(30 , TimeUnit.SECONDS)
-                .connectTimeout(30 , TimeUnit.SECONDS)
-                .readTimeout(30 , TimeUnit.SECONDS)
-                .writeTimeout(30 , TimeUnit.SECONDS).build())
+            .client(
+                OkHttpClient.Builder().callTimeout(30, TimeUnit.SECONDS)
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS).build()
+            )
             .build()
     }
-    fun getAmazingOffersProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getAmazingProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                val data = response.body()
-                onGetProducts.onGetProducts(data!!)
-            }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
-        })
-    }
-
-    fun getProductsByCategory(onGetProducts: OnGetProducts , category:String){
-        val url = "products/category/${category}"
-        retrofit.create(Requests::class.java).getProductsByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
-
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
-
-        })
-    }
-
-    fun getSliderContent(onGetSliderContent: OnGetSliderContent){
-        retrofit.create(Requests::class.java).getSliderContent().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                val list = arrayListOf<Pair<String , String>>()
-                response.body()!!.forEach {
-                    list.add(Pair(it.title , it.image))
+    fun getAmazingOffersProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getAmazingProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    val data = response.body()
+                    onGetProducts.onGetProducts(data!!)
                 }
-                onGetSliderContent.onGetSliderContent(list)
-            }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetSliderContent.onGetFailure(t.message!!)
-            }
-
-        })
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
+            })
     }
 
-    fun getMagicCartContents(onGetMagicCartContent: OnGetMagicCartContent){
-        retrofit.create(Requests::class.java).getMagicContent().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                val list = arrayListOf<ProductsDataClass>()
-                if (response.body()!!.size < 9)
-                    list.addAll(response.body()!!)
-                else
-                    list.addAll(response.body()!!.subList(0 , 9))
-                onGetMagicCartContent.onGetMagicCartContents(list)
-            }
+    fun getProductsByCategory(onGetProducts: OnGetProducts, category: String) {
+        val url = "products/category/${category}"
+        retrofit.create(Requests::class.java).getProductsByCategory(url)
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetMagicCartContent.onFailureMagicCartContents(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getPopularCategories(onGetCategories: OnGetCategories){
-        retrofit.create(Requests::class.java).getPopularCategories().enqueue(object :Callback<List<String>>{
-            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-                val list = arrayListOf<String>()
-                if (response.body()!!.size > 4){
-                    list.addAll(response.body()!!.subList(0 , 4))
-                }else if (response.body()!!.size < 4){
-                    list.addAll(response.body()!!)
-                    for (i in 0 until 4){
-                        list.add(response.body()!![response.body()!!.size - 1])
-                        if (list.size == 4)
-                            break
+    fun getSliderContent(onGetSliderContent: OnGetSliderContent) {
+        retrofit.create(Requests::class.java).getSliderContent()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    val list = arrayListOf<Pair<String, String>>()
+                    response.body()!!.forEach {
+                        list.add(Pair(it.title, it.image))
                     }
-                }else{
-                    list.addAll(response.body()!!)
+                    onGetSliderContent.onGetSliderContent(list)
                 }
-                onGetCategories.onGetCategories(list)
-            }
 
-            override fun onFailure(call: Call<List<String>>, t: Throwable) {
-                onGetCategories.onFailureGetCategories(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetSliderContent.onGetFailure(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getPopularProductsByCategory(onGetPopularProducts: OnGetPopularProducts, category:String , tag:Int){
+    fun getMagicCartContents(onGetMagicCartContent: OnGetMagicCartContent) {
+        retrofit.create(Requests::class.java).getMagicContent()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    val list = arrayListOf<ProductsDataClass>()
+                    if (response.body()!!.size < 9)
+                        list.addAll(response.body()!!)
+                    else
+                        list.addAll(response.body()!!.subList(0, 9))
+                    onGetMagicCartContent.onGetMagicCartContents(list)
+                }
+
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetMagicCartContent.onFailureMagicCartContents(t.message!!)
+                }
+
+            })
+    }
+
+    fun getPopularCategories(onGetCategories: OnGetCategories) {
+        retrofit.create(Requests::class.java).getPopularCategories()
+            .enqueue(object : Callback<List<String>> {
+                override fun onResponse(
+                    call: Call<List<String>>,
+                    response: Response<List<String>>
+                ) {
+                    val list = arrayListOf<String>()
+                    if (response.body()!!.size > 4) {
+                        list.addAll(response.body()!!.subList(0, 4))
+                    } else if (response.body()!!.size < 4) {
+                        list.addAll(response.body()!!)
+                        for (i in 0 until 4) {
+                            list.add(response.body()!![response.body()!!.size - 1])
+                            if (list.size == 4)
+                                break
+                        }
+                    } else {
+                        list.addAll(response.body()!!)
+                    }
+                    onGetCategories.onGetCategories(list)
+                }
+
+                override fun onFailure(call: Call<List<String>>, t: Throwable) {
+                    onGetCategories.onFailureGetCategories(t.message!!)
+                }
+
+            })
+    }
+
+    fun getPopularProductsByCategory(
+        onGetPopularProducts: OnGetPopularProducts,
+        category: String,
+        tag: Int
+    ) {
         val url = "products/category/${category}"
-        retrofit.create(Requests::class.java).getProductsByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetPopularProducts.onGetPopularProducts(response.body()!! , tag)
-            }
+        retrofit.create(Requests::class.java).getProductsByCategory(url)
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetPopularProducts.onGetPopularProducts(response.body()!!, tag)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetPopularProducts.onFailureGetPopularProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetPopularProducts.onFailureGetPopularProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getPlusProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getPlusProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getPlusProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getPlusProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getBestSellersProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getBestSellersProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getBestSellersProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getBestSellersProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getTopBrands(onGetTopBrands: OnGetTopBrands){
-        retrofit.create(Requests::class.java).getTopBrands().enqueue(object :Callback<List<TopBrandDataClass>>{
-            override fun onResponse(
-                call: Call<List<TopBrandDataClass>>,
-                response: Response<List<TopBrandDataClass>>
-            ) {
-                onGetTopBrands.onGetTopBrands(response.body()!!)
-            }
+    fun getTopBrands(onGetTopBrands: OnGetTopBrands) {
+        retrofit.create(Requests::class.java).getTopBrands()
+            .enqueue(object : Callback<List<TopBrandDataClass>> {
+                override fun onResponse(
+                    call: Call<List<TopBrandDataClass>>,
+                    response: Response<List<TopBrandDataClass>>
+                ) {
+                    onGetTopBrands.onGetTopBrands(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<TopBrandDataClass>>, t: Throwable) {
-                onGetTopBrands.onFailureGetTopBrands(t.message!!)
-            }
+                override fun onFailure(call: Call<List<TopBrandDataClass>>, t: Throwable) {
+                    onGetTopBrands.onFailureGetTopBrands(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getHighReviewedProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getHighReviewedProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getHighReviewedProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getHighReviewedProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getForSaleProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getForSaleProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getForSaleProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getForSaleProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getRecentlySeenProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getRecentlySeenProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getRecentlySeenProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getRecentlySeenProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getSingleProduct(onGetProducts: OnGetProducts , id:Int){
-        retrofit.create(Requests::class.java).getSingleProduct("products/$id").enqueue(object :Callback<ProductsDataClass>{
-            override fun onResponse(
-                call: Call<ProductsDataClass>,
-                response: Response<ProductsDataClass>
-            ) {
-                onGetProducts.onGetProducts(arrayListOf(response.body()!!))
-            }
+    fun getSingleProduct(onGetProducts: OnGetProducts, id: Int) {
+        retrofit.create(Requests::class.java).getSingleProduct("products/$id")
+            .enqueue(object : Callback<ProductsDataClass> {
+                override fun onResponse(
+                    call: Call<ProductsDataClass>,
+                    response: Response<ProductsDataClass>
+                ) {
+                    onGetProducts.onGetProducts(arrayListOf(response.body()!!))
+                }
 
-            override fun onFailure(call: Call<ProductsDataClass>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<ProductsDataClass>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getUserBuySimilarProducts(onGetProducts: OnGetProducts , ProductId:String){
+    fun getUserBuySimilarProducts(onGetProducts: OnGetProducts, ProductId: String) {
         val url = "products/category/${ProductId}"
-        retrofit.create(Requests::class.java).getProductsByCategory(url).enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+        retrofit.create(Requests::class.java).getProductsByCategory(url)
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
 
-        })
+            })
     }
 
-    fun getRelatedCategories(onGetCategories: OnGetCategories , category:String){
+    fun getRelatedCategories(onGetCategories: OnGetCategories, category: String) {
         // put category here
         val url = "products/categories"
-        retrofit.create(Requests::class.java).getRelatedCategories(url).enqueue(object :Callback<List<String>>{
-            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-                onGetCategories.onGetCategories(response.body()!!)
-            }
+        retrofit.create(Requests::class.java).getRelatedCategories(url)
+            .enqueue(object : Callback<List<String>> {
+                override fun onResponse(
+                    call: Call<List<String>>,
+                    response: Response<List<String>>
+                ) {
+                    onGetCategories.onGetCategories(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<String>>, t: Throwable) {
-                onGetCategories.onFailureGetCategories(t.message!!)
-            }
+                override fun onFailure(call: Call<List<String>>, t: Throwable) {
+                    onGetCategories.onFailureGetCategories(t.message!!)
+                }
 
-        })
+            })
+    }
+
+    fun getSellerProducts(onGetProducts: OnGetProducts, sellerId: Int) {
+        retrofit.create(Requests::class.java).getSellerProducts("products?limit=16")
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
+
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
+            })
     }
 }

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_scrollFlags="scroll|snap|enterAlways">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backImage"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="@dimen/standardMargin"
+                    android:orientation="vertical">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="گزارش قیمت"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/TextSize5x" />
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/productTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/standardMargin0.5x"
+                        android:gravity="center_vertical"
+                        android:text="آموزش زبان انگلیسی به سبک محمدی"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/TextSize3x" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?colorPrimary"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:padding="@dimen/standardMargin1.5x">
+
+            <com.dust.exmall.customviews.CTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/standardMargin"
+                android:paddingHorizontal="@dimen/standardMargin"
+                android:text="این کالا را با چه قیمتی دیده اید؟"
+                android:textColor="@color/black_normal"
+                android:textSize="@dimen/TextSize3x" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_marginVertical="@dimen/standardMargin"
+                android:backgroundTint="@color/whiteBackground"
+                app:cardCornerRadius="@dimen/standardMargin1.5x">
+
+                <com.cottacush.android.currencyedittext.CurrencyEditText
+                    android:id="@+id/priceEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/edittext_selector"
+                    android:drawableEnd="@drawable/ic_baseline_search_24"
+                    android:maxLength="40"
+                    android:inputType="number"
+                    android:textDirection="rtl"
+                    android:textSize="@dimen/TextSize3x" />
+            </androidx.cardview.widget.CardView>
+
+            <CheckBox
+                android:id="@+id/onlineShopCheckbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                android:layout_marginTop="@dimen/standardMargin1.5x"
+                android:checked="true"
+                android:buttonTint="@color/red_light"
+                android:text="در فروشگاه اینترنتی دیده ام"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/placeShopContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:paddingHorizontal="@dimen/standardMargin"
+                    android:text="نام فروشگاه"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize3x" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_marginVertical="@dimen/standardMargin"
+                    android:backgroundTint="@color/whiteBackground"
+                    app:cardCornerRadius="@dimen/standardMargin1.5x">
+
+                    <EditText
+                        android:id="@+id/shopTitleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/edittext_selector"
+                        android:maxLength="30"
+                        android:textSize="@dimen/TextSize3x" />
+                </androidx.cardview.widget.CardView>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:paddingHorizontal="@dimen/standardMargin"
+                    android:text="مکان فروشگاه"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize3x" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_marginVertical="@dimen/standardMargin"
+                    android:backgroundTint="@color/whiteBackground"
+                    app:cardCornerRadius="@dimen/standardMargin1.5x">
+
+                    <RelativeLayout
+                        android:id="@+id/choosePlaceContainer"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/shopPlaceText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/imageOne"
+                            android:layout_marginStart="@dimen/standardMargin"
+                            android:backgroundTint="@color/edittext_selector"
+                            android:gravity="center_vertical"
+                            android:textDirection="rtl"
+                            android:textSize="@dimen/TextSize3x" />
+
+                        <ImageView
+                            android:id="@+id/imageOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            app:tint="@color/light_black2"
+                            android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                            android:src="@drawable/ic_baseline_arrow_drop_down_24"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/onlineShopContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:paddingHorizontal="@dimen/standardMargin"
+                    android:text="آدرس اینترنتی؟"
+                    android:textColor="@color/black_normal"
+                    android:textSize="@dimen/TextSize3x" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+                    android:layout_marginVertical="@dimen/standardMargin"
+                    android:backgroundTint="@color/whiteBackground"
+                    app:cardCornerRadius="@dimen/standardMargin1.5x">
+
+                    <EditText
+                        android:id="@+id/shopAddressEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/edittext_selector"
+                        android:textSize="@dimen/TextSize3x" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+        <com.dust.exmall.customviews.CButton
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="@dimen/standardMargin1.5x"
+            android:layout_marginVertical="@dimen/standardMargin1.5x"
+            android:enabled="false"
+            android:background="@drawable/continue_button_shape"
+            android:text="ارسال گزارش"
+            android:textColor="@color/continue_button_text_selector" />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

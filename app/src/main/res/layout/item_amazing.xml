@@ -39,7 +39,6 @@
                 android:padding="@dimen/standardMargin"
                 android:src="@drawable/bg_one" />
 
-
             <RelativeLayout
                 android:id="@+id/addCircle"
                 android:layout_width="25dp"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/standardMargin1.5x"
+    android:layoutDirection="rtl"
+    android:clickable="true"
+    android:paddingStart="@dimen/standardMargin1.5x"
+    android:background="?colorPrimary"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingEnd="@dimen/standardMargin0.5x"
+        android:layout_height="wrap_content">
+        <com.dust.exmall.customviews.CTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="انتخاب استان"
+            android:textSize="@dimen/TextSize5x"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/backImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_close_24"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            app:tint="@color/black"/>
+    </RelativeLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/standardMargin0.5x"
+        android:layout_marginBottom="@dimen/standardMargin"
+        android:layout_marginTop="@dimen/standardMargin2x"
+        android:layout_marginEnd="@dimen/standardMargin1.5x"
+        android:backgroundTint="@color/whiteBackground"
+        app:cardCornerRadius="@dimen/standardMargin1.5x">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/edittext_selector"
+            android:maxLength="30"
+            android:hint="جستوجو"
+            android:paddingHorizontal="@dimen/standardMargin"
+            android:textDirection="rtl"
+            android:textSize="@dimen/TextSize3x" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stateRecyclerView"
+        android:layout_width="match_parent"
+        android:layoutDirection="rtl"
+        android:layout_marginTop="@dimen/standardMargin"
+        android:layout_marginStart="@dimen/standardMargin"
+        android:layout_marginEnd="@dimen/standardMargin1.5x"
+        android:scrollbars="vertical"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

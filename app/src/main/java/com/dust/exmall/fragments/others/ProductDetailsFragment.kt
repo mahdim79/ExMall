@@ -43,12 +43,14 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var technicalFeatures: RelativeLayout
     private lateinit var sellerRelativeLayout: RelativeLayout
     private lateinit var productReviewRelative: RelativeLayout
+    private lateinit var vip_container: RelativeLayout
     private lateinit var closeButton: ImageView
     private lateinit var moreButton: ImageView
     private lateinit var likeButton: ImageView
     private lateinit var priceText: CTextView
     private lateinit var categoryText: CTextView
     private lateinit var commentCountText: CTextView
+    private lateinit var sellerCountText: CTextView
     private lateinit var titleText: TextView
     private lateinit var similarProductsTitle: TextView
     private lateinit var usersBuySimilarTitle: TextView
@@ -67,6 +69,7 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var productRatingLinear:LinearLayout
     private lateinit var goodPointView:View
     private lateinit var weakPointView:View
+    private lateinit var betterPriceLinear:LinearLayout
 
     private val animations = Animations()
 
@@ -261,6 +264,39 @@ class ProductDetailsFragment() : Fragment() {
                 v.startAnimation(animations.getFadeOutAnimation())
             false
         }
+        vip_container.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
+        betterPriceLinear.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
+        sellerCountText.setOnTouchListener { v, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_CANCEL) {
+                v.startAnimation(animations.getFadeInAnimation())
+                return@setOnTouchListener false
+            }
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                v.startAnimation(animations.getFadeInAnimation())
+            else
+                v.startAnimation(animations.getFadeOutAnimation())
+            false
+        }
     }
 
     private fun setUpLoadingProgressBar() {
@@ -299,8 +335,54 @@ class ProductDetailsFragment() : Fragment() {
         setUpFeedBackLinear()
         setUpWriteComment()
         setUpProductReview()
+        // check vip registration
+        setUpVipPlusCardView()
+
+        setUpBetterPriceLinear()
+        setUpSellerRelativeLayout()
+        setUpSellerCountText()
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpSellerCountText() {
+        sellerCountText.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , SellersFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("SellersFragment")
+                .commit()
+        }
+    }
+
+    private fun setUpSellerRelativeLayout() {
+        sellerRelativeLayout.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , FullSellerInfoFragment().newInstance(1))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("FullSellerInfoFragment")
+                .commit()
+        }
+    }
+
+    private fun setUpBetterPriceLinear() {
+        betterPriceLinear.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , BetterPriceFragment().newInstance(productData.title , productData.id))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("BetterPriceFragment")
+                .commit()
+        }
+    }
+
+    private fun setUpVipPlusCardView() {
+        vip_container.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.mainContainer , WebPageFragment().newInstance( "عضویت در فروشگاه پلاس", "https://www.google.com"))
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("WebPageFragment")
+                .commit()
+        }
     }
 
     private fun setUpGoodAndWeakPointsRecyclerView() {
@@ -556,6 +638,9 @@ class ProductDetailsFragment() : Fragment() {
         productRatingLinear = view.findViewById(R.id.productRatingLinear)
         goodPointView = view.findViewById(R.id.goodPointView)
         weakPointView = view.findViewById(R.id.weakPointView)
+        vip_container = view.findViewById(R.id.vip_container)
+        betterPriceLinear = view.findViewById(R.id.betterPriceLinear)
+        sellerCountText = view.findViewById(R.id.sellerCountText)
 
         retryText = loadingContainer.findViewById(R.id.retryText)
         retryText.setOnClickListener {

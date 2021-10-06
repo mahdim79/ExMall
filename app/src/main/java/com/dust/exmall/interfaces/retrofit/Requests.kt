@@ -49,4 +49,7 @@ interface Requests {
 
     @GET
     fun getRelatedCategories(@Url url: String):Call<List<String>>
+
+    @GET
+    fun getSellerProducts(@Url url:String):Call<List<ProductsDataClass>>
 }

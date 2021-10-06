@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.cottacush:CurrencyEditText:0.0.7'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

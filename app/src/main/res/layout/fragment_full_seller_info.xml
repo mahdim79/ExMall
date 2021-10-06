@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center"
+    android:layoutDirection="rtl"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentInsetStartWithNavigation="0dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layoutDirection="rtl"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/backImage"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:tint="@color/black"
+                        android:padding="8dp"
+                        android:layout_marginHorizontal="@dimen/standardMargin"
+                        android:src="@drawable/ic_baseline_arrow_back_24"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/TextSize5x"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="اطلاعات تکمیلی فروشنده"/>
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="rtl"
+                android:padding="@dimen/standardMargin1.5x"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/sellerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="صنایع غذایی هیرشا"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/TextSize4x"
+                        android:textStyle="bold"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="عضویت از سه سال پیش"
+                        android:textColor="@color/light_black"
+                        android:layout_below="@+id/sellerName"
+                        android:layout_marginTop="@dimen/standardMargin0.5x"
+                        android:textSize="@dimen/TextSize3x" />
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:id="@+id/moreProducts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/TextSize4x"
+                        android:textColor="@color/blue"
+                        android:text="دیگر کالاها"
+                        android:layout_alignParentEnd="true"
+                        />
+                </RelativeLayout>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/totalPercentageText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/standardMargin"
+                    android:text="89.44%"
+                    android:textColor="@color/light_orange"
+                    android:textSize="@dimen/TextSize7x"
+                    android:textStyle="bold"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="رضایت خریداران از کیفیت کالا"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
+                    android:textStyle="bold"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="از مجموع 115 نفر"
+                    android:textColor="@color/light_black"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/standardMargin"
+                    android:textSize="@dimen/TextSize3x" />
+
+                <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
+                    android:id="@+id/roundedCornerProgressBar"
+                    android:layout_width="match_parent"
+                    app:rcIconSrc="@drawable/bg_one"
+                    app:rcMax="100"
+                    app:rcBackgroundColor="@color/whiteBackground"
+                    app:rcProgressColor="@color/green"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
+                    app:rcIconSize="25dp"
+                    app:rcProgress="0"
+                    app:rcIconBackgroundColor="@color/red_light"
+                    android:layoutDirection="ltr"
+                    android:layout_height="wrap_content"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/standardMargin0.5x"
+                    android:layout_height="wrap_content">
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/white_varient"
+                        android:textSize="@dimen/TextSize3x"
+                        android:layout_height="wrap_content"
+                        android:text="رضایت"/>
+
+                    <com.dust.exmall.customviews.CTextView
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/white_varient"
+                        android:textSize="@dimen/TextSize3x"
+                        android:layout_height="wrap_content"
+                        android:text="عدم رضایت"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
+                    android:background="@color/whiteBackground"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:id="@+id/totalSellerStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/standardMargin3x"
+                    android:text="عالی"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/TextSize6x"
+                    android:textStyle="bold"/>
+
+                <com.dust.exmall.customviews.CTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="عملکرد کلی فروشنده"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/TextSize3x"
+                    android:layout_marginTop="@dimen/standardMargin1.5x"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/standardMargin2x"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="33.33"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100%"
+                            android:textColor="@color/light_black2"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/TextSize5x"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="تامین به موقع"
+                            android:textColor="@color/light_black"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/standardMargin"
+                            android:textSize="@dimen/TextSize3x" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="33.33"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100%"
+                            android:textColor="@color/light_black2"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/TextSize5x"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="تعهد ارسال"
+                            android:textColor="@color/light_black"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/standardMargin"
+                            android:textSize="@dimen/TextSize3x" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="33.33"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="99.9%"
+                            android:textColor="@color/light_black2"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/TextSize5x"/>
+
+                        <com.dust.exmall.customviews.CTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="بدون ثبت مرجوعی"
+                            android:textColor="@color/light_black"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/standardMargin"
+                            android:textSize="@dimen/TextSize3x" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/loadingContainer"
+        layout="@layout/loading_layout" />
+</LinearLayout>

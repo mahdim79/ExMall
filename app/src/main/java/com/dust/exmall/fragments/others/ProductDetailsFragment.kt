@@ -1,5 +1,6 @@
 package com.dust.exmall.fragments.others
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,10 +21,12 @@ import com.dust.exmall.adapters.viewpager.ProductImagesAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
+import com.dust.exmall.dataclasses.ColorDataClass
 import com.dust.exmall.dataclasses.CommentDataClass
 import com.dust.exmall.dataclasses.ImportantFeatureDataClass
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.fragments.bottomsheets.ProductDetailsBottomSheet
+import com.dust.exmall.interfaces.local.OnColorChanged
 import com.dust.exmall.interfaces.maininterfaces.OnGetCategories
 import com.dust.exmall.interfaces.maininterfaces.OnGetProducts
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -37,6 +39,7 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var commentPreviewRecyclerView: RecyclerView
     private lateinit var similarProductsRecyclerView: RecyclerView
     private lateinit var usersBuySimilarRecyclerView: RecyclerView
+    private lateinit var colorRecyclerView: RecyclerView
     private lateinit var weakPointsRecyclerView: RecyclerView
     private lateinit var goodPointsRecyclerView: RecyclerView
     private lateinit var featureRecyclerView: RecyclerView
@@ -47,6 +50,7 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var closeButton: ImageView
     private lateinit var moreButton: ImageView
     private lateinit var likeButton: ImageView
+    private lateinit var cartImageView: ImageView
     private lateinit var priceText: CTextView
     private lateinit var categoryText: CTextView
     private lateinit var commentCountText: CTextView
@@ -65,16 +69,18 @@ class ProductDetailsFragment() : Fragment() {
     private lateinit var answerAndAsk: RelativeLayout
     private lateinit var backIntroductions: RelativeLayout
     private lateinit var retryText: TextView
-    private lateinit var moreReviewLinear:LinearLayout
-    private lateinit var productRatingLinear:LinearLayout
-    private lateinit var goodPointView:View
-    private lateinit var weakPointView:View
-    private lateinit var betterPriceLinear:LinearLayout
+    private lateinit var moreReviewLinear: LinearLayout
+    private lateinit var productRatingLinear: LinearLayout
+    private lateinit var goodPointView: View
+    private lateinit var weakPointView: View
+    private lateinit var betterPriceLinear: LinearLayout
 
     private val animations = Animations()
 
     private lateinit var productData: ProductsDataClass
     private lateinit var apiServiceManager: ApiServiceManager
+
+    private lateinit var colorSelectionAdapter: ColorSelectionAdapter
 
     private var IS_LIKED = false
 
@@ -96,14 +102,29 @@ class ProductDetailsFragment() : Fragment() {
         setUpCloseButton()
         setUpMoreButton()
         setUpFavoriteButton()
+        setUpCardImageView()
         setUpAnswerAndQuestion()
         setUpBackIntroductions()
+    }
+
+    private fun setUpCardImageView() {
+        cartImageView.setOnClickListener {
+            for(i in 0 until requireActivity().supportFragmentManager.backStackEntryCount)
+                requireActivity().supportFragmentManager.popBackStack()
+            val intent = Intent("com.dust.exmall.ChangeViewPagerPosition")
+            intent.putExtra("POSITION" , 2)
+            requireActivity().sendBroadcast(intent)
+
+        }
     }
 
     private fun setUpBackIntroductions() {
         backIntroductions.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , WebPageFragment().newInstance("رویه های بازگشت کالا" , "https://www.google.com"))
+                .add(
+                    R.id.mainContainer,
+                    WebPageFragment().newInstance("رویه های بازگشت کالا", "https://www.google.com")
+                )
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("WebPageFragment")
                 .commit()
@@ -341,14 +362,34 @@ class ProductDetailsFragment() : Fragment() {
         setUpBetterPriceLinear()
         setUpSellerRelativeLayout()
         setUpSellerCountText()
+        setUpColorSelectionSystem(generateFakeColorList())
         coordinatorContainer.visibility = View.VISIBLE
         loadingContainer.visibility = View.GONE
+    }
+
+    private fun setUpColorSelectionSystem(colorList: List<ColorDataClass>) {
+        colorRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        colorSelectionAdapter = ColorSelectionAdapter(object : OnColorChanged {
+            override fun onColorChanged(colorId: Int) {
+                for (i in colorList.indices)
+                    colorList[i].selected = colorList[i].id == colorId
+                colorSelectionAdapter.notifyDataSetChanged()
+
+                // set up new seller information
+
+            }
+        }, colorList)
+
+        colorRecyclerView.adapter = colorSelectionAdapter
+
     }
 
     private fun setUpSellerCountText() {
         sellerCountText.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , SellersFragment())
+                .add(R.id.mainContainer, SellersFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("SellersFragment")
                 .commit()
@@ -358,7 +399,7 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpSellerRelativeLayout() {
         sellerRelativeLayout.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , FullSellerInfoFragment().newInstance(1))
+                .add(R.id.mainContainer, FullSellerInfoFragment().newInstance(1))
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("FullSellerInfoFragment")
                 .commit()
@@ -368,7 +409,10 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpBetterPriceLinear() {
         betterPriceLinear.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , BetterPriceFragment().newInstance(productData.title , productData.id))
+                .add(
+                    R.id.mainContainer,
+                    BetterPriceFragment().newInstance(productData.title, productData.id)
+                )
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("BetterPriceFragment")
                 .commit()
@@ -378,7 +422,10 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpVipPlusCardView() {
         vip_container.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.mainContainer , WebPageFragment().newInstance( "عضویت در فروشگاه پلاس", "https://www.google.com"))
+                .add(
+                    R.id.mainContainer,
+                    WebPageFragment().newInstance("عضویت در فروشگاه پلاس", "https://www.google.com")
+                )
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack("WebPageFragment")
                 .commit()
@@ -387,11 +434,15 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpGoodAndWeakPointsRecyclerView() {
 
-        weakPointsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        goodPointsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
+        weakPointsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        goodPointsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        goodPointsRecyclerView.adapter = GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), false)
-        weakPointsRecyclerView.adapter = GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), true)
+        goodPointsRecyclerView.adapter =
+            GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), false)
+        weakPointsRecyclerView.adapter =
+            GoodAndWeakPointsAdapter(generateFakeGoodAndWeakPoints(), true)
 
     }
 
@@ -403,14 +454,15 @@ class ProductDetailsFragment() : Fragment() {
     }
 
     private fun setUpFeatureRecyclerView() {
-        featureRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.VERTICAL , false)
-        featureRecyclerView.adapter = FeatureAdapter(generateFakeFeatures() , requireContext())
+        featureRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        featureRecyclerView.adapter = FeatureAdapter(generateFakeFeatures(), requireContext())
     }
 
     private fun generateFakeFeatures(): List<ImportantFeatureDataClass> {
         val list = arrayListOf<ImportantFeatureDataClass>()
-        for (i in 0..10){
-            list.add(ImportantFeatureDataClass("ویژگی شماره $i" , "امکانات شماره $i"))
+        for (i in 0..10) {
+            list.add(ImportantFeatureDataClass("ویژگی شماره $i", "امکانات شماره $i"))
         }
         return list
     }
@@ -433,9 +485,17 @@ class ProductDetailsFragment() : Fragment() {
         }
     }
 
-    private fun startReviewFragment(){
+    private fun startReviewFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.mainContainer , ProductReviewFragment(productData.description , productData.image , generateFakeGoodAndWeakPoints() , generateFakeGoodAndWeakPoints()))
+            .add(
+                R.id.mainContainer,
+                ProductReviewFragment(
+                    productData.description,
+                    productData.image,
+                    generateFakeGoodAndWeakPoints(),
+                    generateFakeGoodAndWeakPoints()
+                )
+            )
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(null)
             .commit()
@@ -494,11 +554,12 @@ class ProductDetailsFragment() : Fragment() {
                 } catch (e: Exception) {
                     listData.addAll(data)
                 }
-                usersBuySimilarRecyclerView.adapter = RecentlyAdapter(listData , requireActivity().supportFragmentManager)
+                usersBuySimilarRecyclerView.adapter =
+                    RecentlyAdapter(listData, requireActivity().supportFragmentManager)
             }
 
             override fun onFailureGetProducts(message: String) {
-
+                Log.i("ApiCallFailure" , "Some Thing Went Wrong!")
             }
 
         }, productData.category)
@@ -510,7 +571,8 @@ class ProductDetailsFragment() : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         apiServiceManager.getProductsByCategory(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                similarProductsRecyclerView.adapter = RecentlyAdapter(data , requireActivity().supportFragmentManager)
+                similarProductsRecyclerView.adapter =
+                    RecentlyAdapter(data, requireActivity().supportFragmentManager)
             }
 
             override fun onFailureGetProducts(message: String) {
@@ -594,7 +656,8 @@ class ProductDetailsFragment() : Fragment() {
     private fun setUpProductImagesViewPager() {
         productImagesViewPager.adapter = ProductImagesAdapter(
             childFragmentManager,
-            arrayListOf(productData.image, productData.image, productData.image)
+            arrayListOf(productData.image, productData.image, productData.image),
+            false
         )
         productDotsIndicator.setViewPager(productImagesViewPager)
     }
@@ -641,6 +704,8 @@ class ProductDetailsFragment() : Fragment() {
         vip_container = view.findViewById(R.id.vip_container)
         betterPriceLinear = view.findViewById(R.id.betterPriceLinear)
         sellerCountText = view.findViewById(R.id.sellerCountText)
+        colorRecyclerView = view.findViewById(R.id.colorRecyclerView)
+        cartImageView = view.findViewById(R.id.cartImageView)
 
         retryText = loadingContainer.findViewById(R.id.retryText)
         retryText.setOnClickListener {
@@ -661,6 +726,17 @@ class ProductDetailsFragment() : Fragment() {
                     "userName $i"
                 )
             )
+        return list
+    }
+
+    private fun generateFakeColorList(): List<ColorDataClass> {
+        val list = arrayListOf<ColorDataClass>()
+        list.add(ColorDataClass(0, "مشکی", "#171717", true))
+        list.add(ColorDataClass(1, "بنفش", "#3700B3", false))
+        list.add(ColorDataClass(2, "سبز", "#9ffd32", false))
+        list.add(ColorDataClass(3, "آبی", "#00BCD4", false))
+        list.add(ColorDataClass(4, "طلایی", "#EAD418", false))
+        list.add(ColorDataClass(5, "سفید", "#FFFFFF", false))
         return list
     }
 

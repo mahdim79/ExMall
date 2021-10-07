@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.dust.exmall.R
 import com.squareup.picasso.Picasso
 
-class ProductImagesFragment():Fragment() {
+class ProductImagesFragment(var imageList:List<String> , var position:Int , var fullImageMode:Boolean):Fragment() {
     private lateinit var productImage:ImageView
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,18 +27,19 @@ class ProductImagesFragment():Fragment() {
     }
 
     private fun setUpImage() {
-        Picasso.get().load(requireArguments().getString("URL")).into(productImage)
+        Picasso.get().load(imageList[position]).into(productImage)
+        if (!fullImageMode){
+            productImage.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer , ProductFullImagesFragment(imageList , position))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("ProductFullImagesFragment")
+                    .commit()
+            }
+        }
     }
 
     private fun setUpViews(view: View) {
         productImage = view.findViewById(R.id.productImage)
-    }
-
-    fun newInstance(url: String): ProductImagesFragment {
-        val args = Bundle()
-        args.putString("URL", url)
-        val fragment = ProductImagesFragment()
-        fragment.arguments = args
-        return fragment
     }
 }

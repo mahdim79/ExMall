@@ -13,7 +13,8 @@
         android:id="@+id/coordinatorContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -136,6 +137,8 @@
                         android:textColor="@color/light_black"
                         android:textSize="@dimen/TextSize3x" />
                 </RelativeLayout>
+
+                <include layout="@layout/color_selection_layout"/>
 
                 <View
                     android:layout_width="match_parent"

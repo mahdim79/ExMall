@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:id="@+id/faqRelativeLayout"
+        android:id="@+id/priceChartRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -42,7 +42,7 @@
         android:layout_marginHorizontal="25dp"
         android:background="@color/whiteBackground"/>
     <RelativeLayout
-        android:id="@+id/privacyRelativeLayout"
+        android:id="@+id/compareRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="rtl"
@@ -75,7 +75,7 @@
         android:layout_marginHorizontal="25dp"
         android:background="@color/whiteBackground"/>
     <RelativeLayout
-        android:id="@+id/termsOfUsageRelativeLayout"
+        android:id="@+id/shareRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="rtl"
@@ -107,6 +107,7 @@
         android:layout_marginHorizontal="25dp"
         android:background="@color/whiteBackground"/>
     <RelativeLayout
+        android:id="@+id/incredibleAnnouncementRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layoutDirection="rtl"
@@ -133,6 +134,7 @@
             android:textSize="@dimen/TextSize4x"/>
 
         <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/incredibleAnnouncementSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

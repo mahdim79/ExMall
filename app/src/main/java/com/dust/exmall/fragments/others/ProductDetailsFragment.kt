@@ -100,11 +100,11 @@ class ProductDetailsFragment() : Fragment() {
         setUpApiServiceManager()
         getProductData()
         setUpCloseButton()
-        setUpMoreButton()
         setUpFavoriteButton()
         setUpCardImageView()
         setUpAnswerAndQuestion()
         setUpBackIntroductions()
+
     }
 
     private fun setUpCardImageView() {
@@ -359,6 +359,7 @@ class ProductDetailsFragment() : Fragment() {
         // check vip registration
         setUpVipPlusCardView()
 
+        setUpMoreButton()
         setUpBetterPriceLinear()
         setUpSellerRelativeLayout()
         setUpSellerCountText()
@@ -604,7 +605,7 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpMoreButton() {
         moreButton.setOnClickListener {
-            val dialog = ProductDetailsBottomSheet()
+            val dialog = ProductDetailsBottomSheet(productData)
             dialog.show(requireActivity().supportFragmentManager, "ProductDetailsBottomSheet")
         }
     }

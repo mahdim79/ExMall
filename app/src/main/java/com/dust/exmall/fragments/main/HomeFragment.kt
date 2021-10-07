@@ -316,7 +316,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         apiServiceManager.getForSaleProducts(object :OnGetProducts{
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                forSaleRecyclerView.adapter = ForSaleAdapter(data)
+                forSaleRecyclerView.adapter = ForSaleAdapter(data , requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }

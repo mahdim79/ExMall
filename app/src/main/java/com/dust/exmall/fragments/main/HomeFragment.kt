@@ -1,8 +1,6 @@
 package com.dust.exmall.fragments.main
 
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,9 +23,12 @@ import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
+import com.dust.exmall.dataclasses.AdvertisementDataClass
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
-import com.dust.exmall.fragments.others.SearchFragment
+import com.dust.exmall.fragments.others.CategoryProductsFragment
+import com.dust.exmall.fragments.others.TagProductsFragment
+import com.dust.exmall.fragments.others.WebPageFragment
 import com.dust.exmall.interfaces.maininterfaces.*
 import com.squareup.picasso.Picasso
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
@@ -62,19 +64,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var magicImageEight: ImageView
     private lateinit var magicImageNine: ImageView
 
-    private lateinit var popularProductsHeader:TextView
-    private lateinit var popularProductsHeaderTwo:TextView
-    private lateinit var popularProductsHeaderThree:TextView
-    private lateinit var popularProductsHeaderFour:TextView
+    private lateinit var popularProductsHeader: TextView
+    private lateinit var popularProductsHeaderTwo: TextView
+    private lateinit var popularProductsHeaderThree: TextView
+    private lateinit var popularProductsHeaderFour: TextView
 
-    private lateinit var popularLinearOne:LinearLayout
-    private lateinit var popularLinearTwo:LinearLayout
-    private lateinit var popularLinearThree:LinearLayout
-    private lateinit var popularLinearFour:LinearLayout
-    private lateinit var searchLinear:LinearLayout
+    private lateinit var popularLinearOne: LinearLayout
+    private lateinit var popularLinearTwo: LinearLayout
+    private lateinit var popularLinearThree: LinearLayout
+    private lateinit var popularLinearFour: LinearLayout
+    private lateinit var searchLinear: LinearLayout
 
-    private lateinit var homeComponentContainer:CoordinatorLayout
-    private lateinit var mainProgressBar:ProgressBar
+    private lateinit var homeComponentContainer: CoordinatorLayout
+    private lateinit var mainProgressBar: ProgressBar
 
     private var sliderCount = 0
 
@@ -114,7 +116,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         fetchLayoutData()
     }
 
-    private fun fetchLayoutData(){
+    private fun fetchLayoutData() {
         setUpSliderViewPager()
         setUpAmazingOffersRecyclerView()
         setUpMagicCards()
@@ -128,22 +130,22 @@ class HomeFragment : Fragment(), View.OnClickListener {
         setUpHighReviewedViewPager()
     }
 
-    private fun updateLoadingState(){
+    private fun updateLoadingState() {
         LOADED_COMPONENT++
-        Log.i("STATE" , "NUM = $LOADED_COMPONENT")
+        Log.i("STATE", "NUM = $LOADED_COMPONENT")
         mainProgressBar.progress = LOADED_COMPONENT
-        if (LOADED_COMPONENT == TOTAL_COMPONENT_COUNT){
+        if (LOADED_COMPONENT == TOTAL_COMPONENT_COUNT) {
             homeComponentContainer.visibility = View.VISIBLE
             mainProgressBar.visibility = View.GONE
-            Log.i("STATE" , "DONE")
+            Log.i("STATE", "DONE")
             homeComponentContainer.startAnimation(animations.getScaleAnimation())
         }
     }
 
-    private fun updateFailureLoad(){
+    private fun updateFailureLoad() {
         FAILURE_LOADED_COMPONENT++
-        Log.i("Fail" , FAILURE_LOADED_COMPONENT.toString())
-        if (FAILURE_LOADED_COMPONENT == TOTAL_FAILURE_COMPONENT_COUNT){
+        Log.i("Fail", FAILURE_LOADED_COMPONENT.toString())
+        if (FAILURE_LOADED_COMPONENT == TOTAL_FAILURE_COMPONENT_COUNT) {
             retryText.visibility = View.VISIBLE
         }
     }
@@ -154,17 +156,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun startSearchFragment(){
+    private fun startSearchFragment() {
         val intent = Intent("com.dust.exmall.StartFragment")
-        intent.putExtra("FRAGMENT_NAME" , "SearchFragment")
+        intent.putExtra("FRAGMENT_NAME", "SearchFragment")
         requireActivity().sendBroadcast(intent)
     }
 
     private fun setUpRecentlySeenRecyclerView() {
-        recentlySeenProductsRecyclerView.layoutManager = LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL , false)
-        apiServiceManager.getRecentlySeenProducts(object :OnGetProducts{
+        recentlySeenProductsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        apiServiceManager.getRecentlySeenProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                recentlySeenProductsRecyclerView.adapter = RecentlyAdapter(data , requireActivity().supportFragmentManager)
+                recentlySeenProductsRecyclerView.adapter =
+                    RecentlyAdapter(data, requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }
@@ -261,7 +265,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setUpPopularProductsRecyclerView(categories:List<String>) {
+    private fun setUpPopularProductsRecyclerView(categories: List<String>) {
 
         popularProductsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -272,11 +276,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         popularProductsRecyclerViewFour.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        for (i in 0 until categories.size){
+        for (i in 0 until categories.size) {
             apiServiceManager.getPopularProductsByCategory(object : OnGetPopularProducts {
                 override fun onGetPopularProducts(data: List<ProductsDataClass>, tag: Int) {
-                    val adapter = PopularProductsAdapter(data , requireActivity().supportFragmentManager)
-                    when(tag){
+                    val adapter =
+                        PopularProductsAdapter(data, requireActivity().supportFragmentManager)
+                    when (tag) {
                         0 -> popularProductsRecyclerView.adapter = adapter
                         1 -> popularProductsRecyclerViewTwo.adapter = adapter
                         2 -> popularProductsRecyclerViewThree.adapter = adapter
@@ -314,9 +319,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpForSaleRecyclerView() {
         forSaleRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        apiServiceManager.getForSaleProducts(object :OnGetProducts{
+        apiServiceManager.getForSaleProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                forSaleRecyclerView.adapter = ForSaleAdapter(data , requireActivity().supportFragmentManager)
+                forSaleRecyclerView.adapter =
+                    ForSaleAdapter(data, requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }
@@ -367,7 +373,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         apiServiceManager.getPlusProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
-                plusProductsRecyclerView.adapter = PlusProductsAdapter(data , requireActivity().supportFragmentManager)
+                plusProductsRecyclerView.adapter =
+                    PlusProductsAdapter(data, requireActivity().supportFragmentManager)
                 updateLoadingState()
                 // 1
             }
@@ -386,7 +393,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getAmazingOffersProducts(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingOffersRecyclerView.adapter =
-                    AmazingAdapter(data, AmazingOffersType, requireContext() , requireActivity().supportFragmentManager)
+                    AmazingAdapter(
+                        data,
+                        AmazingOffersType,
+                        requireContext(),
+                        requireActivity().supportFragmentManager
+                    )
                 updateLoadingState()
                 // 1
             }
@@ -405,7 +417,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getProductsByCategory(object : OnGetProducts {
             override fun onGetProducts(data: List<ProductsDataClass>) {
                 amazingSuperMarketRecyclerView.adapter =
-                    AmazingAdapter(data, AmazingSuperMarketType, requireContext() , requireActivity().supportFragmentManager)
+                    AmazingAdapter(
+                        data,
+                        AmazingSuperMarketType,
+                        requireContext(),
+                        requireActivity().supportFragmentManager
+                    )
                 updateLoadingState()
                 // 1
             }
@@ -420,15 +437,46 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpMagicCards() {
         apiServiceManager.getMagicCartContents(object : OnGetMagicCartContent {
             override fun onGetMagicCartContents(list: List<ProductsDataClass>) {
-                Picasso.get().load(list[0].image).into(magicImageOne)
-                Picasso.get().load(list[1].image).into(magicImageTwo)
-                Picasso.get().load(list[2].image).into(magicImageThree)
-                Picasso.get().load(list[3].image).into(magicImageFour)
-                Picasso.get().load(list[4].image).into(magicImageFive)
-                Picasso.get().load(list[5].image).into(magicImageSix)
-                Picasso.get().load(list[6].image).into(magicImageSeven)
-                Picasso.get().load(list[7].image).into(magicImageEight)
-                Picasso.get().load(list[8].image).into(magicImageNine)
+                // we don't have real api so we use fake advertisement data
+                val listData = arrayListOf<AdvertisementDataClass>()
+                listData.addAll(generateFakeAdvertisementData())
+                Picasso.get().load(listData[0].image).into(magicImageOne)
+                Picasso.get().load(listData[1].image).into(magicImageTwo)
+                Picasso.get().load(listData[2].image).into(magicImageThree)
+                Picasso.get().load(listData[3].image).into(magicImageFour)
+                Picasso.get().load(listData[4].image).into(magicImageFive)
+                Picasso.get().load(listData[5].image).into(magicImageSix)
+                Picasso.get().load(listData[6].image).into(magicImageSeven)
+                Picasso.get().load(listData[7].image).into(magicImageEight)
+                Picasso.get().load(listData[8].image).into(magicImageNine)
+
+                magicImageOne.setOnClickListener{
+                    evaluateAdvertisement(listData[0])
+                }
+                magicImageTwo.setOnClickListener{
+                    evaluateAdvertisement(listData[1])
+                }
+                magicImageThree.setOnClickListener{
+                    evaluateAdvertisement(listData[2])
+                }
+                magicImageFour.setOnClickListener{
+                    evaluateAdvertisement(listData[3])
+                }
+                magicImageFive.setOnClickListener{
+                    evaluateAdvertisement(listData[4])
+                }
+                magicImageSix.setOnClickListener{
+                    evaluateAdvertisement(listData[5])
+                }
+                magicImageSeven.setOnClickListener{
+                    evaluateAdvertisement(listData[6])
+                }
+                magicImageEight.setOnClickListener{
+                    evaluateAdvertisement(listData[7])
+                }
+                magicImageNine.setOnClickListener{
+                    evaluateAdvertisement(listData[8])
+                }
 
                 updateLoadingState()
                 // 1
@@ -439,6 +487,46 @@ class HomeFragment : Fragment(), View.OnClickListener {
             }
 
         })
+    }
+
+    private fun generateFakeAdvertisementData():List<AdvertisementDataClass> {
+        val list = arrayListOf<AdvertisementDataClass>()
+        list.add(AdvertisementDataClass("CATEGORY" , "" , "" , "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("LINK" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        return list
+    }
+
+    private fun evaluateAdvertisement(data :AdvertisementDataClass) {
+        when(data.type){
+            "CATEGORY" -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer, CategoryProductsFragment().newInstance(data.name))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("CategoryProductsFragment")
+                    .commit()
+            }
+            "TAG" -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer , TagProductsFragment().newInstance(data.tag))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("TagProductsFragment")
+                    .commit()
+            }
+            "LINK" -> {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.mainContainer , WebPageFragment().newInstance(data.name , data.link))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("WebPageFragment")
+                    .commit()
+            }
+        }
     }
 
     private fun setUpSuggestionRecyclerView() {
@@ -491,10 +579,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
         topBrandRecyclerview = view.findViewById(R.id.topBrandRecyclerview)
         forSaleRecyclerView = view.findViewById(R.id.forSaleRecyclerView)
         HighReviewedViewPager = view.findViewById(R.id.HighReviewedViewPager)
-        popularProductsRecyclerView = popularLinearOne.findViewById(R.id.popularProductsRecyclerView)
-        popularProductsRecyclerViewTwo = popularLinearTwo.findViewById(R.id.popularProductsRecyclerView)
-        popularProductsRecyclerViewThree = popularLinearThree.findViewById(R.id.popularProductsRecyclerView)
-        popularProductsRecyclerViewFour = popularLinearFour.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerView =
+            popularLinearOne.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewTwo =
+            popularLinearTwo.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewThree =
+            popularLinearThree.findViewById(R.id.popularProductsRecyclerView)
+        popularProductsRecyclerViewFour =
+            popularLinearFour.findViewById(R.id.popularProductsRecyclerView)
         recentlySeenProductsRecyclerView = view.findViewById(R.id.recentlySeenProductsRecyclerView)
         addLocationContainer = view.findViewById(R.id.addLocationContainer)
         searchLinear = view.findViewById(R.id.searchLinear)
@@ -503,11 +595,11 @@ class HomeFragment : Fragment(), View.OnClickListener {
         magicImageTwo = view.findViewById(R.id.magicImageTwo)
         magicImageThree = view.findViewById(R.id.magicImageThree)
         magicImageFour = view.findViewById(R.id.magicImageFour)
-        magicImageFive = view.findViewById(R.id. magicImageFive)
-        magicImageSix = view.findViewById(R.id.  magicImageSix)
+        magicImageFive = view.findViewById(R.id.magicImageFive)
+        magicImageSix = view.findViewById(R.id.magicImageSix)
         magicImageSeven = view.findViewById(R.id.magicImageSeven)
         magicImageEight = view.findViewById(R.id.magicImageEight)
-        magicImageNine = view.findViewById(R.id. magicImageNine)
+        magicImageNine = view.findViewById(R.id.magicImageNine)
 
         popularProductsHeader = popularLinearOne.findViewById(R.id.popularProductsHeader)
         popularProductsHeaderTwo = popularLinearTwo.findViewById(R.id.popularProductsHeader)
@@ -517,9 +609,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
         homeComponentContainer = view.findViewById(R.id.homeComponentContainer)
         mainProgressBar = view.findViewById(R.id.mainProgressBar)
 
-        search_text.setOnClickListener(this)
-        search_image.setOnClickListener(this)
-        exMallText.setOnClickListener(this)
+        search_text.setOnClickListener {
+            startSearchFragment()
+        }
+        search_image.setOnClickListener {
+            startSearchFragment()
+        }
+        exMallText.setOnClickListener {
+            startSearchFragment()
+        }
 
         retryText.setOnClickListener {
             LOADED_COMPONENT = 0
@@ -531,17 +629,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
-        when (p0!!.id) {
-            R.id.search_text -> {
-                startSearchFragment()
-            }
-            R.id.search_image -> {
-                startSearchFragment()
-            }
-            R.id.exMallText -> {
-                startSearchFragment()
-            }
-        }
+
     }
 
     override fun onStart() {

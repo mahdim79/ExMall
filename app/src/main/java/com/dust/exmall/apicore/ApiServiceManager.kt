@@ -329,4 +329,20 @@ class ApiServiceManager() {
                 }
             })
     }
+
+    fun getTagsProducts(onGetProducts: OnGetProducts , tagName:String){
+        retrofit.create(Requests::class.java).getTagProducts("products?limit=16").enqueue(object :Callback<List<ProductsDataClass>>{
+            override fun onResponse(
+                call: Call<List<ProductsDataClass>>,
+                response: Response<List<ProductsDataClass>>
+            ) {
+                onGetProducts.onGetProducts(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                onGetProducts.onFailureGetProducts(t.message!!)
+            }
+
+        })
+    }
 }

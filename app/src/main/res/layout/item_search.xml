@@ -14,7 +14,6 @@
         android:layout_centerVertical="true"
         android:src="@drawable/ic_baseline_search_24"/>
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +23,7 @@
         android:layout_toStartOf="@+id/searchImage"
         android:orientation="vertical">
         <com.dust.exmall.customviews.CTextView
+            android:id="@+id/tagTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/TextSize3x"
@@ -40,6 +40,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/relativeImage"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_centerVertical="true"

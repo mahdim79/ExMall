@@ -28,6 +28,21 @@ class ApiServiceManager() {
             .build()
     }
 
+    fun getAllProducts(onGetProducts: OnGetProducts){
+        retrofit.create(Requests::class.java).getAllProducts().enqueue(object :Callback<List<ProductsDataClass>>{
+            override fun onResponse(
+                call: Call<List<ProductsDataClass>>,
+                response: Response<List<ProductsDataClass>>
+            ) {
+                onGetProducts.onGetProducts(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                onGetProducts.onFailureGetProducts(t.message!!)
+            }
+        })
+    }
+
     fun getAmazingOffersProducts(onGetProducts: OnGetProducts) {
         retrofit.create(Requests::class.java).getAmazingProducts()
             .enqueue(object : Callback<List<ProductsDataClass>> {

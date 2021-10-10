@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/standardMargin1.5x"
+    android:layout_margin="@dimen/standardMargin0.5x">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:paddingVertical="@dimen/standardMargin0.5x"
+        android:paddingHorizontal="@dimen/standardMargin"
+        android:layout_height="match_parent">
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/wordText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="@dimen/TextSize3x"
+            tools:text="آیتم اول" />
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="270dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layoutDirection="rtl"
     app:cardCornerRadius="@dimen/standardMargin"
     android:layout_margin="@dimen/standardMargin0.5x"
@@ -31,7 +31,7 @@
                 android:textSize="@dimen/TextSize3x"
                 android:maxLines="1"
                 android:textColor="@color/black_normal"
-                android:text="کتاب ذکر صلوات اثر حشمت"/>
+                tools:text="کتاب ذکر صلوات اثر حشمت"/>
 
             <com.dust.exmall.customviews.CTextView
                 android:id="@+id/textDescription"
@@ -41,7 +41,7 @@
                 android:layout_marginTop="@dimen/standardMargin0.5x"
                 android:textSize="@dimen/TextSize3x"
                 android:textColor="@color/black_normal"
-                android:text="سروری فخر انتشارات خلاق"/>
+                tools:text="سروری فخر انتشارات خلاق"/>
         </LinearLayout>
 
     </RelativeLayout>

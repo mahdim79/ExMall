@@ -3,4 +3,5 @@
     <string name="soldAmount">%s فروش رفته</string>
     <string name="productCount">%d کالا</string>
     <string name="commentRules">ثبت دیدگاه، به معنی موافقت با قوانین انتشار فروشگاه است.</string>
+    <string name="allSpecifiedCategoryProducts">همه کالاهای دسته بندی %s</string>
 </resources>

@@ -48,6 +48,8 @@ class CategoryProductsFragment() : Fragment() , View.OnClickListener {
     private lateinit var clearSortImage: ImageView
     private lateinit var clearFilter: CTextView
     private lateinit var sortText: CTextView
+    private lateinit var search_text: CTextView
+    private lateinit var exMallText: TextView
     private lateinit var loadingContainer: LinearLayout
 
     private var animations = Animations()
@@ -327,6 +329,8 @@ class CategoryProductsFragment() : Fragment() , View.OnClickListener {
     }
 
     private fun setUpSearchBox() {
+        exMallText.visibility = View.GONE
+        search_text.text = requireArguments().getString("NAME")
         search_text_linear.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .add(R.id.mainContainer , SearchFragment())
@@ -365,6 +369,8 @@ class CategoryProductsFragment() : Fragment() , View.OnClickListener {
         sortRelative = view.findViewById(R.id.sortRelative)
         clearSortImage = view.findViewById(R.id.clearSortImage)
         sortText = view.findViewById(R.id.sortText)
+        search_text = view.findViewById(R.id.search_text)
+        exMallText = view.findViewById(R.id.exMallText)
 
         mostRelevantRelative = view.findViewById(R.id.mostRelevantRelative)
         highReviewedRelative = view.findViewById(R.id.highReviewedRelative)

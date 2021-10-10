@@ -54,4 +54,7 @@ interface Requests {
 
     @GET
     fun getTagProducts(@Url url:String):Call<List<ProductsDataClass>>
+
+    @GET("products")
+    fun getAllProducts():Call<List<ProductsDataClass>>
 }

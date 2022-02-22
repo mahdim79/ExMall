@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-            android:layout_toEndOf="@+id/backImage"
             android:text="فیلترها"
             android:textColor="@color/black"
             android:textSize="@dimen/TextSize5x" />
@@ -70,7 +69,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="پرسش های متداول"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x"/>
@@ -97,7 +95,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="پرسش های متداول"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x"/>
@@ -124,7 +121,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="پرسش های متداول"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x"/>
@@ -151,7 +147,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="پرسش های متداول"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x"/>
@@ -223,7 +218,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="فقط کالاهای دیجی پلاس"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:layout_centerVertical="true"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x"/>

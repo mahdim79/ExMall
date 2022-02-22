@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/standardMargin0.5x"
+    android:backgroundTint="@color/white_bottom_navigation"
+    app:cardCornerRadius="@dimen/standardMargin"
+    android:layout_height="170dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:padding="@dimen/standardMargin0.5x"
+            android:adjustViewBounds="true"
+            tools:src="@drawable/bg_one"
+            android:layout_weight="60"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/itemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/TextSize4x"
+            tools:text="کالای نمونه"/>
+
+        <com.dust.exmall.customviews.CTextView
+            android:id="@+id/itemCount"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/TextSize4x"
+            android:layout_weight="20"
+            tools:text="+70 کالا"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

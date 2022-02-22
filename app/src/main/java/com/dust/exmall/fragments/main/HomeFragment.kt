@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +22,7 @@ import com.dust.exmall.adapters.viewpager.ProductsSliderAdapter
 import com.dust.exmall.animation.Animations
 import com.dust.exmall.apicore.ApiServiceManager
 import com.dust.exmall.customviews.CTextView
-import com.dust.exmall.dataclasses.AdvertisementDataClass
+import com.dust.exmall.dataclasses.CardsDataClass
 import com.dust.exmall.dataclasses.ProductsDataClass
 import com.dust.exmall.dataclasses.TopBrandDataClass
 import com.dust.exmall.fragments.others.CategoryProductsFragment
@@ -438,7 +437,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         apiServiceManager.getMagicCartContents(object : OnGetMagicCartContent {
             override fun onGetMagicCartContents(list: List<ProductsDataClass>) {
                 // we don't have real api so we use fake advertisement data
-                val listData = arrayListOf<AdvertisementDataClass>()
+                val listData = arrayListOf<CardsDataClass>()
                 listData.addAll(generateFakeAdvertisementData())
                 Picasso.get().load(listData[0].image).into(magicImageOne)
                 Picasso.get().load(listData[1].image).into(magicImageTwo)
@@ -451,31 +450,31 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 Picasso.get().load(listData[8].image).into(magicImageNine)
 
                 magicImageOne.setOnClickListener{
-                    evaluateAdvertisement(listData[0])
+                    evaluateCardData(listData[0])
                 }
                 magicImageTwo.setOnClickListener{
-                    evaluateAdvertisement(listData[1])
+                    evaluateCardData(listData[1])
                 }
                 magicImageThree.setOnClickListener{
-                    evaluateAdvertisement(listData[2])
+                    evaluateCardData(listData[2])
                 }
                 magicImageFour.setOnClickListener{
-                    evaluateAdvertisement(listData[3])
+                    evaluateCardData(listData[3])
                 }
                 magicImageFive.setOnClickListener{
-                    evaluateAdvertisement(listData[4])
+                    evaluateCardData(listData[4])
                 }
                 magicImageSix.setOnClickListener{
-                    evaluateAdvertisement(listData[5])
+                    evaluateCardData(listData[5])
                 }
                 magicImageSeven.setOnClickListener{
-                    evaluateAdvertisement(listData[6])
+                    evaluateCardData(listData[6])
                 }
                 magicImageEight.setOnClickListener{
-                    evaluateAdvertisement(listData[7])
+                    evaluateCardData(listData[7])
                 }
                 magicImageNine.setOnClickListener{
-                    evaluateAdvertisement(listData[8])
+                    evaluateCardData(listData[8])
                 }
 
                 updateLoadingState()
@@ -489,21 +488,21 @@ class HomeFragment : Fragment(), View.OnClickListener {
         })
     }
 
-    private fun generateFakeAdvertisementData():List<AdvertisementDataClass> {
-        val list = arrayListOf<AdvertisementDataClass>()
-        list.add(AdvertisementDataClass("CATEGORY" , "" , "" , "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("LINK" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
-        list.add(AdvertisementDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+    private fun generateFakeAdvertisementData():List<CardsDataClass> {
+        val list = arrayListOf<CardsDataClass>()
+        list.add(CardsDataClass("LOCAL_PRODUCTS" , "" , "" , "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("LINK" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("LINK" , "" , "" , "مایع ظرفشویی سافتلن", "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("CATEGORY" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        list.add(CardsDataClass("TAG" , "" , "", "مایع ظرفشویی سافتلن" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
         return list
     }
 
-    private fun evaluateAdvertisement(data :AdvertisementDataClass) {
+    private fun evaluateCardData(data :CardsDataClass) {
         when(data.type){
             "CATEGORY" -> {
                 requireActivity().supportFragmentManager.beginTransaction()
@@ -539,9 +538,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private fun setUpSliderViewPager() {
         apiServiceManager.getSliderContent(object : OnGetSliderContent {
             override fun onGetSliderContent(list: List<Pair<String, String>>) {
-                sliderViewPager.adapter = MainSliderAdapter(childFragmentManager, list)
+                val fakeData = generateFakeAdvertisementData()
+                sliderViewPager.adapter = MainSliderAdapter(childFragmentManager, fakeData)
                 sliderDotsIndicator.setViewPager(sliderViewPager)
-                sliderCount = list.size
+                sliderCount = fakeData.size
                 initSliderTimer()
                 updateLoadingState()
                 // 1
@@ -550,7 +550,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
             override fun onGetFailure(message: String) {
                 updateFailureLoad()
             }
-
         })
     }
 

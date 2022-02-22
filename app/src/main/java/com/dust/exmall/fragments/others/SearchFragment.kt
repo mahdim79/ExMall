@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -75,6 +72,7 @@ class SearchFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         setUpViews(view)
         setUpAnimations()
         setUpSharedPreferences()
@@ -252,6 +250,7 @@ class SearchFragment() : Fragment() {
     }
 
     override fun onDestroy() {
+        checkFlags()
         if (searchWord != "")
             sharedPreferencesCenter.addToSearchHistory(searchWord)
         super.onDestroy()
@@ -277,4 +276,12 @@ class SearchFragment() : Fragment() {
         relativeSearchRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
+
+    private fun checkFlags() {
+        try {
+            if (requireActivity().supportFragmentManager.getBackStackEntryAt(requireActivity().supportFragmentManager.backStackEntryCount - 1).name == "LocalProductsFragment")
+                requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }catch (e:Exception){}
+    }
+
 }

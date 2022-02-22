@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ExMall/app/src/main/res/layout/filter_controller_layout.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ExMall/app/src/main/res/layout/fragment_local_product_category.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ExMall/app/src/main/res/layout/fragment_product_details.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ExMall/app/src/main/res/layout/item_sellers.xml" value="0.33" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ExMall/app/src/main/res/layout/sort_controller_layout.xml" value="0.22" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_12" default="true" project-jdk-name="12" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

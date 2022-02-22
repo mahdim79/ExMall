@@ -1,7 +1,6 @@
 package com.dust.exmall.apicore
 
-import com.dust.exmall.dataclasses.ProductsDataClass
-import com.dust.exmall.dataclasses.TopBrandDataClass
+import com.dust.exmall.dataclasses.*
 import com.dust.exmall.interfaces.maininterfaces.*
 import com.dust.exmall.interfaces.retrofit.Requests
 import okhttp3.OkHttpClient
@@ -14,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 class ApiServiceManager() {
     private lateinit var retrofit: Retrofit
-
+    
     init {
         retrofit = Retrofit.Builder()
             .baseUrl("https://fakestoreapi.com/")
@@ -28,19 +27,20 @@ class ApiServiceManager() {
             .build()
     }
 
-    fun getAllProducts(onGetProducts: OnGetProducts){
-        retrofit.create(Requests::class.java).getAllProducts().enqueue(object :Callback<List<ProductsDataClass>>{
-            override fun onResponse(
-                call: Call<List<ProductsDataClass>>,
-                response: Response<List<ProductsDataClass>>
-            ) {
-                onGetProducts.onGetProducts(response.body()!!)
-            }
+    fun getAllProducts(onGetProducts: OnGetProducts) {
+        retrofit.create(Requests::class.java).getAllProducts()
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
 
-            override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
-            }
-        })
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
+            })
     }
 
     fun getAmazingOffersProducts(onGetProducts: OnGetProducts) {
@@ -345,19 +345,62 @@ class ApiServiceManager() {
             })
     }
 
-    fun getTagsProducts(onGetProducts: OnGetProducts , tagName:String){
-        retrofit.create(Requests::class.java).getTagProducts("products?limit=16").enqueue(object :Callback<List<ProductsDataClass>>{
+    fun getTagsProducts(onGetProducts: OnGetProducts, tagName: String) {
+        retrofit.create(Requests::class.java).getTagProducts("products?limit=16")
+            .enqueue(object : Callback<List<ProductsDataClass>> {
+                override fun onResponse(
+                    call: Call<List<ProductsDataClass>>,
+                    response: Response<List<ProductsDataClass>>
+                ) {
+                    onGetProducts.onGetProducts(response.body()!!)
+                }
+
+                override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
+                    onGetProducts.onFailureGetProducts(t.message!!)
+                }
+
+            })
+    }
+
+    fun getLocalData(onGetLocalData: OnGetLocalData){
+        retrofit.create(Requests::class.java).getLocalProductsData().enqueue(object :Callback<List<ProductsDataClass>>{
             override fun onResponse(
                 call: Call<List<ProductsDataClass>>,
                 response: Response<List<ProductsDataClass>>
             ) {
-                onGetProducts.onGetProducts(response.body()!!)
+                // we don't have an stable api so we set request return type (List<ProductsDataClass>) . so we have to create fake LocalProductsDataClass! /:
+                onGetLocalData.onGetData(generateFakeLocalDataClass(response.body()))
             }
 
             override fun onFailure(call: Call<List<ProductsDataClass>>, t: Throwable) {
-                onGetProducts.onFailureGetProducts(t.message!!)
+                onGetLocalData.onFailureGetData(t.message!!)
             }
 
         })
+    }
+
+    private fun generateFakeLocalDataClass(body: List<ProductsDataClass>?): LocalProductsDataClass {
+        val headerList = arrayListOf<CardsDataClass>()
+        headerList.add(CardsDataClass("LINK" , "www.google.com" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        headerList.add(CardsDataClass("LINK" , "www.google.com" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        headerList.add(CardsDataClass("LINK" , "www.google.com" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        headerList.add(CardsDataClass("LINK" , "www.google.com" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        val categoryData = arrayListOf<CategoryDataClass>()
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        categoryData.add(CategoryDataClass("خشک بار نمونه" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png" , 700))
+        val topBrandList = arrayListOf<TopBrandDataClass>()
+        topBrandList.add(TopBrandDataClass(0 , "برند نمونه" , "" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        topBrandList.add(TopBrandDataClass(0 , "برند نمونه" , "" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        topBrandList.add(TopBrandDataClass(0 , "برند نمونه" , "" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        topBrandList.add(TopBrandDataClass(0 , "برند نمونه" , "" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+        topBrandList.add(TopBrandDataClass(0 , "برند نمونه" , "" , "" , "" , "https://www.creatopy.com/blog/wp-content/uploads/2016/06/images-for-banner-ads-1024x527.png"))
+
+        return LocalProductsDataClass(headerList , headerList , body!! , body , body ,categoryData , categoryData , categoryData , categoryData , topBrandList, headerList )
     }
 }

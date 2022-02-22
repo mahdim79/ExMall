@@ -4,10 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
@@ -94,6 +91,7 @@ class ProductDetailsFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         setUpViews(view)
         setUpViewsAnimations()
         setUpLoadingProgressBar()
@@ -109,10 +107,10 @@ class ProductDetailsFragment() : Fragment() {
 
     private fun setUpCardImageView() {
         cartImageView.setOnClickListener {
-            for(i in 0 until requireActivity().supportFragmentManager.backStackEntryCount)
+            for (i in 0 until requireActivity().supportFragmentManager.backStackEntryCount)
                 requireActivity().supportFragmentManager.popBackStack()
             val intent = Intent("com.dust.exmall.ChangeViewPagerPosition")
-            intent.putExtra("POSITION" , 2)
+            intent.putExtra("POSITION", 2)
             requireActivity().sendBroadcast(intent)
 
         }
@@ -560,7 +558,7 @@ class ProductDetailsFragment() : Fragment() {
             }
 
             override fun onFailureGetProducts(message: String) {
-                Log.i("ApiCallFailure" , "Some Thing Went Wrong!")
+                Log.i("ApiCallFailure", "Some Thing Went Wrong!")
             }
 
         }, productData.category)
@@ -739,6 +737,18 @@ class ProductDetailsFragment() : Fragment() {
         list.add(ColorDataClass(4, "طلایی", "#EAD418", false))
         list.add(ColorDataClass(5, "سفید", "#FFFFFF", false))
         return list
+    }
+
+    override fun onDestroy() {
+        checkFlags()
+        super.onDestroy()
+    }
+
+    private fun checkFlags() {
+        try {
+            if (requireActivity().supportFragmentManager.getBackStackEntryAt(requireActivity().supportFragmentManager.backStackEntryCount - 1).name == "LocalProductsFragment")
+                requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }catch (e:Exception){}
     }
 
     fun newInstance(id: Int): ProductDetailsFragment {

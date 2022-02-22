@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginHorizontal="@dimen/standardMargin1.5x"
-            android:layout_toEndOf="@+id/backImage"
             android:text="مرتب سازی"
             android:textColor="@color/black"
             android:textSize="@dimen/TextSize5x" />
@@ -63,7 +62,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="مرتبط ترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -96,7 +94,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="پربازدیدترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -128,7 +125,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="جدیدترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -161,7 +157,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="پرفروش ترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -194,7 +189,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="ارزان ترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -227,7 +221,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="گران ترین"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -260,7 +253,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="سریع ترین ارسال"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />
@@ -293,7 +285,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/fav_image"
                     android:text="پیشنهادات خریداران"
                     android:textColor="@color/black_normal"
                     android:textSize="@dimen/TextSize4x" />

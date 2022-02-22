@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
@@ -31,6 +32,7 @@ class WebPageFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         setUpViews(view)
         setUpBackImage()
         setUpShareImage()
@@ -76,6 +78,18 @@ class WebPageFragment() : Fragment() {
             loadingProgressBar.visibility = View.GONE
             super.onPageFinished(view, url)
         }
+    }
+
+    override fun onDestroy() {
+        checkFlags()
+        super.onDestroy()
+    }
+
+    private fun checkFlags() {
+        try {
+            if (requireActivity().supportFragmentManager.getBackStackEntryAt(requireActivity().supportFragmentManager.backStackEntryCount - 1).name == "LocalProductsFragment")
+                requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        }catch (e:Exception){}
     }
 
     fun newInstance(title: String , url:String): WebPageFragment {

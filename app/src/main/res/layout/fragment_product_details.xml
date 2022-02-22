@@ -240,7 +240,6 @@
                             android:layout_alignStart="@+id/textMain"
                             android:layout_marginTop="@dimen/standardMargin0.5x"
                             android:layout_marginEnd="@dimen/standardMargin0.5x"
-                            android:layout_toStartOf="@+id/sendInfoSwitch"
                             android:text="85% رضایت خریداران | عملکرد متوسط" />
                     </RelativeLayout>
 
@@ -545,7 +544,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/standardMargin"
-                        android:layout_toEndOf="@+id/bug_image"
                         android:text="مشخصات فنی"
                         android:textColor="@color/black"
                         android:textSize="@dimen/TextSize4x"
@@ -580,7 +578,6 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginHorizontal="@dimen/standardMargin"
-                        android:layout_toEndOf="@+id/bug_image"
                         android:text="معرفی اجمالی محصول"
                         android:textColor="@color/black"
                         android:textSize="@dimen/TextSize4x"

@@ -74,7 +74,6 @@
             android:layout_alignStart="@+id/titleText"
             android:layout_marginTop="@dimen/standardMargin0.5x"
             android:layout_marginEnd="@dimen/standardMargin0.5x"
-            android:layout_toStartOf="@+id/sendInfoSwitch"
             android:text="85% رضایت خریداران | عملکرد متوسط" />
     </RelativeLayout>
 
